@@ -511,10 +511,18 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
   .main-nav {
     position: fixed; inset: var(--header-h) 0 auto 0; margin: 0;
     flex-direction: column; gap: 0; background: #0d0d0d; border-bottom: 1px solid #242424;
-    padding: 0.5rem 1rem 1rem; transform: translateY(-120%); transition: transform var(--transition);
+    padding: 0.5rem 1rem 1rem; transform: translateY(-100%);
+    /* visibility: hidden hides the panel completely when closed — prevents the last
+       nav item from peeking above the dev-banner at translateY(-100%) bottom edge */
+    visibility: hidden; pointer-events: none;
+    transition: transform var(--transition), visibility 0s var(--transition);
     box-shadow: var(--shadow);
   }
-  .main-nav.is-open { transform: translateY(0); }
+  .main-nav.is-open {
+    transform: translateY(0);
+    visibility: visible; pointer-events: auto;
+    transition: transform var(--transition), visibility 0s; /* no delay when opening */
+  }
   .main-nav a { padding: 0.9rem 0.5rem; border-bottom: 1px solid #1c1c1c; }
   .main-nav a::after { display: none; }
 

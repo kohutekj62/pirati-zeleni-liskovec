@@ -76,6 +76,7 @@
   function setupMenu() {
     var btn = document.getElementById("menu-btn");
     var nav = document.getElementById("main-nav");
+    var header = document.querySelector(".site-header");
 
     function closeMenu() {
       nav.classList.remove("is-open");
@@ -83,6 +84,11 @@
       updateMenuLabel();
     }
     function toggleMenu() {
+      // Snap the dropdown to the actual header bottom so it aligns correctly
+      // whether or not the dev-banner is visible above the header.
+      if (header) {
+        nav.style.top = header.getBoundingClientRect().bottom + "px";
+      }
       var open = nav.classList.toggle("is-open");
       btn.setAttribute("aria-expanded", open ? "true" : "false");
       updateMenuLabel();

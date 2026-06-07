@@ -119,4 +119,75 @@ test.describe("Starý Lískovec ON website", () => {
     await expect(page.locator("#main-nav")).toHaveClass(/is-open/);
     await expect(btn).toHaveAttribute("aria-expanded", "true");
   });
+
+  // -------------------------------------------------------------------------
+  // MOBILE-ONLY tests
+  // Each test skips itself on the desktop project (hamburger not visible = desktop).
+  // -------------------------------------------------------------------------
+
+  test("mobile: nav is fully hidden when the hamburger is closed", async ({ page }) => {
+    const btn = page.locator("#menu-btn");
+    if (!(await btn.isVisible())) { test.skip(true, "desktop layout"); }
+
+    // The last nav link ("Přátelé") was peeking above the dev-banner before the
+    // visibility:hidden fix. isVisible() returns false for visibility:hidden elements
+    // and would have caught the original bug.
+    const lastLink = page.locator(".main-nav a").last();
+    await expect(lastLink, "last nav link must not be visible when hamburger is closed").not.toBeVisible();
+  });
+
+  test("mobile: nav closes after tapping a link", async ({ page }) => {
+    const btn = page.locator("#menu-btn");
+    if (!(await btn.isVisible())) { test.skip(true, "desktop layout"); }
+
+    await btn.click();
+    await expect(page.locator("#main-nav")).toHaveClass(/is-open/);
+
+    // Tap the first nav link — menu should collapse
+    await page.locator(".main-nav a").first().click();
+    await expect(page.locator("#main-nav")).not.toHaveClass(/is-open/);
+    await expect(btn).toHaveAttribute("aria-expanded", "false");
+  });
+
+  test("mobile: dev-banner is visible at page load", async ({ page }) => {
+    const btn = page.locator("#menu-btn");
+    if (!(await btn.isVisible())) { test.skip(true, "desktop layout"); }
+
+    await expect(page.locator("#dev-banner")).toBeVisible();
+  });
+
+  test("mobile: dev-banner can be dismissed", async ({ page }) => {
+    const btn = page.locator("#menu-btn");
+    if (!(await btn.isVisible())) { test.skip(true, "desktop layout"); }
+
+    const banner = page.locator("#dev-banner");
+    await expect(banner).toBeVisible();
+    await page.locator("#dev-banner-close").click();
+    await expect(banner).toBeHidden();
+  });
+
+  test("mobile: no horizontal scrollbar (no content wider than viewport)", async ({ page }) => {
+    const btn = page.locator("#menu-btn");
+    if (!(await btn.isVisible())) { test.skip(true, "desktop layout"); }
+
+    const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
+    expect(overflow, "body should not be wider than the viewport (horizontal scroll)").toBe(false);
+  });
+
+  test("mobile: flip-cards have real height and work on touch", async ({ page }) => {
+    const btn = page.locator("#menu-btn");
+    if (!(await btn.isVisible())) { test.skip(true, "desktop layout"); }
+
+    const first = page.locator("#people-grid .flip-card").first();
+    const box = await first.boundingBox();
+    expect(box && box.height, "flip-card must have real height on mobile").toBeGreaterThan(100);
+
+    // Tap to flip
+    await first.click();
+    await expect(first).toHaveAttribute("aria-pressed", "true");
+
+    // Tap again to flip back
+    await first.click();
+    await expect(first).toHaveAttribute("aria-pressed", "false");
+  });
 });
