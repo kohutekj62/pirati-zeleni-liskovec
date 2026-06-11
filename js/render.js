@@ -252,7 +252,7 @@ const RENDER = (function () {
     });
     if (!all.length) return;
 
-    var PAGE = 3;
+    var PAGE = window.innerWidth <= 480 ? 1 : 3;
     var maxStart = Math.max(0, all.length - PAGE);
     if (_newsStart === null) _newsStart = 0;
     var start = Math.max(0, Math.min(_newsStart, maxStart));

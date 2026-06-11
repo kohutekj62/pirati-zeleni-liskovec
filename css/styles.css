@@ -633,6 +633,7 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 @media (max-width: 480px) {
   .brand__name { font-size: 1.2rem; }
   .people-grid { grid-template-columns: 1fr; }
+  .news-cards { grid-template-columns: 1fr; }
 }
 
 /* ----------------------------------------------------------------------------
