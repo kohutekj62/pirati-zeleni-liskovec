@@ -398,6 +398,8 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 .candidates-other__item:nth-child(odd) { background: rgba(255, 255, 255, 0.03); }
 .candidates-other__pos { color: var(--color-muted); font-size: 0.85rem; text-align: right; }
 .candidates-other__name { font-weight: 600; font-size: 0.95rem; }
+.candidates-other__name--open { font-weight: 400; color: var(--color-muted); font-style: italic; }
+.candidates-other__open { display: inline-block; width: 5rem; }
 .candidates-other__prof { color: var(--color-muted); font-size: 0.875rem; text-align: right; }
 
 /* ----------------------------------------------------------------------------

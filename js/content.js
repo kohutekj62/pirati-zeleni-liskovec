@@ -348,37 +348,41 @@ const CONTENT = {
       en: { bio: "Anna brings a fresh perspective to our team as a healthcare professional, working as a pharmacist in the BENU network. She believes in the importance of prevention and access to quality healthcare for residents of every age in our district. She will use her professional experience of working with people to listen to your suggestions and needs in social and health prevention. Combining expertise with a concern for public affairs leads her to stand for the Greens, with the goal of supporting a healthier Starý Lískovec." },
     },
     {
+      name: "Ayudh Ray", party: "Piráti", photo: "ayudh-ray.jpg",
+      cs: { bio: "Bio bude doplněno." },
+      en: { bio: "Bio to be added." },
+    },
+    {
+      name: "Kateřina Křížová", party: "Piráti", photo: "katerina-krizova.jpg",
+      cs: { bio: "Bio bude doplněno." },
+      en: { bio: "Bio to be added." },
+    },
+    {
       name: "Jakub Czapek", party: "Piráti", photo: "czapek-jakub.jpg",
       cs: { bio: "Jakub je architekt a urbanista, spoluzakladatel studia zaměřeného na udržitelnou architekturu a plánování veřejného prostoru v Brně. Prosazuje otevřenou, participativní přípravu investičních projektů, kde mají občané skutečný vliv na podobu svého okolí. Svou odborností přispívá k rozvoji kvalitnějšího veřejného prostoru, moderních škol i dostupného bydlení. Věří, že funkční architektura a zapojená komunita jsou základem dlouhodobě prosperující čtvrti." },
       en: { bio: "Jakub is an architect and urban planner, co-founder of a studio specialising in sustainable architecture and public-space design in Brno. He champions open, participatory project planning where residents genuinely shape the outcome for their own neighbourhood. His expertise informs proposals for quality public spaces, modern schools and accessible housing. He believes that functional architecture and an engaged community are the foundation of a long-term thriving district." },
     },
-    {
-      name: "Milan Svoboda", party: "Piráti", photo: "svoboda-milan.jpg",
-      cs: { bio: "Milan je odborník na životní prostředí a udržitelný rozvoj s dlouholetými zkušenostmi z neziskového sektoru a komunální politiky. Aktivně se zapojuje do projektů ochrany městské zeleně a prosazuje ekologicky šetrná řešení v každodenním životě čtvrti. Jeho cílem je prosadit konkrétní opatření ke snížení znečištění a posílení biodiverzity ve veřejném prostoru Starého Lískovce. Spojuje vědecký přístup s osobním zápalem pro trvale udržitelné město, v němž je radost žít." },
-      en: { bio: "Milan is an environmental and sustainable-development expert with many years' experience in the non-profit sector and local government. He takes an active part in urban green-space protection projects and advocates eco-friendly approaches to everyday district life. His goal is concrete measures to reduce pollution and boost biodiversity in Starý Lískovec's public spaces. He combines a scientific approach with personal passion for a truly sustainable city that is a pleasure to live in." },
-    },
-    {
-      name: "Petr Musil", party: "Piráti", photo: "musil-petr.jpg",
-      cs: { bio: "Petr přináší do komunální politiky odbornost z oblasti informačních technologií a digitalizace veřejné správy. Prosazuje transparentní správu čtvrti s využitím moderních digitálních nástrojů a otevřených dat, která umožňují občanům lépe sledovat nakládání s veřejnými prostředky. Zkušenosti z IT sektoru mu pomáhají navrhnout efektivní modernizaci úřadních procesů a přímější komunikaci radnice s lidmi. Věří, že technologie mají sloužit občanům — ne je komplikovat." },
-      en: { bio: "Petr brings expertise in information technology and digital public-administration to local politics. He champions transparent district management through modern digital tools and open data that let residents better track how public money is spent. His experience in the IT sector underpins an efficient approach to modernising administrative processes and more direct communication between the council and citizens. He believes technology should serve people — not make their lives more complicated." },
-    },
   ],
 
   /* ========================================================================
-     5b) OSTATNÍ KANDIDÁTI  —  positions 9–20 on the election list.
+     5b) OSTATNÍ KANDIDÁTI  —  positions 9–21 on the election list.
          Only name, party and profession are shown (no photo, no bio).
-         Real professions and party assignments will be updated before launch.
+         Use party: "" and profession: "" for open/unfilled slots.
      ====================================================================== */
   people_other: [
-    { name: "Markéta Tvrdá",    party: "Piráti", profession: "architektka" },
-    { name: "Jakub Dlabaja",    party: "Zelení", profession: "manažer" },
-    { name: "Pavel Přerost",    party: "Piráti", profession: "projektový manažer" },
-    { name: "Vlasta Zobačová",  party: "Piráti", profession: "lékárnice" },
-    { name: "Eva Maliňáková",   party: "Piráti", profession: "sociální pracovnice" },
-    { name: "Tereza Nováková",  party: "Piráti", profession: "právnička" },
-    { name: "Jana Novotná",     party: "Zelení", profession: "pedagožka" },
-    { name: "Karel Martišek",   party: "Piráti", profession: "podnikatel" },
-    { name: "Jan Krejčí",       party: "Piráti", profession: "ekolog" },
+    { name: "Jitka Filipová",      party: "Piráti", profession: "doplníme" },
+    { name: "Jakub Dlabaja",       party: "Zelení", profession: "manažer" },
+    { name: "Václav Maliňák",      party: "Piráti", profession: "doplníme" },
+    { name: "Volné místo",         party: "",        profession: "" },
+    { name: "Volné místo",         party: "",        profession: "" },
+    { name: "Volné místo",         party: "",        profession: "" },
+    { name: "Aleš Máchal",         party: "Zelení", profession: "doplníme" },
+    { name: "Volné místo",         party: "",        profession: "" },
+    { name: "Volné místo",         party: "",        profession: "" },
+    { name: "Volné místo",         party: "",        profession: "" },
+    { name: "Volné místo",         party: "",        profession: "" },
+    { name: "Volné místo",         party: "",        profession: "" },
+    { name: "Blažek Hlaváčková",   party: "Piráti", profession: "doplníme" },
   ],
 
   /* ========================================================================

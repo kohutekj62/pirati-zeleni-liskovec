@@ -126,10 +126,13 @@ const RENDER = (function () {
     var offset = CONTENT.people.length; // main candidates count (8), so list starts at 9
     var items = others.map(function (c, i) {
       var isZeleni = (c.party || "").toLowerCase().indexOf("zelen") === 0;
+      var partyTag = c.party
+        ? el("span", { class: "party-tag " + (isZeleni ? "party-tag--zeleni" : "party-tag--pirati"), text: c.party })
+        : el("span", { class: "candidates-other__open" });
       return el("li", { class: "candidates-other__item", children: [
         el("span", { class: "candidates-other__pos", text: String(offset + i + 1) + "." }),
-        el("span", { class: "party-tag " + (isZeleni ? "party-tag--zeleni" : "party-tag--pirati"), text: c.party }),
-        el("span", { class: "candidates-other__name", text: c.name }),
+        partyTag,
+        el("span", { class: "candidates-other__name" + (c.party ? "" : " candidates-other__name--open"), text: c.name }),
         el("span", { class: "candidates-other__prof", text: c.profession }),
       ]});
     });
