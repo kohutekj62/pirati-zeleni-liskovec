@@ -30,8 +30,8 @@ const CONTENT = {
   config: {
     email:            "slon@staryliskovec-on.cz",    // your campaign e-mail
     phone:            "",                            // hidden — no phone support
-    facebook:         "https://facebook.com/",       // your Facebook page URL (or "" to hide)
-    instagram:        "https://instagram.com/",      // your Instagram URL (or "" to hide)
+    facebook:         "https://www.facebook.com/pirati.staryliskovec/",
+    instagram:        "https://www.instagram.com/pirati.staryliskovec/",
     twitter:          "",                            // X/Twitter URL (empty = hidden)
     youtube:          "",                            // YouTube channel URL (empty = hidden)
 
@@ -324,28 +324,28 @@ const CONTENT = {
   people: [
     {
       name: "Vendula Svobodová", party: "Piráti", photo: "vendula-svobodova.jpg",
-      cs: { bio: "Vendula se dlouhodobě věnuje rozvoji naší městské části a prosazování transparentní politiky. Jako stávající zastupitelka má bohaté zkušenosti s řešením podnětů občanů v oblasti dopravy a veřejného prostoru. Její prioritou je otevřený úřad, který komunikuje s lidmi a aktivně řeší jejich potřeby. Věří v sílu komunitního života a podporu místních spolků pro lepší sousedské vztahy." },
-      en: { bio: "Vendula has long worked on the development of our district and the promotion of transparent politics. As a current councillor she has rich experience handling residents' concerns about transport and public space. Her priority is an open town hall that communicates with people and actively addresses their needs. She believes in the strength of community life and in supporting local clubs for better neighbourly relations." },
+      cs: { bio: "Vendula stála u zrodu spolku Blechy v kožichu, který se stará o kulturní a vzdělávací rozruch ve Starém Lískovci. Před rodičovskou dovolenou se věnovala datové analýze. Od roku 2022 je zastupitelkou ve Starém Lískovci. Pro Lískovec by si přála, aby konečně ožil a přestal být hřištěm jen pro vládnoucí garnituru." },
+      en: { bio: "Vendula co-founded Blechy v kožichu, an association bringing cultural and educational life to Starý Lískovec. Before her parental leave she worked in data analysis. She has been a councillor in Starý Lískovec since 2022. Her wish for the district is that it finally comes alive and stops being a playground reserved for the ruling clique." },
     },
     {
       name: "Michala Martišková", party: "Piráti", photo: "michala-martiskova.jpg",
-      cs: { bio: "Michala je zkušená politička, která se zaměřuje především na oblast školství a sociálních služeb v naší městské části. Aktivně prosazuje rozšiřování kapacit mateřských škol a modernizaci vzdělávací infrastruktury pro naše děti. Její přístup kombinuje odbornou přípravu a empatii k potřebám rodin ve Starém Lískovci. Usiluje o to, aby naše obec byla místem, kde se všem generacím žije kvalitně a bezpečně." },
-      en: { bio: "Michala is an experienced politician who focuses above all on education and social services in our district. She actively promotes expanding nursery-school capacity and modernising educational infrastructure for our children. Her approach combines professional preparation with empathy for the needs of families in Starý Lískovec. She strives to make our district a place where every generation lives well and safely." },
+      cs: { bio: "Michala je advokátka se zaměřením na bytové právo a zastupování dětí a mladistvých v trestním řízení. Ve volném čase se snaží oživit Starý Lískovec, ať už jako členka spolku Blechy v kožichu nebo jako vedoucí oddílu rodičů s dětmi v místním Sokole. V Lískovci žije 14 let a byla by ráda, aby přestal být pro občany jen anonymní noclehárnou, aby se tu lépe žilo, sousedé se znali a mohli se potkávat v příjemném a bezpečném veřejném prostranství." },
+      en: { bio: "Michala is a lawyer specialising in housing law and representation of children and young people in criminal proceedings. In her free time she works to enliven Starý Lískovec — as a member of Blechy v kožichu and leader of the parents-with-children section at the local Sokol. She has lived here 14 years and would love the district to stop being an anonymous dormitory, and become a place where neighbours know each other and meet in pleasant, safe public spaces." },
     },
     {
       name: "Martin Novák", party: "Piráti", photo: "martin-novak.jpg",
-      cs: { bio: "Martin se v komunální politice soustředí na efektivní nakládání s obecními prostředky a rozvoj moderní infrastruktury. Jeho odbornost v oblasti dat a plánování využívá při prosazování smysluplných investic do dopravy a energeticky úsporného bydlení. Věří, že správa obce musí být založena na faktech a důsledné kontrole, nikoliv na líbivých slibech. Aktivně se podílí na projektech, které zvyšují kvalitu veřejného prostoru v okolí našeho bydliště." },
-      en: { bio: "In local politics Martin concentrates on the efficient use of municipal funds and the development of modern infrastructure. He uses his expertise in data and planning to promote meaningful investment in transport and energy-efficient housing. He believes governance must be based on facts and rigorous oversight, not on attractive promises. He takes an active part in projects that improve the quality of public space around our homes." },
+      cs: { bio: "Bio bude doplněno." },
+      en: { bio: "Bio to be added." },
     },
     {
       name: "Jan Novotný", party: "Piráti", photo: "jan-novotny.jpg",
-      cs: { bio: "Jan je aktivním členem zastupitelstva, který klade velký důraz na udržitelnost a ochranu životního prostředí v našem okolí. Prosazuje konkrétní opatření pro zmírnění dopadů klimatické změny, jako je výsadba zeleně a péče o místní parky. Jako zkušený politik se nebojí otevírat náročná témata a hledat konsenzus pro dobro všech obyvatel Starého Lískovce. Jeho cílem je rozvíjet obec tak, aby byla odolná, zelená a moderní pro příští generace." },
-      en: { bio: "Jan is an active member of the council who places great emphasis on sustainability and protecting the environment around us. He promotes concrete measures to ease the impacts of climate change, such as planting greenery and caring for local parks. As an experienced politician he is not afraid to open difficult topics and seek consensus for the good of all residents of Starý Lískovec. His goal is to develop the district to be resilient, green and modern for generations to come." },
+      cs: { bio: "Starý Lískovec zná od dětství, posledních 10 let bydlí na ulici Kosmonautů. Má zkušenosti z obecního a krajského zastupitelstva. Vzhledem k vzdělání a civilnímu povolání v Ústavu výzkumu globální změny AVČR má silný vztah především k mapám, datové analýze a oblasti životního prostředí. Kromě důsledné péče o veřejnou zeleň a realizace opatření reagujících na změny klimatu by se rád zaměřil na promyšlený územní rozvoj, volnočasové aktivity dětí a otevřenou komunikaci samosprávy s občany. Ve volném čase má rád výlety s dětmi českou přírodou a realizuje se jako řešitel a autor sudoku a logických úloh." },
+      en: { bio: "Jan has known Starý Lískovec since childhood and has lived on Kosmonautů Street for the past ten years. He has experience from municipal and regional councils. His education and work at the Global Change Research Institute (AVČR) give him a strong connection to maps, data analysis and environmental topics. Alongside caring for public greenery and climate-adaptation measures, he would like to focus on thoughtful spatial development, leisure activities for children and open communication between local government and residents. In his free time he enjoys trips through the Czech countryside with his children and is active as a solver and author of sudoku and logic puzzles." },
     },
     {
       name: "Anna Kohutková", party: "Zelení", photo: "anna-kohutkova.jpg",
-      cs: { bio: "Anna přináší do našeho týmu nový pohled jako odbornice v oblasti zdravotnictví, kde působí jako lékárnice v síti BENU. Věří v důležitost prevence a dostupnosti kvalitní zdravotní péče pro občany všech věkových kategorií v našem obvodu. Své profesní zkušenosti s jednáním s lidmi využije při naslouchání vašim podnětům a potřebám v oblasti sociální a zdravotní prevence. Spojení odbornosti a zájmu o věci veřejné ji vede ke kandidatuře za Zelené s cílem podpořit zdravější Starý Lískovec." },
-      en: { bio: "Anna brings a fresh perspective to our team as a healthcare professional, working as a pharmacist in the BENU network. She believes in the importance of prevention and access to quality healthcare for residents of every age in our district. She will use her professional experience of working with people to listen to your suggestions and needs in social and health prevention. Combining expertise with a concern for public affairs leads her to stand for the Greens, with the goal of supporting a healthier Starý Lískovec." },
+      cs: { bio: "Anna ve Starém Lískovci bydlí téměř celý život, s manželem zde vychovává dceru a již několik let tady i pracuje. Ráda se prochází místními zákoutími a sní o tom, jak by se v Lískovci mohlo žít ještě lépe. A teď už nechce zůstat jen u snů." },
+      en: { bio: "Anna has lived in Starý Lískovec for almost her entire life, where she and her husband are raising their daughter — and where she has worked for several years too. She loves exploring local nooks and dreaming of how life in Lískovce could be even better. And now she no longer wants to stay merely at the dreaming stage." },
     },
     {
       name: "Ayudh Ray", party: "Piráti", photo: "ayudh-ray.jpg",
@@ -354,13 +354,13 @@ const CONTENT = {
     },
     {
       name: "Kateřina Křížová", party: "Piráti", photo: "katerina-krizova.jpg",
-      cs: { bio: "Bio bude doplněno." },
-      en: { bio: "Bio to be added." },
+      cs: { bio: "Ve Starém Lískovci s malou přestávkou bydlí celý svůj život. Nyní zde s manželem vychovává dvě děti, díky kterým zjistila, že je kulturní život důležitou součástí. Jako zakládající členka spolku Blechy v kožichu se snaží oživit kulturní prostředí a spojit komunitu v naší městské části." },
+      en: { bio: "Kateřina has lived in Starý Lískovec for almost her entire life. She is now raising two children here with her husband, and through them discovered just how important cultural life really is. As a founding member of Blechy v kožichu she works to revive the cultural scene and bring the community in our district together." },
     },
     {
       name: "Jakub Czapek", party: "Piráti", photo: "czapek-jakub.jpg",
-      cs: { bio: "Jakub je architekt a urbanista, spoluzakladatel studia zaměřeného na udržitelnou architekturu a plánování veřejného prostoru v Brně. Prosazuje otevřenou, participativní přípravu investičních projektů, kde mají občané skutečný vliv na podobu svého okolí. Svou odborností přispívá k rozvoji kvalitnějšího veřejného prostoru, moderních škol i dostupného bydlení. Věří, že funkční architektura a zapojená komunita jsou základem dlouhodobě prosperující čtvrti." },
-      en: { bio: "Jakub is an architect and urban planner, co-founder of a studio specialising in sustainable architecture and public-space design in Brno. He champions open, participatory project planning where residents genuinely shape the outcome for their own neighbourhood. His expertise informs proposals for quality public spaces, modern schools and accessible housing. He believes that functional architecture and an engaged community are the foundation of a long-term thriving district." },
+      cs: { bio: "Bio bude doplněno." },
+      en: { bio: "Bio to be added." },
     },
   ],
 
@@ -407,7 +407,7 @@ const CONTENT = {
       en: { title: "Community day at the Sokol hall", place: "By the Sokol hall", desc: "An afternoon of neighbourhood activities, games for children and an open debate on district life." } },
     /* --- upcoming events --- */
     { date: "2026-08-08", time: "dopoledne",
-      cs: { title: "Komunitní úklid parku „Pod sídlištěm“", place: "Park Pod sídlištěm", desc: "Společně vyčistíme prostor pro rekreaci." },
+      cs: { title: "Komunitní úklid parku \"Pod sídlištěm\"", place: "Park Pod sídlištěm", desc: "Společně vyčistíme prostor pro rekreaci." },
       en: { title: "Community clean-up of \"Pod sídlištěm\" park", place: "Pod sídlištěm park", desc: "Together we'll tidy up the space for recreation." } },
     { date: "2026-08-13", time: "17:00",
       cs: { title: "Veřejná diskuse o dopravě a parkování", place: "Před místní knihovnou", desc: "Otevřená debata o tom, co vás na cestách trápí." },
