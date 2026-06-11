@@ -324,13 +324,15 @@ const CONTENT = {
   people: [
     {
       name: "Vendula Svobodová", party: "Piráti", photo: "vendula-svobodova.jpg",
-      cs: { bio: "Vendula stála u zrodu spolku Blechy v kožichu, který se stará o kulturní a vzdělávací rozruch ve Starém Lískovci. Před rodičovskou dovolenou se věnovala datové analýze. Od roku 2022 je zastupitelkou ve Starém Lískovci. Pro Lískovec by si přála, aby konečně ožil a přestal být hřištěm jen pro vládnoucí garnituru." },
-      en: { bio: "Vendula co-founded Blechy v kožichu, an association bringing cultural and educational life to Starý Lískovec. Before her parental leave she worked in data analysis. She has been a councillor in Starý Lískovec since 2022. Her wish for the district is that it finally comes alive and stops being a playground reserved for the ruling clique." },
+      age: 34,
+      cs: { profession: "geoinformatička, předsedkyně spolku Blechy v kožichu z.s., zastupitelka ve Starém Lískovci, poslankyně PČR", bio: "Vendula stála u zrodu spolku Blechy v kožichu, který se stará o kulturní a vzdělávací rozruch ve Starém Lískovci. Před rodičovskou dovolenou se věnovala datové analýze. Od roku 2022 je zastupitelkou ve Starém Lískovci. Pro Lískovec by si přála, aby konečně ožil a přestal být hřištěm jen pro vládnoucí garnituru." },
+      en: { profession: "geoinformaticist, chair of Blechy v kožichu association, Starý Lískovec councillor, MP", bio: "Vendula co-founded Blechy v kožichu, an association bringing cultural and educational life to Starý Lískovec. Before her parental leave she worked in data analysis. She has been a councillor in Starý Lískovec since 2022. Her wish for the district is that it finally comes alive and stops being a playground reserved for the ruling clique." },
     },
     {
       name: "Michala Martišková", party: "Piráti", photo: "michala-martiskova.jpg",
-      cs: { bio: "Michala je advokátka se zaměřením na bytové právo a zastupování dětí a mladistvých v trestním řízení. Ve volném čase se snaží oživit Starý Lískovec, ať už jako členka spolku Blechy v kožichu nebo jako vedoucí oddílu rodičů s dětmi v místním Sokole. V Lískovci žije 14 let a byla by ráda, aby přestal být pro občany jen anonymní noclehárnou, aby se tu lépe žilo, sousedé se znali a mohli se potkávat v příjemném a bezpečném veřejném prostranství." },
-      en: { bio: "Michala is a lawyer specialising in housing law and representation of children and young people in criminal proceedings. In her free time she works to enliven Starý Lískovec — as a member of Blechy v kožichu and leader of the parents-with-children section at the local Sokol. She has lived here 14 years and would love the district to stop being an anonymous dormitory, and become a place where neighbours know each other and meet in pleasant, safe public spaces." },
+      age: 42,
+      cs: { profession: "advokátka", bio: "Michala je advokátka se zaměřením na bytové právo a zastupování dětí a mladistvých v trestním řízení. Ve volném čase se snaží oživit Starý Lískovec, ať už jako členka spolku Blechy v kožichu nebo jako vedoucí oddílu rodičů s dětmi v místním Sokole. V Lískovci žije 14 let a byla by ráda, aby přestal být pro občany jen anonymní noclehárnou, aby se tu lépe žilo, sousedé se znali a mohli se potkávat v příjemném a bezpečném veřejném prostranství." },
+      en: { profession: "lawyer", bio: "Michala is a lawyer specialising in housing law and representation of children and young people in criminal proceedings. In her free time she works to enliven Starý Lískovec — as a member of Blechy v kožichu and leader of the parents-with-children section at the local Sokol. She has lived here 14 years and would love the district to stop being an anonymous dormitory, and become a place where neighbours know each other and meet in pleasant, safe public spaces." },
     },
     {
       name: "Martin Novák", party: "Piráti", photo: "martin-novak.jpg",
@@ -339,13 +341,15 @@ const CONTENT = {
     },
     {
       name: "Jan Novotný", party: "Piráti", photo: "jan-novotny.jpg",
-      cs: { bio: "Starý Lískovec zná od dětství, posledních 10 let bydlí na ulici Kosmonautů. Má zkušenosti z obecního a krajského zastupitelstva. Vzhledem k vzdělání a civilnímu povolání v Ústavu výzkumu globální změny AVČR má silný vztah především k mapám, datové analýze a oblasti životního prostředí. Kromě důsledné péče o veřejnou zeleň a realizace opatření reagujících na změny klimatu by se rád zaměřil na promyšlený územní rozvoj, volnočasové aktivity dětí a otevřenou komunikaci samosprávy s občany. Ve volném čase má rád výlety s dětmi českou přírodou a realizuje se jako řešitel a autor sudoku a logických úloh." },
-      en: { bio: "Jan has known Starý Lískovec since childhood and has lived on Kosmonautů Street for the past ten years. He has experience from municipal and regional councils. His education and work at the Global Change Research Institute (AVČR) give him a strong connection to maps, data analysis and environmental topics. Alongside caring for public greenery and climate-adaptation measures, he would like to focus on thoughtful spatial development, leisure activities for children and open communication between local government and residents. In his free time he enjoys trips through the Czech countryside with his children and is active as a solver and author of sudoku and logic puzzles." },
+      age: 42,
+      cs: { profession: "vědecký pracovník", bio: "Starý Lískovec zná od dětství, vychodil ZŠ Labská, posledních 10 let bydlí na ulici Kosmonautů. Má zkušenosti z obecního a krajského zastupitelstva (2014–2024). Vzhledem k vzdělání (doktorát z aplikované matematiky) a civilnímu povolání v oddělení dálkového průzkumu na Ústavu výzkumu globální změny AVČR má silný vztah především k mapám, datové analýze a oblasti životního prostředí. Kromě důsledné péče o veřejnou zeleň a realizace opatření reagujících na změny klimatu včetně těch nejdrobnějších by se rád zaměřil na promyšlený územní rozvoj, volnočasové aktivity dětí a otevřenou komunikaci samosprávy s občany. Ve volném čase má rád výlety s dětmi českou přírodou a realizuje se jako řešitel a autor sudoku a logických úloh." },
+      en: { profession: "researcher", bio: "Jan has known Starý Lískovec since childhood, attended ZŠ Labská primary school, and has lived on Kosmonautů Street for the past ten years. He has experience from municipal and regional councils (2014–2024). His doctoral degree in applied mathematics and work in the remote-sensing department of the Global Change Research Institute (AVČR) give him a strong connection to maps, data analysis and environmental topics. Alongside thorough care for public greenery and climate-adaptation measures — including the smallest ones — he would like to focus on thoughtful spatial development, leisure activities for children and open communication between local government and residents. In his free time he enjoys trips through the Czech countryside with his children and is active as a solver and author of sudoku and logic puzzles." },
     },
     {
       name: "Anna Kohutková", party: "Zelení", photo: "anna-kohutkova.jpg",
-      cs: { bio: "Anna ve Starém Lískovci bydlí téměř celý život, s manželem zde vychovává dceru a již několik let tady i pracuje. Ráda se prochází místními zákoutími a sní o tom, jak by se v Lískovci mohlo žít ještě lépe. A teď už nechce zůstat jen u snů." },
-      en: { bio: "Anna has lived in Starý Lískovec for almost her entire life, where she and her husband are raising their daughter — and where she has worked for several years too. She loves exploring local nooks and dreaming of how life in Lískovce could be even better. And now she no longer wants to stay merely at the dreaming stage." },
+      age: 39,
+      cs: { profession: "lékárnice", bio: "Anna ve Starém Lískovci bydlí téměř celý život, s manželem zde vychovává dceru a již několik let tady i pracuje. Ráda se prochází místními zákoutími a sní o tom, jak by se v Lískovci mohlo žít ještě lépe. A teď už nechce zůstat jen u snů." },
+      en: { profession: "pharmacist", bio: "Anna has lived in Starý Lískovec for almost her entire life, where she and her husband are raising their daughter — and where she has worked for several years too. She loves exploring local nooks and dreaming of how life in Lískovce could be even better. And now she no longer wants to stay merely at the dreaming stage." },
     },
     {
       name: "Ayudh Ray", party: "Piráti", photo: "ayudh-ray.jpg",
@@ -354,8 +358,9 @@ const CONTENT = {
     },
     {
       name: "Kateřina Křížová", party: "Piráti", photo: "katerina-krizova.jpg",
-      cs: { bio: "Ve Starém Lískovci s malou přestávkou bydlí celý svůj život. Nyní zde s manželem vychovává dvě děti, díky kterým zjistila, že je kulturní život důležitou součástí. Jako zakládající členka spolku Blechy v kožichu se snaží oživit kulturní prostředí a spojit komunitu v naší městské části." },
-      en: { bio: "Kateřina has lived in Starý Lískovec for almost her entire life. She is now raising two children here with her husband, and through them discovered just how important cultural life really is. As a founding member of Blechy v kožichu she works to revive the cultural scene and bring the community in our district together." },
+      age: 30,
+      cs: { profession: "asistentka pedagoga, studentka PedF", bio: "Ve Starém Lískovci s malou přestávkou bydlí celý svůj život. Nyní zde s manželem vychovává dvě děti, díky kterým zjistila, že je kulturní život důležitou součástí. Jako zakládající členka spolku Blechy v kožichu se snaží oživit kulturní prostředí a spojit komunitu v naší městské části." },
+      en: { profession: "teaching assistant, student of pedagogy", bio: "Kateřina has lived in Starý Lískovec for almost her entire life. She is now raising two children here with her husband, and through them discovered just how important cultural life really is. As a founding member of Blechy v kožichu she works to revive the cultural scene and bring the community in our district together." },
     },
     {
       name: "Jakub Czapek", party: "Piráti", photo: "czapek-jakub.jpg",

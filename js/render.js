@@ -104,9 +104,17 @@ const RENDER = (function () {
         "aria-label": t("card_flip_to_photo") + ": " + p.name,
       }, children: [ el("span", { class: "flip-card__inner", children: [front, back] }) ] });
 
+      var subtitleParts = [];
+      if (p.age) subtitleParts.push(p.age + " let");
+      if (data.profession) subtitleParts.push(data.profession);
+      var subtitleEl = subtitleParts.length
+        ? el("p", { class: "person__subtitle", text: subtitleParts.join(" · ") })
+        : null;
+
       var info = el("div", { class: "person__info", children: [
         el("span", { class: "party-tag " + (isZeleni ? "party-tag--zeleni" : "party-tag--pirati"), text: p.party }),
         el("h3",   { class: "person__name", text: p.name }),
+        subtitleEl,
         el("p",    { class: "person__bio", text: data.bio }),
       ]});
 
@@ -340,7 +348,7 @@ const RENDER = (function () {
       var socialBox = el("div", { class: "contact__social" });
       socials.forEach(function (s) {
         socialBox.appendChild(el("a", { text: s.short, attrs: {
-          href: s.url, target: "_blank", rel: "noopener", "aria-label": s.label, title: s.label,
+          href: s.url, target: "_blank", rel: "noopener noreferrer", "aria-label": s.label, title: s.label,
         }}));
       });
       details.appendChild(el("li", { children: [
@@ -355,7 +363,7 @@ const RENDER = (function () {
     clear(ul);
     socialLinks().forEach(function (s) {
       ul.appendChild(el("li", { children: [
-        el("a", { text: s.short, attrs: { href: s.url, target: "_blank", rel: "noopener", "aria-label": s.label, title: s.label } }),
+        el("a", { text: s.short, attrs: { href: s.url, target: "_blank", rel: "noopener noreferrer", "aria-label": s.label, title: s.label } }),
       ]}));
     });
   }
@@ -375,7 +383,7 @@ const RENDER = (function () {
     function card(modifier, name, links) {
       var linkBox = el("div", { class: "partner-card__links" });
       links.forEach(function (lk) {
-        if (lk.url) linkBox.appendChild(el("a", { text: lk.label, attrs: { href: lk.url, target: "_blank", rel: "noopener" } }));
+        if (lk.url) linkBox.appendChild(el("a", { text: lk.label, attrs: { href: lk.url, target: "_blank", rel: "noopener noreferrer" } }));
       });
       return el("div", { class: "partner-card partner-card--" + modifier, children: [
         el("h3", { class: "partner-card__name", text: name }), linkBox,
@@ -402,6 +410,67 @@ const RENDER = (function () {
     });
   }
 
+  /* ====================================================================== */
+  /* Structured data — inject Person + Event JSON-LD once on first load    */
+  /* ====================================================================== */
+  var _structuredDataInjected = false;
+
+  function renderStructuredData() {
+    if (_structuredDataInjected) return;
+    _structuredDataInjected = true;
+
+    var BASE = "https://www.staryliskovec-on.cz/";
+    var ORG  = BASE + "#organization";
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var graph = [];
+
+    /* Person schema for each named top-8 candidate */
+    CONTENT.people.forEach(function (p) {
+      if (!p.name || p.name === "Volné místo") return;
+      var entry = {
+        "@type": "Person",
+        "name": p.name,
+        "memberOf": { "@id": ORG }
+      };
+      if (p.age) entry["age"] = p.age;
+      if (p.cs && p.cs.profession) entry["jobTitle"] = p.cs.profession;
+      graph.push(entry);
+    });
+
+    /* Event schema for upcoming events only */
+    CONTENT.events.forEach(function (ev) {
+      var evDate = new Date(ev.date + "T00:00:00");
+      if (evDate < today) return;
+      var data = ev.cs;
+      var entry = {
+        "@type": "Event",
+        "name": data.title,
+        "startDate": ev.date + (ev.time && ev.time.match(/^\d{1,2}:\d{2}$/) ? "T" + ev.time : ""),
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": data.place,
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Brno",
+            "addressRegion": "Jihomoravský kraj",
+            "addressCountry": "CZ"
+          }
+        },
+        "organizer": { "@id": ORG },
+        "description": data.desc
+      };
+      graph.push(entry);
+    });
+
+    if (!graph.length) return;
+    var script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": graph });
+    document.head.appendChild(script);
+  }
+
   /* ---- run everything ---- */
   function renderAll() {
     renderAbout();
@@ -414,6 +483,7 @@ const RENDER = (function () {
     renderFooterSocial();
     renderPartners();
     renderPlaceholders();
+    renderStructuredData();
   }
 
   /* Rebuild the lists whenever the language changes */

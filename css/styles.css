@@ -370,6 +370,7 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 
 .person__info { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
 .person__name { font-size: 1.3rem; font-family: var(--font-body); font-weight: 700; margin: 0; }
+.person__subtitle { color: var(--color-muted); font-size: 0.8rem; font-weight: 500; margin: 0; text-align: center; }
 .person__bio  { color: var(--color-muted); font-size: 0.95rem; margin: 0.3rem 0 0; text-align: left; }
 
 /* party tag */

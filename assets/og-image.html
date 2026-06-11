@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1200px; height:630px; overflow:hidden; background:#0a0a0a; }
+.og { width:1200px; height:630px; display:flex; position:relative; }
+
+/* LEFT HALF */
+.og__left {
+  width: 560px; flex-shrink: 0; height: 630px;
+  background: #0a0a0a;
+  border-left: 6px solid #7a2e8e;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 56px 52px 56px 50px;
+  position: relative; z-index: 2;
+}
+/* feather into photo */
+.og__left::after {
+  content:''; position:absolute; top:0; right:-80px; bottom:0; width:80px;
+  background: linear-gradient(to right, #0a0a0a 0%, transparent 100%);
+  z-index: 3;
+}
+
+.og__logo   { height:44px; margin-bottom:28px; display:block; }
+
+.og__kicker {
+  font-family:'Roboto',sans-serif; font-size:13px; font-weight:700;
+  letter-spacing:0.14em; text-transform:uppercase; color:#8dc540; margin-bottom:10px;
+}
+
+.og__headline {
+  font-family:'Bebas Neue',sans-serif; font-size:80px; line-height:0.92;
+  color:#f4f4f5; margin-bottom:18px;
+}
+.og__headline .on { color:#8dc540; }
+
+.og__tagline {
+  font-family:'Roboto',sans-serif; font-size:18px; font-weight:400;
+  color:#b5b5bd; margin-bottom:36px; line-height:1.5;
+}
+
+.og__parties { display:flex; gap:10px; align-items:center; }
+.tag {
+  display:inline-block; padding:5px 16px; border-radius:999px;
+  font-family:'Roboto',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:0.07em; text-transform:uppercase; color:#000;
+}
+.tag--pirati { background:#f2c500; }
+.tag--zeleni { background:#8dc540; }
+
+/* RIGHT HALF */
+.og__right { flex:1; height:630px; position:relative; overflow:hidden; }
+.og__photo  { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+.og__right::after {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(141,197,64,0.06) 0%, rgba(141,197,64,0.20) 100%);
+}
+.og__right-bar {
+  position:absolute; top:0; right:0; width:6px; height:630px;
+  background:#8dc540; z-index:4;
+}
+.og__placeholder {
+  width:100%; height:100%;
+  background: linear-gradient(135deg, #1a1225 0%, #0e2209 100%);
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column; gap:12px;
+  color:#444; font-family:sans-serif; text-align:center; padding:40px;
+}
+.og__placeholder .icon { font-size:48px; }
+.og__placeholder p { font-size:16px; line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="og">
+
+  <div class="og__left">
+    <img src="../assets/logo-slon-podelne.svg" class="og__logo" alt="">
+    <p class="og__kicker">Komunální volby Brno &middot; podzim 2026</p>
+    <h1 class="og__headline">
+      STAR&Yacute; L&Iacute;SKOVEC<br><span class="on">ON</span>
+    </h1>
+    <p class="og__tagline">
+      Otev&#345;en&#283;, n&aacute;padit&#283;.<br>
+      Koalice Pir&aacute;t&#367; a Zelen&yacute;ch<br>
+      pro n&aacute;&scaron; Star&yacute; L&iacute;skovec.
+    </p>
+    <div class="og__parties">
+      <span class="tag tag--pirati">Pir&aacute;ti</span>
+      <span class="tag tag--zeleni">Zelen&iacute;</span>
+    </div>
+  </div>
+
+  <!--
+    === HOW TO ADD THE PHOTO ===
+    1. Get a landscape photo of Starý Lískoveclon (street, park, sokolovna, naměstí).
+       Save it as:  assets/og-photo.jpg  (at least 700×630 px)
+    2. Replace the <div class="og__placeholder"> block below with:
+       <img src="../assets/og-photo.jpg" alt="" class="og__photo">
+    3. Open this file in Chrome, set zoom to 100%, screenshot the page (1200×630).
+    4. Save the screenshot as  assets/og-image.jpg
+    5. Done — social previews will use it automatically.
+  -->
+  <div class="og__right">
+    <div class="og__placeholder">
+      <span class="icon">&#128247;</span>
+      <p>Sem vlo&#382;te fotografii Star&eacute;ho L&iacute;skovce<br>
+         <small>(ul. Ko&#353;a&#345;, sokolovna, park...)</small></p>
+    </div>
+  </div>
+  <div class="og__right-bar"></div>
+
+</div>
+</body>
+</html>
