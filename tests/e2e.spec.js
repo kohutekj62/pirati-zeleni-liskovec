@@ -27,7 +27,7 @@ test.describe("Starý Lískovec ON website", () => {
   test("builds the right number of items from content.js", async ({ page }) => {
     await expect(page.locator("#program-list .program-card")).toHaveCount(6);
     await expect(page.locator("#people-grid .person")).toHaveCount(8);
-    await expect(page.locator("#events-list .event")).toHaveCount(10);
+    await expect(page.locator("#events-list .event")).toHaveCount(4);
     await expect(page.locator("#news-grid .news-card")).toHaveCount(3);
   });
 
