@@ -305,11 +305,25 @@
 
 <script>
 // ══════════════════════════════════════════════════════════
-//  GAME DATA  —  3 rounds, each with a pool of places
-//  Add more places to any round's `places` array freely.
-//  Each play draws PAIRS_PER_ROUND at random from the pool.
-//  Replace photo paths with real images when available.
-//  Placeholder: null  (shows emoji instead)
+//  GAME DATA
+//
+//  ROUNDS is the master list of categories. Each round has a
+//  `places` pool — add as many entries as you like. When the
+//  player starts a round, a random subset is drawn from the
+//  pool (size depends on the chosen difficulty), so the game
+//  is different every time.
+//
+//  Shape of each place object:
+//    {
+//      id: "unique-slug",       // internal identifier — no spaces, no Czech diacritics
+//      photo: "assets/foo.jpg", // relative path, or null to show the emoji instead
+//      emoji: "🌳",             // fallback icon shown when photo is null
+//      cs: { name, location, desc, history },  // Czech text
+//      en: { name, location, desc, history },  // English text
+//    }
+//
+//  Both `cs` and `en` blocks are required — the game switches
+//  language without reloading, so both must always be present.
 // ══════════════════════════════════════════════════════════
 const ROUNDS = [
   {
@@ -551,6 +565,20 @@ const ROUNDS = [
   }
 ];
 
+// ══════════════════════════════════════════════════════════
+//  DIFFICULTY
+//
+//  Each level defines how many pairs (cards / 2) are dealt
+//  per round. Change the `pairs` value to adjust.
+//
+//  getPairsCount() caps the count at the actual pool size
+//  using Math.min, so a round with 8 places on "hard" (8)
+//  shows all 8, while a hypothetical round with only 5 places
+//  would still work on hard — it just shows all 5.
+//
+//  To change the default difficulty, edit the `difficulty`
+//  variable below (e.g. change "normal" to "easy").
+// ══════════════════════════════════════════════════════════
 const DIFFICULTY_LEVELS = [
   { id: "easy",   pairs: 4 },
   { id: "normal", pairs: 6 },
@@ -562,7 +590,16 @@ function getPairsCount(poolSize) {
 }
 
 // ══════════════════════════════════════════════════════════
-//  i18n
+//  i18n (TRANSLATIONS)
+//
+//  All user-visible text lives here. The `t("key")` helper
+//  returns the string for the current language, falling back
+//  to Czech if a key is missing from the active language.
+//
+//  To update a label: edit the value in BOTH `cs` and `en`.
+//  To add a new language: copy the `cs` block, give it a new
+//  key (e.g. "de"), translate the values, then update the
+//  lang-btn click handler and applyI18n() to support it.
 // ══════════════════════════════════════════════════════════
 const UI = {
   cs: {
@@ -610,16 +647,17 @@ function applyI18n() {
 }
 
 // ══════════════════════════════════════════════════════════
-//  STATE
+//  STATE  —  everything that changes while the game runs
 // ══════════════════════════════════════════════════════════
-let currentRound = null;
-let currentActivePairs = [];  // 6 places sampled from currentRound.places each play
-let flipped = [];
-let matched = [];
-let moves = 0;
-let locked = false;
-let completedRounds = [];
-let startTime = 0;
+let currentRound = null;        // the ROUNDS entry currently being played
+let currentActivePairs = [];    // random subset of currentRound.places for this play
+let flipped = [];               // DOM card elements flipped this turn (max 2)
+let matched = [];               // pair IDs that have been successfully matched
+let moves = 0;                  // total turns taken (flipping 2 cards = 1 move)
+let locked = false;             // true while two unmatched cards are showing — blocks
+                                // further clicks until they flip back
+let completedRounds = [];       // round IDs the player has finished (shown as ✓ badges)
+let startTime = 0;              // Date.now() when the round started, for elapsed time
 
 // ══════════════════════════════════════════════════════════
 //  SCREENS
@@ -674,6 +712,13 @@ function renderRoundsGrid() {
   });
 }
 
+// renderSeoList builds a hidden-to-players text section that
+// Google CAN index. Every place gets an <h3> heading + <p>
+// description, so the page can appear in search results for
+// "Starý Lískovec + park/street/school/..." queries.
+// It is rebuilt on every renderSelect() call so it always
+// reflects the current language and the full pool (not just
+// the random subset dealt to the player).
 function renderSeoList() {
   const list = document.getElementById("seo-list");
   list.innerHTML = ROUNDS.map(r =>
@@ -697,8 +742,13 @@ function shuffle(arr) {
   return a;
 }
 
+// startRound is called both when the player picks a round on
+// the selector screen AND when they hit "Play again" after
+// finishing. Either way, a fresh random subset is sampled
+// from the pool, so the deal is always different.
 function startRound(roundId) {
   currentRound = ROUNDS.find(r => r.id === roundId);
+  // Shuffle the full pool, then take the first N (based on difficulty).
   currentActivePairs = shuffle(currentRound.places).slice(0, getPairsCount(currentRound.places.length));
   flipped = []; matched = []; moves = 0; locked = false;
   startTime = Date.now();
@@ -720,7 +770,8 @@ function renderGame() {
     </div>`;
   renderCatPills();
 
-  // Cards: 2 of each sampled place, shuffled
+  // Build the card list: each place needs exactly 2 cards (a pair).
+  // flatMap duplicates every place, then shuffle randomises the layout.
   const cards = shuffle(currentActivePairs.flatMap(p => [
     { pairId: p.id, ...p },
     { pairId: p.id, ...p },
@@ -750,6 +801,11 @@ function renderGame() {
   });
 }
 
+// Render the small round-switching pill buttons above the game grid.
+// The active round pill is highlighted and has pointer-events:none (CSS)
+// so clicking it does nothing. All other pills call startRound(), which
+// samples a new random set from the target round using the current
+// difficulty — no need to go back to the select screen.
 function renderCatPills() {
   const container = document.getElementById("cat-pills");
   container.innerHTML = ROUNDS.map(r =>
@@ -763,14 +819,17 @@ function renderCatPills() {
 }
 
 function onCardClick(card) {
+  // `locked` is true while two unmatched cards are face-up. Without this
+  // guard the player could click a third card during the flip-back delay.
   if (locked) return;
+  // Ignore clicks on already-flipped or already-matched cards.
   if (card.classList.contains("flipped") || card.classList.contains("matched")) return;
   card.classList.add("flipped");
   flipped.push(card);
   if (flipped.length === 2) {
     moves++;
     document.getElementById("moves-count").textContent = moves;
-    locked = true;
+    locked = true; // lock until checkMatch() resolves this turn
     checkMatch();
   }
 }
@@ -800,6 +859,11 @@ function checkMatch() {
 
 // ══════════════════════════════════════════════════════════
 //  INFO CARD
+//  Slides up from the bottom after a successful match.
+//  Shows the place photo (or emoji fallback), name, location,
+//  description and history. The "continue" button closes it
+//  and, if all pairs in this round are now matched, triggers
+//  the round-end screen.
 // ══════════════════════════════════════════════════════════
 function showInfoCard(pair) {
   const d = pair[lang];
