@@ -72,7 +72,7 @@ const CONTENT = {
       nav_partners:  "Přátelé",
 
       // -- Hero (top banner) --
-      hero_kicker:   "Komunální volby — podzim 2026",
+      hero_kicker:   "Komunální volby Brno — podzim 2026",
       hero_title_1:  "STARÝ LÍSKOVEC",
       hero_title_2:  "ON",
       hero_tagline:  "Otevřeně, nápaditě. Koalice Pirátů a Zelených pro náš Starý Lískovec.",
@@ -148,7 +148,7 @@ const CONTENT = {
       nav_contact:   "Get in touch",
       nav_partners:  "Friends",
 
-      hero_kicker:   "Municipal elections — autumn 2026",
+      hero_kicker:   "Municipal elections Brno — autumn 2026",
       hero_title_1:  "STARÝ LÍSKOVEC",
       hero_title_2:  "ON",
       hero_tagline:  "Open and novel. A coalition of the Pirates and the Greens for our Starý Lískovec.",
@@ -218,7 +218,7 @@ const CONTENT = {
       "Spojují nás hodnoty otevřenosti, transparentnosti a udržitelného rozvoje.",
       "Věříme, že Starý Lískovec může být moderní a přívětivou obcí.",
       "Naši kandidáti zastupují široké spektrum odbornosti od školství až po zdravotnictví.",
-      "Pracujeme pro vás s důrazem na efektivní a férovou správu naší městské části.",
+      "Pracujeme pro vás s důrazem na efektivní a férovou správu naší městské části Brno-Starý Lískovec.",
       "Naše politika vychází z reálných dat a potřeb našich sousedů.",
       "Podporujeme aktivní životní styl, kvalitní vzdělávání a ochranu naší přírody.",
       "Každý hlas je pro nás důležitý a společně můžeme dosáhnout změny k lepšímu.",
@@ -230,7 +230,7 @@ const CONTENT = {
       "We are united by the values of openness, transparency and sustainable development.",
       "We believe that Starý Lískovec can be a modern and welcoming municipality.",
       "Our candidates bring expertise across many fields, from education to healthcare.",
-      "We work for you with an emphasis on efficient and fair governance of our district.",
+      "We work for you with an emphasis on efficient and fair governance of our Brno-Starý Lískovec district.",
       "Our politics is grounded in real data and the needs of our neighbours.",
       "We support an active lifestyle, quality education and the protection of our nature.",
       "Every vote matters to us, and together we can achieve a change for the better.",
