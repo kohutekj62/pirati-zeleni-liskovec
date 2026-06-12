@@ -279,7 +279,9 @@
 
 <script>
 // ══════════════════════════════════════════════════════════
-//  GAME DATA  —  3 rounds × 6 pairs = 18 places
+//  GAME DATA  —  3 rounds, each with a pool of places
+//  Add more places to any round's `places` array freely.
+//  Each play draws PAIRS_PER_ROUND at random from the pool.
 //  Replace photo paths with real images when available.
 //  Placeholder: null  (shows emoji instead)
 // ══════════════════════════════════════════════════════════
@@ -288,7 +290,7 @@ const ROUNDS = [
     id: 1, emoji: "🌳",
     cs: { title: "Příroda a parky" },
     en: { title: "Nature & parks" },
-    pairs: [
+    places: [
       {
         id: "park-pod-sidlistem", photo: null, emoji: "🌲",
         cs: { name: "Park Pod sídlištěm", location: "Pod sídlištěm, Brno-Starý Lískovec",
@@ -349,7 +351,7 @@ const ROUNDS = [
     id: 2, emoji: "🏛️",
     cs: { title: "Kultura a školy" },
     en: { title: "Culture & schools" },
-    pairs: [
+    places: [
       {
         id: "kulturni-dum", photo: null, emoji: "🎭",
         cs: { name: "Kulturní dům Starý Lískovec", location: "Starý Lískovec, Brno",
@@ -410,7 +412,7 @@ const ROUNDS = [
     id: 3, emoji: "🏘️",
     cs: { title: "Ulice a historie" },
     en: { title: "Streets & history" },
-    pairs: [
+    places: [
       {
         id: "kosmonautu", photo: null, emoji: "🚀",
         cs: { name: "Ulice Kosmonautů", location: "Kosmonautů, Brno-Starý Lískovec",
@@ -469,6 +471,8 @@ const ROUNDS = [
   }
 ];
 
+const PAIRS_PER_ROUND = 6; // how many pairs are drawn from the pool each play
+
 // ══════════════════════════════════════════════════════════
 //  i18n
 // ══════════════════════════════════════════════════════════
@@ -477,7 +481,7 @@ const UI = {
     back_link: "← Zpět na web", title: "PEXESO\nSTARÝ LÍSKOVEC",
     subtitle: "Poznej místa naší čtvrti — otočení dvou stejných karet odkryje příběh místa.",
     seo_heading: "Místa Starého Lískovce ve hře",
-    round_label: "kolo", pairs_label: "dvojice",
+    round_label: "kolo", pairs_label: "dvojice", places_label: "míst",
     round_done: "Kolo splněno!", moves_label: "tahů",
     next_round: "Další kolo →", replay_round: "Hrát znovu",
     back_to_rounds: "Výběr kol", all_done_title: "Znáš Lískovec!",
@@ -492,7 +496,7 @@ const UI = {
     back_link: "← Back to site", title: "MEMORY GAME\nSTARÝ LÍSKOVEC",
     subtitle: "Discover the places of our neighbourhood — match two cards to reveal the story of a place.",
     seo_heading: "Places of Starý Lískovec in the game",
-    round_label: "round", pairs_label: "pairs",
+    round_label: "round", pairs_label: "pairs", places_label: "places",
     round_done: "Round complete!", moves_label: "moves",
     next_round: "Next round →", replay_round: "Play again",
     back_to_rounds: "Round select", all_done_title: "You know Lískovec!",
@@ -519,6 +523,7 @@ function applyI18n() {
 //  STATE
 // ══════════════════════════════════════════════════════════
 let currentRound = null;
+let currentActivePairs = [];  // 6 places sampled from currentRound.places each play
 let flipped = [];
 let matched = [];
 let moves = 0;
@@ -546,7 +551,7 @@ function renderSelect() {
     return `<button class="round-card${done ? " done" : ""}" data-round="${r.id}">
       <div class="round-card__emoji">${r.emoji}</div>
       <div class="round-card__title">${r[lang].title}</div>
-      <div class="round-card__sub">${t("round_label")} ${r.id} · 6 ${t("pairs_label")}</div>
+      <div class="round-card__sub">${t("round_label")} ${r.id} · ${PAIRS_PER_ROUND} ${t("pairs_label")} z ${r.places.length}</div>
       ${done ? `<span class="round-card__badge">${t("done_badge")}</span>` : ""}
     </button>`;
   }).join("");
@@ -561,7 +566,7 @@ function renderSeoList() {
   const list = document.getElementById("seo-list");
   list.innerHTML = ROUNDS.map(r =>
     `<h3 style="font-family:var(--font-d);font-size:1.2rem;color:var(--green);margin:1.5rem 0 0.75rem">${r[lang].title}</h3>` +
-    r.pairs.map(p => {
+    r.places.map(p => {
       const d = p[lang];
       return `<div class="seo-place"><h3>${d.name}</h3><p>${d.location} — ${d.desc} ${d.history}</p></div>`;
     }).join("")
@@ -582,6 +587,7 @@ function shuffle(arr) {
 
 function startRound(roundId) {
   currentRound = ROUNDS.find(r => r.id === roundId);
+  currentActivePairs = shuffle(currentRound.places).slice(0, PAIRS_PER_ROUND);
   flipped = []; matched = []; moves = 0; locked = false;
   startTime = Date.now();
   renderGame();
@@ -598,8 +604,8 @@ function renderGame() {
     </div>
     <div class="game-score">${t("moves")}: <span id="moves-count">0</span></div>`;
 
-  // Cards: 2 of each pair, shuffled
-  const cards = shuffle(r.pairs.flatMap(p => [
+  // Cards: 2 of each sampled place, shuffled
+  const cards = shuffle(currentActivePairs.flatMap(p => [
     { pairId: p.id, ...p },
     { pairId: p.id, ...p },
   ]));
@@ -651,7 +657,7 @@ function checkMatch() {
     flipped = [];
     locked = false;
     // Show info card
-    const pair = currentRound.pairs.find(p => p.id === a.dataset.pair);
+    const pair = currentActivePairs.find(p => p.id === a.dataset.pair);
     setTimeout(() => showInfoCard(pair), 400);
   } else {
     // No match — flip back
@@ -685,7 +691,7 @@ function showInfoCard(pair) {
   // After closing, check if round is done
   document.getElementById("info-close").onclick = () => {
     overlay.classList.remove("visible");
-    if (matched.length === currentRound.pairs.length) {
+    if (matched.length === currentActivePairs.length) {
       setTimeout(showRoundEnd, 300);
     }
   };
