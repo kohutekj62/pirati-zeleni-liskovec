@@ -308,6 +308,125 @@ Starý Lískovec je primárně obytné sídliště, ale nabízí překvapivě pe
 
 ---
 
+## 9. Zapletal – Kovo, a.s.
+
+| Položka | Hodnota |
+|---|---|
+| Plný název | Zapletal – Kovo, a.s. |
+| Adresa | Elišky Přemyslovny 95/8, 625 00 Brno–Starý Lískovec |
+| IČO | 26248026 |
+| Základní kapitál | 17,1 mil. Kč |
+| Obor | Výroba protipožárních bran, dveří a uzávěrů (motorický pohon + řídicí elektronika) |
+| Zákazníci | Obchodní centra, průmyslové haly, metra, tunely |
+| Zápis | 25. dubna 2001 |
+
+### Fotografie k pořízení
+- [ ] Exteriér budovy na Elišky Přemyslovny / brány nebo vrata jako produkt
+- **Uložit jako:** `pexeso/assets/zamestnavatele/zapletal-kovo.jpg` (600 × 450 px, JPEG)
+
+### Hotový obsah pro pexeso
+
+```js
+{
+  id: "zapletal-kovo",
+  photo: "assets/zamestnavatele/zapletal-kovo.jpg",  // zatím null
+  emoji: "🚪",
+  cs: {
+    name: "Zapletal – Kovo, a.s.",
+    location: "Elišky Přemyslovny 8, Brno–Starý Lískovec",
+    desc: "Výrobce protipožárních bran, dveří a uzávěrů pro obchodní centra, průmyslové haly, metro i tunely. Jejich požárně odolné uzávěry s motorickým pohonem a řídicí elektronikou chrání životy v krizových situacích.",
+    history: "Firma byla zapsána v roce 2001 a specializuje se na jeden z technicky nejnáročnějších segmentů kovoobrábění. Jméno Zapletal je v Lískovci dobře zakotveno — firma sídlí kousek od ZŠ Přemyslovny.",
+  },
+  en: {
+    name: "Zapletal – Kovo, a.s.",
+    location: "Elišky Přemyslovny 8, Brno–Starý Lískovec",
+    desc: "Manufacturer of fire-rated gates, doors and closures for shopping malls, industrial halls, metro stations and tunnels. Their motor-driven fire closures with control electronics protect lives in emergencies.",
+    history: "Registered in 2001, the company occupies one of the technically most demanding metalworking niches. The Zapletal name is well rooted in Lískovec — the firm sits a short walk from ZŠ Přemyslovny.",
+  },
+},
+```
+
+---
+
+## 10. BEGHELLI – ELPLAST, a.s.
+
+| Položka | Hodnota |
+|---|---|
+| Plný název | BEGHELLI – ELPLAST, a.s. |
+| Adresa | Elišky Junkové 798/6, 642 00 Brno (hranice Bosonoh a Starého Lískovce) |
+| Web | [beghelli.it/en-cz](https://www.beghelli.it/en-cz/corporate/beghelli/beghelli-elplast) |
+| Zaměstnanci | ~95 |
+| Plocha areálu | 20 700 m² celkem, z toho 11 000 m² zastřešeno |
+| Obor | Výroba nouzového a LED osvětlení |
+| Historie | Tradice výroby osvětlení 140+ let; Elplast zal. 1992; akvizice Beghelli 1999 |
+| Zvláštnost | Nová hala 2021 — první budova v ČR s technologií ničící viry integrovanou do svítidel |
+
+### Fotografie k pořízení
+- [ ] Fasáda výrobního areálu / logo BEGHELLI na budově
+- **Uložit jako:** `pexeso/assets/zamestnavatele/beghelli-elplast.jpg` (600 × 450 px, JPEG)
+
+### Hotový obsah pro pexeso
+
+```js
+{
+  id: "beghelli-elplast",
+  photo: "assets/zamestnavatele/beghelli-elplast.jpg",  // zatím null
+  emoji: "💡",
+  cs: {
+    name: "BEGHELLI – ELPLAST, a.s.",
+    location: "Elišky Junkové 6, Brno (hranice Bosonoh a Starého Lískovce)",
+    desc: "Výrobce nouzového a LED osvětlení pro kanceláře, průmysl i veřejné budovy s ~95 zaměstnanci. Nová hala z roku 2021 jako první v ČR integruje technologii ničící viry přímo do svítidel.",
+    history: "Tradice světelné výroby na tomto místě sahá přes 140 let. Česká firma Elplast byla v roce 1999 akvizována italskou Beghelli S.p.A. Výrobní areál zaujímá 11 000 m² zastřešené plochy.",
+  },
+  en: {
+    name: "BEGHELLI – ELPLAST, a.s.",
+    location: "Elišky Junkové 6, Brno (Bosonohy / Starý Lískovec boundary)",
+    desc: "Manufacturer of emergency and LED lighting with ~95 employees. The 2021 hall was the first building in the Czech Republic to integrate air-purifying, virus-destroying technology directly into its light fixtures.",
+    history: "The tradition of light manufacturing on this site spans over 140 years. Czech firm Elplast was acquired by Italy's Beghelli S.p.A. in 1999. The production site covers 11,000 m² under roof.",
+  },
+},
+```
+
+---
+
+## 11. DELIKA lahůdky, s.r.o.
+
+| Položka | Hodnota |
+|---|---|
+| Plný název | DELIKA lahůdky, s.r.o. |
+| Adresa | U Hřiště 654/21a, 625 00 Brno–Starý Lískovec |
+| IČO | 45476969 |
+| Obor | Výroba lahůdek — chlebíčky, obložené mísy, saláty, pomazánky, pečivo |
+| Zvláštnost | Sousedí s restaurací Potrefená husa (U Hřiště 21b); populárně zvána „za Potrefenou husou" |
+
+### Fotografie k pořízení
+- [ ] Výloha lahůdkárny / chlebíčky v přepravce / dveře provozovny
+- **Uložit jako:** `pexeso/assets/zamestnavatele/delika-lahudky.jpg` (600 × 450 px, JPEG)
+
+### Hotový obsah pro pexeso
+
+```js
+{
+  id: "delika-lahudky",
+  photo: "assets/zamestnavatele/delika-lahudky.jpg",  // zatím null
+  emoji: "🥪",
+  cs: {
+    name: "DELIKA lahůdky, s.r.o.",
+    location: "U Hřiště 21a, Brno–Starý Lískovec",
+    desc: "Výrobce klasických českých chlebíčků, obložených mís, salátů a pomazánek. Denně zásobuje cateringové akce a prodejny po celém Brně. Provozovna sídlí přímo za restaurací Potrefená husa.",
+    history: "Firma drží tradici české lahůdkářské výroby od počátku 90. let. Název „za Potrefenou husou" se ujal mezi místními díky sousedství se stejnojmennou restaurací na U Hřiště 21b.",
+  },
+  en: {
+    name: "DELIKA lahůdky, s.r.o.",
+    location: "U Hřiště 21a, Brno–Starý Lískovec",
+    desc: "Producer of classic Czech chlebíčky (open-faced sandwiches), platters, salads and spreads. Daily supplies catering events and shops across Brno from premises tucked behind the Potrefená husa gastropub.",
+    history: "Keeping Czech deli tradition alive since the early 1990s. The informal name 'za Potrefenou husou' (behind the Potrefená husa) was coined by locals for its position next to the gastropub at U Hřiště 21b.",
+  },
+},
+```
+
+---
+
 ## Přehled — co chybí
 
 | Zaměstnavatel | Foto | Pexeso přidáno |
@@ -320,6 +439,9 @@ Starý Lískovec je primárně obytné sídliště, ale nabízí překvapivě pe
 | Sady Starý Lískovec | ☐ | ✓ |
 | STK Jihlavská | ☐ | ✓ |
 | SYNLAB PSL | ☐ | ✓ |
+| Zapletal – Kovo | ☐ | ✓ |
+| BEGHELLI – ELPLAST | ☐ | ✓ |
+| DELIKA lahůdky | ☐ | ✓ |
 
 ### Postup pro přidání fotografií
 1. Vyfotit místo, uložit do `pexeso/assets/zamestnavatele/` pod správným názvem.
@@ -328,6 +450,6 @@ Starý Lískovec je primárně obytné sídliště, ale nabízí překvapivě pe
 
 ---
 
-*Zdroje: [campussciencepark.cz](https://www.campussciencepark.cz), [seznam.cz](https://www.seznam.cz), [kaminoflex.cz](https://www.kaminoflex.cz), [med.muni.cz](https://www.med.muni.cz), [synlab.cz](https://www.synlab.cz), [firmy.cz](https://www.firmy.cz), [property-forum.eu](https://www.property-forum.eu/news/spm-acquires-campus-science-park-in-brno-for-eur90-million/20891)*
+*Zdroje: [campussciencepark.cz](https://www.campussciencepark.cz), [seznam.cz](https://www.seznam.cz), [kaminoflex.cz](https://www.kaminoflex.cz), [med.muni.cz](https://www.med.muni.cz), [synlab.cz](https://www.synlab.cz), [firmy.cz](https://www.firmy.cz), [property-forum.eu](https://www.property-forum.eu/news/spm-acquires-campus-science-park-in-brno-for-eur90-million/20891), [beghelli.it](https://www.beghelli.it/en-cz/corporate/beghelli/beghelli-elplast), [cylex.cz](https://www.cylex.cz/brno/zapletal+-+kovo+a.s-113682.html), [mistriremesel.cz](https://www.mistriremesel.cz/profil/H360982)*
 
 *Aktualizováno: červen 2026*
