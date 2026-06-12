@@ -198,8 +198,32 @@
     .site-footer a { color: var(--green); text-decoration: none; }
     .site-footer a:hover { text-decoration: underline; }
 
+    /* ── DIFFICULTY SELECTOR ── */
+    .diff-selector { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
+    .diff-btn {
+      background: var(--surface2); border: 2px solid #333; color: var(--text);
+      font-family: var(--font-b); font-size: 0.82rem; font-weight: 700;
+      padding: 0.4rem 1.2rem; border-radius: 999px; cursor: pointer;
+      transition: border-color 0.2s, color 0.2s; text-align: center; line-height: 1.4;
+    }
+    .diff-btn:hover { border-color: var(--yellow); }
+    .diff-btn.active { border-color: var(--yellow); color: var(--yellow); }
+    .diff-btn__sub { font-size: 0.68rem; font-weight: 400; color: var(--muted); display: block; }
+    .diff-btn.active .diff-btn__sub { color: var(--yellow); opacity: 0.7; }
+
+    /* ── CATEGORY PILLS (in-game) ── */
+    .cat-pills { display: flex; gap: 0.4rem; flex-wrap: wrap; padding: 0.25rem 0.75rem 0.5rem; }
+    .cat-pill {
+      background: var(--surface2); border: 1.5px solid #333; color: var(--muted);
+      font-family: var(--font-b); font-size: 0.72rem; font-weight: 700;
+      padding: 0.3rem 0.75rem; border-radius: 999px; cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .cat-pill:hover { border-color: var(--yellow); color: var(--text); }
+    .cat-pill.active { border-color: var(--yellow); color: var(--yellow); pointer-events: none; }
+
     @media (max-width: 400px) {
-      .grid { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+      .grid { grid-template-columns: repeat(4, 1fr); gap: 0.3rem; }
     }
   </style>
 </head>
@@ -220,6 +244,7 @@
   <div style="padding: 2rem 1.25rem; text-align: center;">
     <p class="select-title" data-i18n="title">PEXESO<br>STARÝ LÍSKOVEC</p>
     <p class="select-sub" data-i18n="subtitle">Poznej místa naší čtvrti — otočení dvou stejných karet odkryje příběh místa.</p>
+    <div class="diff-selector" id="diff-selector"></div>
     <div class="rounds-grid" id="rounds-grid"></div>
   </div>
   <section class="seo-content" aria-label="Místa ve hře">
@@ -233,6 +258,7 @@
 ════════════════════════════════════════════════════ -->
 <div class="screen" id="screen-game">
   <div id="game-header" class="game-header" style="padding: 0 0.75rem;"></div>
+  <div class="cat-pills" id="cat-pills"></div>
   <div class="grid" id="grid"></div>
 </div>
 
@@ -345,6 +371,24 @@ const ROUNDS = [
           desc: "A planned community garden where neighbours could grow vegetables, herbs and fruit together — a project supported by our programme.",
           history: "Community gardens have been developing in Brno since 2010. Starý Lískovec has no dedicated space yet — we want to change that." },
       },
+      {
+        id: "zahradky", photo: null, emoji: "🥕",
+        cs: { name: "Zahrádkářská kolonie", location: "Jihozápadní okraj, Brno-Starý Lískovec",
+          desc: "Rozsáhlá kolonie zahrádek na okraji sídliště, kde místní pěstují zeleninu, ovoce i okrasné rostliny. Klidné místo pro relaxaci a kontakt s přírodou.",
+          history: "Zahrádkářské kolonie vznikaly v Brně od 50. let jako kompenzace sídlištního způsobu bydlení. Tato kolonie funguje od 60. let a sdružuje přes 80 zahrádkářů." },
+        en: { name: "Allotment gardens", location: "Southwest edge, Brno-Starý Lískovec",
+          desc: "An extensive allotment colony at the estate's edge where locals grow vegetables, fruit and ornamentals — a quiet retreat and connection to nature.",
+          history: "Allotment colonies spread across Brno from the 1950s as compensation for apartment living. This one has operated since the 1960s with over 80 plot-holders." },
+      },
+      {
+        id: "dtj-hriste", photo: null, emoji: "🏟️",
+        cs: { name: "Sportoviště DTJ", location: "Starý Lískovec, Brno",
+          desc: "Sportovní areál Dělnické tělovýchovné jednoty s hřišti pro fotbal, tenis a volnočasové aktivity. Středisko sportu pro celé sídliště.",
+          history: "DTJ působí v Starém Lískovci od meziválečného období. Areál byl rozšířen v 80. letech a dodnes slouží desítkám sportovních oddílů pro děti i dospělé." },
+        en: { name: "DTJ sports complex", location: "Starý Lískovec, Brno",
+          desc: "A sports complex of the Workers' Athletic Association with football, tennis and leisure facilities — the district's main sports hub.",
+          history: "The DTJ has been active in Starý Lískovec since the inter-war period. The complex was expanded in the 1980s and still hosts dozens of sports clubs." },
+      },
     ]
   },
   {
@@ -405,6 +449,24 @@ const ROUNDS = [
         en: { name: "Kindergarten", location: "Starý Lískovec, Brno",
           desc: "The local kindergarten is essential infrastructure for young families. Capacity and quality of pre-school care are key priorities in our programme.",
           history: "The kindergarten was established alongside the housing estate construction in the 1960s–70s and has cared for the district's youngest residents ever since." },
+      },
+      {
+        id: "zdravotni-stredisko", photo: null, emoji: "🏥",
+        cs: { name: "Zdravotní středisko", location: "Starý Lískovec, Brno",
+          desc: "Ambulantní středisko nabízí praktické lékaře, pediatry a specialisty přímo v obvodu. Dostupná zdravotní péče v docházkové vzdálenosti je pro rodiny zásadní.",
+          history: "Středisko bylo vybudováno jako součást komplexní vybavenosti sídliště v 70. letech. Po modernizaci zajišťuje základní zdravotní péči pro tisíce obyvatel." },
+        en: { name: "Health centre", location: "Starý Lískovec, Brno",
+          desc: "The local health centre provides GPs, paediatricians and specialists within the district. Walkable healthcare is essential for families.",
+          history: "Built as part of the comprehensive estate amenities in the 1970s, the centre was modernised and now serves thousands of residents." },
+      },
+      {
+        id: "posta", photo: null, emoji: "📬",
+        cs: { name: "Pošta Starý Lískovec", location: "Starý Lískovec, Brno",
+          desc: "Místní pobočka České pošty obsluhující potřeby celého obvodu — pro balíky, platby i úřední zásilky. Místo, kam chodí každý.",
+          history: "Poštovní provoz v Starém Lískovci byl zřízen po připojení k Brnu v roce 1944. Dnešní pobočka je výsledkem opakovaných modernizací poštovní sítě." },
+        en: { name: "Post office", location: "Starý Lískovec, Brno",
+          desc: "The local Czech Post branch serves the entire district for parcels, payments and official mail — a place everyone visits.",
+          history: "Postal services were established after Starý Lískovec's incorporation into Brno in 1944. The current branch is the result of repeated network modernisations." },
       },
     ]
   },
@@ -467,11 +529,37 @@ const ROUNDS = [
           desc: "Starý Lískovec existed as an independent village long before the housing estate. Original farmsteads and cottages are still visible in the northern part of the district.",
           history: "The first written record of Starý Lískovec dates to 1365. The village was incorporated into Brno in 1944 and largely rebuilt with housing estates in the 1960s." },
       },
+      {
+        id: "garace", photo: null, emoji: "🅿️",
+        cs: { name: "Garážové domy", location: "Starý Lískovec, Brno",
+          desc: "Řadové garáže a garážové domy jsou typickým prvkem sídlištní krajiny. Debata o jejich přestavbě na komunitní prostory nebo moderní parkovací domy je stále aktuální.",
+          history: "Garáže byly stavěny od 70. let jako reakce na rostoucí automobilizaci sídliště. Dnes jsou předmětem diskuse o modernizaci veřejného prostoru a dopravě v klidu." },
+        en: { name: "Estate garage blocks", location: "Starý Lískovec, Brno",
+          desc: "Row garages and garage blocks are a typical feature of the estate landscape. The debate about converting them into community spaces or modern parking structures remains current.",
+          history: "The garages were built from the 1970s in response to growing car ownership. Today they are the subject of discussions about modernising public space and parking management." },
+      },
+      {
+        id: "vltavska", photo: null, emoji: "🛤️",
+        cs: { name: "Ulice Vltavská", location: "Vltavská, Brno-Starý Lískovec",
+          desc: "Klidnější obytná ulice pojmenovaná po řece Vltavě. Typická ukázka sídlištní zástavby s potenciálem pro zklidnění dopravy a zlepšení veřejného prostoru.",
+          history: "Jako mnohé ulice v Starém Lískovci nese jméno českého vodního toku. Zástavba vznikla v 60.–70. letech jako součást první vlny rozvoje sídliště." },
+        en: { name: "Vltavská Street", location: "Vltavská, Brno-Starý Lískovec",
+          desc: "A quieter residential street named after the Vltava river — a typical example of estate housing with potential for traffic calming and public-space improvement.",
+          history: "Like many streets in Starý Lískovec, it is named after a Czech waterway. The buildings date from the 1960s–70s as part of the estate's first development wave." },
+      },
     ]
   }
 ];
 
-const PAIRS_PER_ROUND = 6; // how many pairs are drawn from the pool each play
+const DIFFICULTY_LEVELS = [
+  { id: "easy",   pairs: 4 },
+  { id: "normal", pairs: 6 },
+  { id: "hard",   pairs: 8 },
+];
+let difficulty = "normal";
+function getPairsCount(poolSize) {
+  return Math.min(DIFFICULTY_LEVELS.find(d => d.id === difficulty).pairs, poolSize);
+}
 
 // ══════════════════════════════════════════════════════════
 //  i18n
@@ -482,10 +570,11 @@ const UI = {
     subtitle: "Poznej místa naší čtvrti — otočení dvou stejných karet odkryje příběh místa.",
     seo_heading: "Místa Starého Lískovce ve hře",
     round_label: "kolo", pairs_label: "dvojice", places_label: "míst",
+    diff_label: "Obtížnost", diff_easy: "Lehce", diff_normal: "Normálně", diff_hard: "Těžce",
     round_done: "Kolo splněno!", moves_label: "tahů",
     next_round: "Další kolo →", replay_round: "Hrát znovu",
     back_to_rounds: "Výběr kol", all_done_title: "Znáš Lískovec!",
-    all_done_sub: "Prošel/a jsi všechna tři kola a poznal/a 18 míst naší čtvrti. Skvělá práce!",
+    all_done_sub: "Prošel/a jsi všechna tři kola a poznal/a místa naší čtvrti. Skvělá práce!",
     all_done_cta: "Poznej naše kandidáty →", restart: "Hrát znovu",
     info_close: "Pokračovat ve hře",
     footer_text: "Hra vznikla jako součást kampaně Starý Lískovec ON — koalice Pirátů a Zelených pro komunální volby Brno 2026.",
@@ -497,10 +586,11 @@ const UI = {
     subtitle: "Discover the places of our neighbourhood — match two cards to reveal the story of a place.",
     seo_heading: "Places of Starý Lískovec in the game",
     round_label: "round", pairs_label: "pairs", places_label: "places",
+    diff_label: "Difficulty", diff_easy: "Easy", diff_normal: "Normal", diff_hard: "Hard",
     round_done: "Round complete!", moves_label: "moves",
     next_round: "Next round →", replay_round: "Play again",
     back_to_rounds: "Round select", all_done_title: "You know Lískovec!",
-    all_done_sub: "You completed all three rounds and discovered 18 places in our neighbourhood. Well done!",
+    all_done_sub: "You completed all three rounds and discovered the places of our neighbourhood. Well done!",
     all_done_cta: "Meet our candidates →", restart: "Play again",
     info_close: "Continue playing",
     footer_text: "This game was created as part of the Starý Lískovec ON campaign — a coalition of Pirates and Greens for the Brno 2026 municipal elections.",
@@ -545,21 +635,43 @@ function showScreen(id) {
 // ══════════════════════════════════════════════════════════
 function renderSelect() {
   applyI18n();
+  renderDiffSelector();
+  renderRoundsGrid();
+  renderSeoList();
+  showScreen("screen-select");
+}
+
+function renderDiffSelector() {
+  const sel = document.getElementById("diff-selector");
+  sel.innerHTML = DIFFICULTY_LEVELS.map(d =>
+    `<button class="diff-btn${difficulty === d.id ? " active" : ""}" data-diff="${d.id}">
+      ${t("diff_" + d.id)}<span class="diff-btn__sub">${d.pairs} ${t("pairs_label")}</span>
+    </button>`
+  ).join("");
+  sel.querySelectorAll(".diff-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      difficulty = btn.dataset.diff;
+      renderDiffSelector();
+      renderRoundsGrid();
+    });
+  });
+}
+
+function renderRoundsGrid() {
   const grid = document.getElementById("rounds-grid");
   grid.innerHTML = ROUNDS.map(r => {
     const done = completedRounds.includes(r.id);
+    const n = getPairsCount(r.places.length);
     return `<button class="round-card${done ? " done" : ""}" data-round="${r.id}">
       <div class="round-card__emoji">${r.emoji}</div>
       <div class="round-card__title">${r[lang].title}</div>
-      <div class="round-card__sub">${t("round_label")} ${r.id} · ${PAIRS_PER_ROUND} ${t("pairs_label")} z ${r.places.length}</div>
+      <div class="round-card__sub">${t("round_label")} ${r.id} · ${n} ${t("pairs_label")} z ${r.places.length}</div>
       ${done ? `<span class="round-card__badge">${t("done_badge")}</span>` : ""}
     </button>`;
   }).join("");
   grid.querySelectorAll(".round-card").forEach(btn => {
     btn.addEventListener("click", () => startRound(parseInt(btn.dataset.round)));
   });
-  renderSeoList();
-  showScreen("screen-select");
 }
 
 function renderSeoList() {
@@ -587,7 +699,7 @@ function shuffle(arr) {
 
 function startRound(roundId) {
   currentRound = ROUNDS.find(r => r.id === roundId);
-  currentActivePairs = shuffle(currentRound.places).slice(0, PAIRS_PER_ROUND);
+  currentActivePairs = shuffle(currentRound.places).slice(0, getPairsCount(currentRound.places.length));
   flipped = []; matched = []; moves = 0; locked = false;
   startTime = Date.now();
   renderGame();
@@ -600,9 +712,13 @@ function renderGame() {
   document.getElementById("game-header").innerHTML = `
     <div>
       <span style="color:var(--muted);font-size:0.8rem">${r.emoji} ${r[lang].title}</span>
-      <div class="game-title">${r.id === 1 ? "🌳" : r.id === 2 ? "🏛️" : "🏘️"} ${t("round_label").toUpperCase()} ${r.id}</div>
+      <div class="game-title">${t("round_label").toUpperCase()} ${r.id}</div>
     </div>
-    <div class="game-score">${t("moves")}: <span id="moves-count">0</span></div>`;
+    <div class="game-score">
+      <span style="font-size:0.72rem;color:var(--muted)">${t("diff_" + difficulty)}</span><br>
+      ${t("moves")}: <span id="moves-count">0</span>
+    </div>`;
+  renderCatPills();
 
   // Cards: 2 of each sampled place, shuffled
   const cards = shuffle(currentActivePairs.flatMap(p => [
@@ -631,6 +747,18 @@ function renderGame() {
 
   grid.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => onCardClick(card));
+  });
+}
+
+function renderCatPills() {
+  const container = document.getElementById("cat-pills");
+  container.innerHTML = ROUNDS.map(r =>
+    `<button class="cat-pill${r.id === currentRound.id ? " active" : ""}" data-round="${r.id}">
+      ${r.emoji} ${r[lang].title}
+    </button>`
+  ).join("");
+  container.querySelectorAll(".cat-pill").forEach(btn => {
+    btn.addEventListener("click", () => startRound(parseInt(btn.dataset.round)));
   });
 }
 
