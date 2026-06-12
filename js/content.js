@@ -84,7 +84,7 @@ const CONTENT = {
 
       // -- Section titles + lead sentences --
       about_title:    "O nás",
-      about_lead:     "Kdo jsme a co nás spojuje.",
+      about_lead:     "Koalice Pirátů a Zelených pro Brno-Starý Lískovec.",
       program_title:  "Program",
       program_lead:   "Šest priorit pro lepší Starý Lískovec. Klikněte na bod a rozbalte detail.",
       people_title:   "Lidé",
@@ -161,7 +161,7 @@ const CONTENT = {
       hero_logo_alt: "Starý Lískovec ON logo",
 
       about_title:    "About us",
-      about_lead:     "Who we are and what brings us together.",
+      about_lead:     "A coalition of the Pirates and the Greens for Brno-Starý Lískovec.",
       program_title:  "Programme",
       program_lead:   "Six priorities for a better Starý Lískovec. Click a point to expand it.",
       people_title:   "People",
@@ -218,16 +218,16 @@ const CONTENT = {
      ====================================================================== */
   about: {
     cs: [
-      "Jsme tým lidí, kterým Starý Lískovec není lhostejný.",
-      "Rádi bychom, aby byla radnice otevřena veřejnosti a městská část byla vedena transparentně, pečovalo se o veřejné prostranství a předcházelo se zbytečným poškozením majetku. Chceme, aby se v Lískovci cítili dobře všichni občané, bez ohledu na to, zda zde žijí jako několikátá generace, nebo se přistěhovali letos, jsou senioři, děti nebo lidé se zdravotním omezením.",
+      "Jsme tým lidí, kterým Brno-Starý Lískovec není lhostejný.",
+      "Rádi bychom, aby byla radnice otevřena veřejnosti a městská část byla vedena transparentně, pečovalo se o veřejné prostranství a předcházelo se zbytečným poškozením majetku. Chceme, aby se v Brně-Starém Lískovci cítili dobře všichni občané, bez ohledu na to, zda zde žijí jako několikátá generace, nebo se přistěhovali letos, jsou senioři, děti nebo lidé se zdravotním omezením.",
       "Podporujeme aktivní životní styl, kvalitní vzdělávání a ochranu zeleně ve městě.",
       "Jsme tu pro vás, připraveni naslouchat a pracovat s plným nasazením.",
       "Jsme koalice Pirátů a Zelených.",
       "Děkujeme, že nám věříte a podporujete naši vizi pro Brno – Starý Lískovec.",
     ],
     en: [
-      "We are a team of people who care about Starý Lískovec.",
-      "We would like the town hall to be open to the public and the district to be run transparently, with proper care for public spaces and prevention of unnecessary damage to property. We want all residents of Lískovec to feel at home, regardless of whether they have lived here for generations or moved in this year, whether they are seniors, children or people with health limitations.",
+      "We are a team of people who care about Brno-Starý Lískovec.",
+      "We would like the town hall to be open to the public and the district to be run transparently, with proper care for public spaces and prevention of unnecessary damage to property. We want all residents of Brno-Starý Lískovec to feel at home, regardless of whether they have lived here for generations or moved in this year, whether they are seniors, children or people with health limitations.",
       "We support an active lifestyle, quality education and the protection of urban greenery.",
       "We are here for you, ready to listen and work with full commitment.",
       "We are a coalition of the Pirates and the Greens.",
