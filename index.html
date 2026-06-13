@@ -299,6 +299,8 @@
               <label for="cf-message" data-i18n="form_message">Zpráva</label>
               <textarea id="cf-message" name="message" rows="5" required></textarea>
             </p>
+            <!-- Honeypot: hidden from real users; bots fill it → Formspree auto-rejects without counting toward the monthly limit -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
             <button type="submit" class="btn btn--primary" id="cf-submit" data-i18n="form_send">Odeslat</button>
             <!-- Status messages (success / error) are shown here -->
             <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
