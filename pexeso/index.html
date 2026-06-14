@@ -297,6 +297,7 @@
   <p class="done-sub" data-i18n="all_done_sub">Prošel/a jsi všechna tři kola a poznal/a 18 míst naší čtvrti. Skvělá práce!</p>
   <div class="btn-row" style="max-width:300px; margin: 0 auto;">
     <a class="btn btn--yellow" href="../" data-i18n="all_done_cta">Víc o Starém Lískovci ON →</a>
+    <button class="btn btn--ghost" id="btn-share-all" data-i18n="share_all">Sdílet výsledek</button>
     <button class="btn btn--ghost" id="btn-restart" data-i18n="restart">Hrát znovu</button>
   </div>
 </div>
@@ -1166,6 +1167,10 @@ const UI = {
     done_badge: "✓ Splněno",
     moves: "Tahů",
     dev_banner: "🚧 Tato stránka je ve vývoji. Obsah není finální a může se měnit.",
+    share_round: "Sdílet", share_all: "Sdílet výsledek",
+    share_round_text: "Jak dobře znáš Starý Lískovec? Zahraj si pexeso!",
+    share_all_text: "Prošel/a jsem všechna kola pexesa Starého Lískovce. Zkus to i ty!",
+    share_copied: "Zkopírováno!",
   },
   en: {
     title: "PEXESO STARÝ LÍSKOVEC",
@@ -1182,6 +1187,10 @@ const UI = {
     done_badge: "✓ Done",
     moves: "Moves",
     dev_banner: "🚧 This page is under development. Content is not final and may change.",
+    share_round: "Share", share_all: "Share result",
+    share_round_text: "How well do you know Starý Lískovec? Play the memory game!",
+    share_all_text: "I completed all rounds of the Starý Lískovec memory game. Try it yourself!",
+    share_copied: "Copied!",
   }
 };
 
@@ -1432,6 +1441,23 @@ function showInfoCard(pair) {
 }
 
 // ══════════════════════════════════════════════════════════
+//  SHARE
+// ══════════════════════════════════════════════════════════
+function shareGame(btn, textKey) {
+  const url  = "https://www.staryliskovec-on.cz/pexeso/";
+  const text = t(textKey);
+  if (navigator.share) {
+    navigator.share({ title: t("title"), text, url }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(url).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = t("share_copied");
+      setTimeout(() => { btn.textContent = orig; }, 1800);
+    }).catch(() => {});
+  }
+}
+
+// ══════════════════════════════════════════════════════════
 //  ROUND END
 // ══════════════════════════════════════════════════════════
 function showRoundEnd() {
@@ -1452,9 +1478,12 @@ function showRoundEnd() {
 
   btns.innerHTML = `
     ${nextRound ? `<button class="btn btn--green" id="btn-next">${t("next_round")}</button>` : ""}
+    <button class="btn btn--ghost" id="btn-share-round">${t("share_round")}</button>
     <button class="btn btn--ghost" id="btn-replay-round">${t("replay_round")}</button>
     <button class="btn btn--ghost" id="btn-back-rounds">${t("back_to_rounds")}</button>`;
 
+  const shareBtn = document.getElementById("btn-share-round");
+  shareBtn.onclick = () => shareGame(shareBtn, "share_round_text");
   document.getElementById("btn-replay-round").onclick = () => startRound(currentRound.id);
   document.getElementById("btn-back-rounds").onclick = renderSelect;
   if (nextRound) document.getElementById("btn-next").onclick = () => startRound(nextRound.id);
@@ -1486,6 +1515,11 @@ document.getElementById("btn-restart").addEventListener("click", () => {
   completedRounds = [];
   renderSelect();
 });
+
+(function () {
+  const btn = document.getElementById("btn-share-all");
+  btn.addEventListener("click", () => shareGame(btn, "share_all_text"));
+})();
 
 // Close info card on overlay background tap
 document.getElementById("info-overlay").addEventListener("click", e => {
