@@ -70,6 +70,12 @@ const CONTENT = {
       nav_news:      "Kronika",
       nav_contact:   "Spojme se",
       nav_partners:  "Přátelé",
+      nav_pexeso:    "Pexeso",
+
+      // -- Pexeso teaser band (between Program and Lidé) --
+      pexeso_title:  "Lískovec dobře známe.",
+      pexeso_sub:    "Zkuste, jak dobře jej znáte vy.",
+      pexeso_cta:    "Zahrát pexeso →",
 
       // -- Hero (top banner) --
       hero_kicker:   "Komunální volby Brno — podzim 2026",
@@ -149,6 +155,12 @@ const CONTENT = {
       nav_news:      "Story Book",
       nav_contact:   "Get in touch",
       nav_partners:  "Friends",
+      nav_pexeso:    "Memory game",
+
+      // -- Pexeso teaser band --
+      pexeso_title:  "We know Lískovec well.",
+      pexeso_sub:    "See how well you know it.",
+      pexeso_cta:    "Play the memory game →",
 
       hero_kicker:   "Municipal elections Brno — autumn 2026",
       hero_title_1:  "STARÝ LÍSKOVEC",

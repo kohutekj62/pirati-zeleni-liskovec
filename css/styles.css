@@ -662,6 +662,38 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 .noscript-msg { padding: 1rem; text-align: center; background: #FEC900; color: #000; }
 
 /* ----------------------------------------------------------------------------
+   PEXESO TEASER  —  brand-gradient interlude between Program and People.
+   ---------------------------------------------------------------------------- */
+.pexeso-teaser {
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+  background: linear-gradient(135deg, #12032a 0%, #1a0635 50%, #0a160a 100%);
+  border-top: 2px solid var(--color-violet);
+  border-bottom: 2px solid var(--color-green);
+  text-align: center;
+}
+.pexeso-teaser__inner { max-width: 560px; }
+.pexeso-teaser__emoji { font-size: 2.8rem; line-height: 1; margin-bottom: 0.75rem; }
+.pexeso-teaser__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  background: linear-gradient(90deg, var(--color-violet-light), var(--color-yellow));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem; line-height: 1.15;
+}
+.pexeso-teaser__sub { color: var(--color-muted); font-size: 1.1rem; margin-bottom: 1.75rem; }
+
+.btn--pexeso {
+  display: inline-block; padding: 0.85rem 2.2rem;
+  border-radius: var(--radius-pill); font-weight: 700; font-size: 1rem;
+  background: var(--color-yellow); color: #000;
+  text-decoration: none; transition: background var(--transition), transform 0.15s;
+  border: 2px solid transparent;
+}
+.btn--pexeso:hover { background: var(--color-green); transform: translateY(-2px); }
+
+@media print { .pexeso-teaser { display: none !important; } }
+
+/* ----------------------------------------------------------------------------
    PRINT STYLESHEET
    Voters who print the programme page get readable black-on-white output.
    ---------------------------------------------------------------------------- */
