@@ -65,7 +65,7 @@ COORDS = {
     "stk-jihlavska":         (49.16978, 16.58088, None),  # Jihlavská (STK)
     "synlab-psl":            (49.17252, 16.58668, 0),     # inside polyclinic complex
     "zapletal-kovo":         (49.17425, 16.58918, 270),   # Elišky Přemyslovny 8
-    "beghelli-elplast":      (49.16808, 16.58918, 270),   # Elišky Junkové 6; face west
+    "beghelli-elplast":      (49.17203, 16.55338, 277),   # verified Street View: Elišky Junkové 6
     "delika-lahudky":        (49.16978, 16.58585, 270),   # U Hřiště 21a
 
     # ── Round 6: Street names ────────────────────────────────────────────────
