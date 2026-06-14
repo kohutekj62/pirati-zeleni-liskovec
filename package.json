@@ -15,6 +15,7 @@
     "@axe-core/playwright": "^4.10.1",
     "@lhci/cli": "^0.14.0",
     "@playwright/test": "^1.48.2",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "sharp": "^0.35.1"
   }
 }
