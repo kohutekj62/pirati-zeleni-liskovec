@@ -75,7 +75,7 @@ const CONTENT = {
       hero_kicker:   "Komunální volby Brno — podzim 2026",
       hero_title_1:  "STARÝ LÍSKOVEC",
       hero_title_2:  "ON",
-      hero_tagline:  "Otevřeně, nápaditě. Koalice Pirátů a Zelených pro náš Starý Lískovec.",
+      hero_tagline:  "Otevřeně, nápaditě. Zapněte s námi Starý Lískovec!",
       hero_cta_1:    "Náš program",
       hero_cta_2:    "Setkejme se",
       hero_cta_share: "Sdílet",
@@ -84,7 +84,7 @@ const CONTENT = {
 
       // -- Section titles + lead sentences --
       about_title:    "O nás",
-      about_lead:     "Kdo jsme a co nás spojuje.",
+      about_lead:     "Koalice Pirátů a Zelených pro Brno-Starý Lískovec.",
       program_title:  "Program",
       program_lead:   "Šest priorit pro lepší Starý Lískovec. Klikněte na bod a rozbalte detail.",
       people_title:   "Lidé",
@@ -153,7 +153,7 @@ const CONTENT = {
       hero_kicker:   "Municipal elections Brno — autumn 2026",
       hero_title_1:  "STARÝ LÍSKOVEC",
       hero_title_2:  "ON",
-      hero_tagline:  "Open and novel. A coalition of the Pirates and the Greens for our Starý Lískovec.",
+      hero_tagline:  "Openly, creatively. Turn Starý Lískovec ON with us!",
       hero_cta_1:    "Our programme",
       hero_cta_2:    "Meet us",
       hero_cta_share: "Share",
@@ -161,7 +161,7 @@ const CONTENT = {
       hero_logo_alt: "Starý Lískovec ON logo",
 
       about_title:    "About us",
-      about_lead:     "Who we are and what brings us together.",
+      about_lead:     "A coalition of the Pirates and the Greens for Brno-Starý Lískovec.",
       program_title:  "Programme",
       program_lead:   "Six priorities for a better Starý Lískovec. Click a point to expand it.",
       people_title:   "People",
@@ -218,28 +218,20 @@ const CONTENT = {
      ====================================================================== */
   about: {
     cs: [
-      "Jsme tým lidí, kterým není lhostejné místo, kde společně žijeme.",
-      "Spojují nás hodnoty otevřenosti, transparentnosti a udržitelného rozvoje.",
-      "Věříme, že Starý Lískovec může být moderní a přívětivou obcí.",
-      "Naši kandidáti zastupují široké spektrum odbornosti od školství až po zdravotnictví.",
-      "Pracujeme pro vás s důrazem na efektivní a férovou správu naší městské části Brno-Starý Lískovec.",
-      "Naše politika vychází z reálných dat a potřeb našich sousedů.",
-      "Podporujeme aktivní životní styl, kvalitní vzdělávání a ochranu naší přírody.",
-      "Každý hlas je pro nás důležitý a společně můžeme dosáhnout změny k lepšímu.",
+      "Jsme tým lidí, kterým Brno-Starý Lískovec není lhostejný.",
+      "Rádi bychom, aby byla radnice otevřena veřejnosti a městská část byla vedena transparentně, pečovalo se o veřejné prostranství a předcházelo se zbytečným poškozením majetku. Chceme, aby se v Brně-Starém Lískovci cítili dobře všichni občané, bez ohledu na to, zda zde žijí jako několikátá generace, nebo se přistěhovali letos, jsou senioři, děti nebo lidé se zdravotním omezením.",
+      "Podporujeme aktivní životní styl, kvalitní vzdělávání a ochranu zeleně ve městě.",
       "Jsme tu pro vás, připraveni naslouchat a pracovat s plným nasazením.",
-      "Děkujeme, že nám věříte a podporujete naši vizi pro Starý Lískovec.",
+      "Jsme koalice Pirátů a Zelených.",
+      "Děkujeme, že nám věříte a podporujete naši vizi pro Brno – Starý Lískovec.",
     ],
     en: [
-      "We are a team of people who care about the place where we live together.",
-      "We are united by the values of openness, transparency and sustainable development.",
-      "We believe that Starý Lískovec can be a modern and welcoming municipality.",
-      "Our candidates bring expertise across many fields, from education to healthcare.",
-      "We work for you with an emphasis on efficient and fair governance of our Brno-Starý Lískovec district.",
-      "Our politics is grounded in real data and the needs of our neighbours.",
-      "We support an active lifestyle, quality education and the protection of our nature.",
-      "Every vote matters to us, and together we can achieve a change for the better.",
-      "We are here for you, ready to listen and to work with full commitment.",
-      "Thank you for trusting us and supporting our vision for Starý Lískovec.",
+      "We are a team of people who care about Brno-Starý Lískovec.",
+      "We would like the town hall to be open to the public and the district to be run transparently, with proper care for public spaces and prevention of unnecessary damage to property. We want all residents of Brno-Starý Lískovec to feel at home, regardless of whether they have lived here for generations or moved in this year, whether they are seniors, children or people with health limitations.",
+      "We support an active lifestyle, quality education and the protection of urban greenery.",
+      "We are here for you, ready to listen and work with full commitment.",
+      "We are a coalition of the Pirates and the Greens.",
+      "Thank you for believing in us and supporting our vision for Brno – Starý Lískovec.",
     ],
   },
 
@@ -249,69 +241,69 @@ const CONTENT = {
      ====================================================================== */
   program: [
     {
-      icon: "🏛️",
+      icon: "",
       cs: {
         title: "Otevřený a přívětivý úřad",
-        text:  "Úřad musí být místem, kam občané chodí s důvěrou a kde dostanou veškerou potřebnou pomoc. Prosazujeme transparentní rozhodování a maximální otevřenost všech procesů, které ovlivňují život v naší obci. Digitalizaci úřadu posuneme zavedením on-line rezervačního systému a zpřístupněním participativního rozpočtu pro návrhy občanů. Aktivně budeme naslouchat podnětům občanů prostřednictvím pravidelných setkání a transparentních dashboardů s postupem řešení jejich připomínek.",
+        text:  "Úřad má být službou pro občany. Proto chceme zlepšit fungování úřadu a hlavně komunikaci s občany. Budeme naslouchat podnětům občanů a pořádat pravidelná setkání, aby občané věděli, s jakými problémy se na nás mohou obrátit a jak jim může být úřad nápomocen. Část rozpočtu chceme nabídnout pro projekty obyvatel v rámci participativního rozpočtu, abyste si mohli sami rozhodnout, co vám nejvíce chybí. Zvýšíme dostupnost úřadu zavedením úředních hodin každý den.",
       },
       en: {
         title: "An open, welcoming town hall",
-        text:  "The town hall must be a place people come to with confidence and where they receive all the help they need. We push for transparent decision-making and maximum openness in every process that affects life in our district. We will advance the digitalisation of the office with an online booking system and a participatory budget open to residents' proposals. We will actively listen to residents through regular meetings and transparent dashboards showing how their suggestions are being handled.",
+        text:  "The town hall should be a service for residents. We want to improve how the office functions and above all how it communicates with citizens. We will listen to residents' suggestions and hold regular meetings so that people know what problems they can bring to us and how the office can help them. Part of the budget will be offered for residents' projects through a participatory budget, so that you can decide for yourselves what you need most. We will increase accessibility by introducing office hours every day.",
       },
     },
     {
-      icon: "🎒",
-      cs: {
-        title: "Kvalitní školky a školy",
-        text:  "Vzdělávání našich dětí je nejlepší investicí do budoucnosti, proto klademe důraz na dostupnost a kvalitu školských zařízení. Prioritou je navýšení kapacit mateřských škol a modernizace infrastruktury základních škol, včetně rekonstrukce jídelen pro zdravé stravování. Podporujeme moderní metody výuky a rozvoj kompetencí, které děti připraví na výzvy 21. století. Škola musí být bezpečným a podnětným prostředím s moderními dětskými hřišti, kde se děti cítí dobře a rozvíjejí svůj potenciál.",
-      },
-      en: {
-        title: "Quality nurseries and schools",
-        text:  "Educating our children is the best investment in the future, so we focus on the availability and quality of schools. Our priority is to increase nursery-school capacity and modernise primary-school infrastructure, including renovating canteens for healthy meals. We support modern teaching methods and the skills that prepare children for the challenges of the 21st century. A school must be a safe and stimulating environment with modern playgrounds, where children feel good and develop their potential.",
-      },
-    },
-    {
-      icon: "🌳",
+      icon: "",
       cs: {
         title: "Živý a udržovaný veřejný prostor",
-        text:  "Veřejný prostor tvoří srdce naší komunity, proto chceme, aby byl čistý, zelený a přístupný všem generacím. Pravidelná údržba parků a modernizace kontejnerových stání je pro nás prioritou, která zvyšuje komfort bydlení v naší obci. Aktivně budeme realizovat opatření proti klimatické změně, jako je výsadba vzrostlé zeleně pro zmírnění tepelných ostrovů a instalace zasakovacích prvků. Naším cílem je vytvářet prostředí, kde se lidé cítí bezpečně, příjemně a hrdě se ke svému místu hlásí.",
+        text:  "Starý Lískovec je rozdělen na dvě části — starší zástavbu rodinných domů a zcela odlišné paneláky ze 70. let. Není ale důvod, aby byli stejně rozděleni i obyvatelé. Chceme, aby veřejný prostor patřil všem generacím a obyvatelům Starého Lískovce. Kromě oprav a výstavby ve veřejném prostoru je potřeba dbát především na údržbu — pečovat o vzrostlé stromy, aby se nemusely kácet, udržovat trávníky, zajistit bezpečný prostor na dětských hřištích a najít bezpečný a hezký prostor i pro starší generace. Budeme podporovat adopci zeleně a tvorbu předzahrádek na městských pozemcích. Chceme ekologizaci budov v majetku města instalací zelených střech a fasád a zavedením hospodaření s dešťovou vodou. V neposlední řadě musíme v Lískovci dbát na bezbariérovost.",
       },
       en: {
         title: "A lively, well-kept public space",
-        text:  "Public space is the heart of our community, so we want it clean, green and accessible to all generations. Regular upkeep of parks and the modernisation of waste-collection points is a priority that improves the comfort of living here. We will actively implement measures against climate change, such as planting mature greenery to ease urban heat islands and installing rainwater-soakage features. Our goal is to create an environment where people feel safe, comfortable and proud to call this place home.",
+        text:  "Starý Lískovec is divided into two parts — the older family-house area and the very different panel blocks from the 1970s. But there is no reason for residents to be equally divided. We want public space to belong to all generations and all residents of Starý Lískovec. Beyond repairs and construction, maintenance must come first — caring for mature trees so they don't need to be felled, maintaining lawns, ensuring safe children's playgrounds, and finding safe, pleasant spaces for older generations too. We will support the adoption of greenery and the creation of front gardens on municipal land. We want to green city-owned buildings by installing green roofs and facades and introducing rainwater management. Last but not least, we must ensure full accessibility in Lískovec.",
       },
     },
     {
-      icon: "🎭",
+      icon: "",
       cs: {
-        title: "Kultura pro všechny generace",
-        text:  "Kultura spojuje lidi a vytváří jedinečnou atmosféru naší obce, proto chceme podporovat pestrou nabídku akcí pro všechny věkové skupiny. Vytvoříme zázemí pro pravidelné farmářské trhy a budeme iniciovat vznik komunitního centra, které bude sloužit místním spolkům a sousedským iniciativám. Finanční podpora kulturních aktivit musí být spravedlivá a transparentní, aby kultura nebyla jen privilegiem některých. Kulturní život v obci chceme rozvíjet tak, aby se každý cítil zván a mohl se aktivně zapojit do jeho tvorby.",
+        title: "Kvalitní školy a školky",
+        text:  "Požadujeme kvalitní a dostupné mateřské školy i základní školy. Budeme podporovat moderní metody výuky a rozvoj kompetencí, které děti připraví na výzvy 21. století. Budeme naslouchat rodičům i dětem a pomáhat jim v řešení případných problémů ve školách i školkách. Dáme možnost dětem, aby se zapojily do veřejného prostoru. Chceme, aby se rodiče i děti cítili v Lískovci bezpečně. Poskytneme školám i školkám podporu pro zkvalitnění stravování. Otevřeme školní hřiště veřejnosti, tak jak je to běžné v jiných částech Brna.",
       },
       en: {
-        title: "Culture for every generation",
-        text:  "Culture brings people together and gives our district its unique atmosphere, so we want to support a varied programme of events for all ages. We will create a base for regular farmers' markets and initiate a community centre serving local clubs and neighbourhood initiatives. Financial support for cultural activities must be fair and transparent, so that culture is not a privilege of the few. We want to grow cultural life so that everyone feels invited and can take an active part in shaping it.",
+        title: "Quality nurseries and schools",
+        text:  "We demand quality and accessible nurseries and primary schools. We will support modern teaching methods and the development of skills that prepare children for the challenges of the 21st century. We will listen to both parents and children and help them resolve any issues at schools and nurseries. We will give children the opportunity to engage with public spaces. We want parents and children to feel safe in Lískovec. We will provide schools and nurseries with support to improve the quality of catering. We will open school playgrounds to the public, as is common in other parts of Brno.",
       },
     },
     {
-      icon: "📊",
+      icon: "",
+      cs: {
+        title: "Kultura, sport a komunita",
+        text:  "Přispějeme ke vzniku a revitalizaci hřišť tak, aby pokrývala všechny věkové skupiny. Podpoříme různorodost kulturních a sportovních aktivit v Lískovci a zajistíme vznik komunitního centra, které bude sloužit místním spolkům a všem občanům pro setkávání. Vytvoříme zázemí pro pravidelné farmářské trhy. Zajistíme transparentní podporu spolků a rovné podmínky při jejím čerpání. Chceme úzce spolupracovat s pobočkou SVČ Lužánky Linka, Orlem, Sokolem a dalšími spolky, abychom zajistili volnočasové aktivity nejen pro děti.",
+      },
+      en: {
+        title: "Culture, sport and community",
+        text:  "We will contribute to the creation and revitalisation of playgrounds to cover all age groups. We will support the diversity of cultural and sports activities in Lískovec and ensure the creation of a community centre serving local associations and all residents as a meeting place. We will create a base for regular farmers' markets. We will ensure transparent support for associations and equal conditions for accessing it. We want to work closely with the SVČ Lužánky Linka branch, Orel, Sokol and other associations to ensure leisure activities not only for children.",
+      },
+    },
+    {
+      icon: "",
       cs: {
         title: "Plánování založené na datech",
-        text:  "Rozhodování o rozvoji obce musí být založeno na faktech, datech a důkladných analýzách potřeb obyvatel. Zavedeme veřejně přístupný GIS systém pro přehledné plánování území a dashboardy monitorující reálný stav dopravy a kvality ovzduší. Nechceme plýtvat prostředky na projekty, které nemají reálný přínos, proto budeme dbát na efektivitu a udržitelnost každé investice. Transparentní nakládání s daty zvýší důvěru v naše rozhodování a umožní občanům sledovat výsledky naší práce v reálném čase.",
+        text:  "Rozhodování o rozvoji městské části musí být založeno na faktech a datech. Nechceme plýtvat prostředky na projekty, které nemají reálný přínos. Chceme dbát na efektivitu a udržitelnost investic. Pro údržbu a správu veřejného prostranství chceme zřídit vlastní četu. Budeme tak schopni rychleji reagovat na vaše podněty z aplikace na hlášení závad na městském majetku.",
       },
       en: {
         title: "Data-based planning",
-        text:  "Decisions about the district's development must rest on facts, data and a thorough analysis of residents' needs. We will introduce a publicly accessible GIS system for clear land-use planning and dashboards monitoring the real state of traffic and air quality. We do not want to waste money on projects with no real benefit, so we will insist on the efficiency and sustainability of every investment. Transparent handling of data will increase trust in our decisions and let residents follow the results of our work in real time.",
+        text:  "Decisions about the district's development must be based on facts and data. We do not want to waste resources on projects with no real benefit. We will insist on the efficiency and sustainability of investments. To maintain and manage public spaces, we want to establish our own maintenance crew. This will allow us to respond more quickly to your reports through the app for reporting defects on municipal property.",
       },
     },
     {
-      icon: "🏠",
+      icon: "",
       cs: {
         title: "Kvalitní obecní bydlení",
-        text:  "Dostupnost bydlení je jedním z klíčových faktorů spokojeného života, proto chceme rozvíjet kvalitní a cenově dostupné obecní bydlení. Zaměříme se na energeticky úsporné modernizace stávajícího bytového fondu a výstavbu nových bytových jednotek šetrných k životnímu prostředí. Naším cílem je, aby v obci mohly důstojně žít mladé rodiny, senioři i lidé v obtížné životní situaci. Zavedeme naprosto jasná, spravedlivá a veřejně kontrolovatelná pravidla pro přidělování obecních bytů.",
+        text:  "Městská část má ve správě více než 600 bytů. Dohlédneme na transparentnost při přidělování bytů. Zajistíme, aby bylo důsledně ověřováno, zda žadatelé nejsou vlastníci jiné nemovitosti určené k bydlení, a aby byly prováděny kontroly užívání bytu, aby nemohlo docházet k podnájmu obecních bytů. Investujeme do bytového fondu, aby bydlení odpovídalo dnešní době. Budeme hlídat neplacení nájemného a tyto částky vymáhat. Zabráníme snahám o privatizaci obecních bytů.",
       },
       en: {
         title: "Quality municipal housing",
-        text:  "Affordable housing is one of the key factors of a contented life, so we want to develop quality, affordable municipal housing. We will focus on energy-saving upgrades to the existing housing stock and on building new, environmentally friendly homes. Our goal is for young families, seniors and people in difficult situations to live here with dignity. We will introduce completely clear, fair and publicly verifiable rules for allocating municipal flats.",
+        text:  "The district manages more than 600 flats. We will oversee transparency in the allocation of flats. We will ensure that applicants are consistently checked to confirm they do not own another residential property, and that occupancy checks are carried out to prevent the subletting of municipal flats. We will invest in the housing stock to bring accommodation up to today's standards. We will monitor non-payment of rent and pursue these amounts. We will prevent attempts to privatise municipal flats.",
       },
     },
   ],

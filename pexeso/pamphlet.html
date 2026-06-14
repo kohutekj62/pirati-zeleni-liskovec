@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pexeso – Starý Lískovec ON</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 240px;
+    }
+
+    .card__elephant {
+      width: 240px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0 18px rgba(199,155,216,0.5))
+              drop-shadow(0 0 40px rgba(242,197,0,0.2));
+    }
+
+    .card__qr-link {
+      display: block;
+      width: 240px;
+      line-height: 0;
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+      position: relative;
+      animation: pulse 2.8s ease-in-out infinite;
+    }
+
+    .card__qr-link::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 0 0 3px #c79bd8, 0 0 24px 4px rgba(199,155,216,0.35);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    #qr-box { width: 240px; height: 240px; }
+    #qr-box img,
+    #qr-box canvas { width: 240px !important; height: 240px !important; display: block !important; }
+
+    @keyframes pulse {
+      0%, 100% { filter: drop-shadow(0 0 8px rgba(199,155,216,0.4)); }
+      50%       { filter: drop-shadow(0 0 22px rgba(199,155,216,0.85))
+                          drop-shadow(0 0 40px rgba(242,197,0,0.3)); }
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .card { width: 100%; }
+      .card__elephant { width: 100%; filter: none; }
+      .card__qr-link { width: 100%; animation: none; }
+      .card__qr-link::before { display: none; }
+      #qr-box, #qr-box img, #qr-box canvas { width: 100% !important; height: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="card__elephant"
+         src="https://kohutekj62.github.io/SL-ON/assets/who-is-who.png"
+         alt="Starý Lískovec ON" />
+    <a class="card__qr-link"
+       href="https://kohutekj62.github.io/SL-ON/pexeso/"
+       target="_blank"
+       rel="noopener">
+      <div id="qr-box"></div>
+    </a>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+          integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"></script>
+  <script>
+    new QRCode(document.getElementById("qr-box"), {
+      text: "https://kohutekj62.github.io/SL-ON/pexeso/",
+      width: 240,
+      height: 240,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  </script>
+</body>
+</html>
