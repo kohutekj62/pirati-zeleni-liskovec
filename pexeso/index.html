@@ -241,6 +241,37 @@
     .seo-place h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
     .seo-place p  { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
 
+    /* ── LINK REVIEW PANEL ── */
+    .review-toggle {
+      background: none; border: 1px solid #333; border-radius: 999px;
+      color: var(--muted); font-size: 0.78rem; padding: 0.3rem 0.9rem;
+      cursor: pointer; margin-bottom: 1.25rem; transition: border-color 0.15s, color 0.15s;
+    }
+    .review-toggle:hover { border-color: var(--green); color: var(--green); }
+    #review-panel { max-width: 760px; margin: 0 auto 2rem; text-align: left; }
+    .review-round { margin-bottom: 1.25rem; }
+    .review-round__head {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--muted); padding: 0.3rem 0;
+      border-bottom: 1px solid #222; margin-bottom: 0.4rem;
+    }
+    .review-row {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.22rem 0; border-bottom: 1px solid #181818; font-size: 0.82rem;
+    }
+    .review-row__name { flex: 1; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .review-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.5rem; height: 1.5rem; border-radius: 5px; font-size: 0.68rem;
+      font-weight: 700; text-decoration: none; flex: 0 0 auto;
+      border: 1px solid; transition: background 0.12s, color 0.12s;
+    }
+    .review-link--m { border-color: var(--green); color: var(--green); }
+    .review-link--m:hover { background: var(--green); color: #000; }
+    .review-link--w { border-color: #555; color: var(--muted); }
+    .review-link--w:hover { border-color: var(--yellow); color: var(--yellow); }
+    .review-link--none { border-color: #2a2a2a; color: #333; cursor: default; pointer-events: none; }
+
     /* ── FOOTER ── */
     .site-footer { text-align: center; background: #060606; padding: 2.5rem 1rem 2rem; border-top: 1px solid #1e1e1e; margin-top: 2rem; }
     .site-footer p { font-size: 0.82rem; color: var(--muted); }
@@ -276,6 +307,8 @@
     <p class="select-title" data-i18n="title">PEXESO STARÝ LÍSKOVEC</p>
     <p class="select-sub" data-i18n="subtitle">Poznej místa naší čtvrti — otočení dvou stejných karet odkryje příběh místa.</p>
     <div class="rounds-grid" id="rounds-grid"></div>
+    <button class="review-toggle" id="review-toggle" onclick="toggleReview()">Kontrola odkazů ▾</button>
+    <div id="review-panel" hidden></div>
   </div>
   <section class="seo-content" aria-label="Místa ve hře">
     <h2 data-i18n="seo_heading">Místa Starého Lískovce ve hře</h2>
@@ -553,6 +586,42 @@ function renderSelect() {
   renderRoundsGrid();
   renderSeoList();
   showScreen("screen-select");
+}
+
+function renderReviewPanel() {
+  const panel = document.getElementById("review-panel");
+  if (!panel || panel.dataset.built) return;  // build once
+  panel.innerHTML = ROUNDS.map(r => {
+    const rows = r.places.map(p => {
+      const mUrl = p.coords
+        ? `https://www.google.com/maps?layer=c&cbll=${p.coords}${p.azimuth != null ? `&cbp=12,${p.azimuth},0,0,0` : ''}`
+        : null;
+      const mLink = mUrl
+        ? `<a class="review-link review-link--m" href="${mUrl}" target="_blank" rel="noopener noreferrer" title="Street View">m</a>`
+        : `<span class="review-link review-link--none" title="chybí souřadnice">m</span>`;
+      const wLink = p.web
+        ? `<a class="review-link review-link--w" href="${p.web}" target="_blank" rel="noopener noreferrer" title="${p.web}">w</a>`
+        : `<span class="review-link review-link--none" title="chybí web">w</span>`;
+      return `<div class="review-row">
+        <span class="review-row__name" title="${p.cs.location}">${p.cs.name}</span>
+        ${mLink}${wLink}
+      </div>`;
+    }).join("");
+    return `<div class="review-round">
+      <div class="review-round__head">${r.emoji} ${r.cs.title}</div>
+      ${rows}
+    </div>`;
+  }).join("");
+  panel.dataset.built = "1";
+}
+
+function toggleReview() {
+  const panel = document.getElementById("review-panel");
+  const btn   = document.getElementById("review-toggle");
+  const open  = panel.hidden;
+  if (open) renderReviewPanel();
+  panel.hidden = !open;
+  btn.textContent = open ? "Kontrola odkazů ▴" : "Kontrola odkazů ▾";
 }
 
 function renderRoundsGrid() {
