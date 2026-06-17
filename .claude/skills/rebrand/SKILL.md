@@ -91,7 +91,19 @@ python3 .claude/skills/rebrand/scripts/ink.py ink '#8fba47' --ratio 4.5      # d
   { color:#fff; border-color: rgba(255,255,255,.55) }` — overriding tokens on an
   ancestor won't retro-fix already-resolved descendant colours.
 - Each standalone page with its own embedded `<style>` (`pexeso/`, `404.html`,
-  `pamphlet.html`) has its **own** `:root`; convert each in parallel.
+  `pamphlet.html`) has its **own** `:root`; convert each in parallel. Give each
+  the **same set of semantic tokens** as the main stylesheet (hover-darken
+  variants, error/validation colours, anything beyond the base palette) — a
+  page that's missing a token just hardcodes a hex inline instead, which is
+  exactly how drift sneaks back in.
+- **Hover/active states are a common blind spot.** They're easy to skip
+  because they don't show in a static screenshot. Grep separately for
+  `:hover`, `:active`, `:focus` and check every colour inside is a token, not
+  a literal. Watch for a *direction* bug too: a dark theme often brightens on
+  hover (lit-up-against-black); a light theme should usually darken instead
+  (the new bg is light, so a hover that lightens loses contrast) — don't just
+  carry the old hover literal over, re-derive it as a `*-dark` token sibling
+  of the `*-ink` ones from Phase 2.
 
 ## 4. Swap names, logos and motifs
 
@@ -135,4 +147,16 @@ looks professional — then say so plainly.
 - `node --check` every touched JS file; validate the JSON-LD block parses.
 - Final grep: zero references to the old name (except legitimate place names),
   old logo files, or the old motif remain.
+- **Final colour audit — run across every `.html`/`.css` file, not just the
+  ones you remember touching:**
+  ```
+  grep -rnoE '#[0-9a-fA-F]{3,6}' --include='*.html' --include='*.css' .
+  ```
+  For every hit, it should be one of: a token *definition* inside a `:root`,
+  a literal `#000`/`#fff` paired with a *fill* background (legitimate —
+  fills don't need ink variants), or a deliberately-scoped local override
+  (e.g. the hero's dark-backdrop text). Anything else — a bare brand-ish hex
+  sitting in a rule body — is a leftover that should be a `var(--...)`
+  instead. This is what catches stale hover colours and per-page token gaps
+  that the rest of the workflow doesn't surface.
 - Commit tokens / text / assets as separate logical commits; push.
