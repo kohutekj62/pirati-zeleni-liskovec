@@ -370,7 +370,7 @@ const CONTENT = {
     {
       name: "Kateřina Křížová", party: "Piráti", photo: "katerina-krizova.jpg",
       age: 30,
-      cs: { profession: "asistentka pedagoga, studentka PedF", bio: "Kateřina ve Starém Lískovci s malou přestávkou bydlí celý svůj život. Nyní zde s manželem vychovává dvě děti, díky kterým zjistila, jak důležitou součástí života je kultura. Jako zakládající členka spolku Blechy v kožichu se snaží oživit kulturní prostředí a spojit komunitu v naší městské části." },
+      cs: { profession: "asistentka pedagoga, studentka PedF", bio: "Kateřina ve Starém Lískovci s malou přestávkou bydlí celý svůj život. Nyní zde s manželem vychovává dvě děti, díky kterým zjistila, jak důležitou součástí života je kultura. Jako zakládající členka spolku Blechy v kožichu se snaží oživit kulturní prostředí a spojit komunitu v naší městské části." },
       en: { profession: "teaching assistant, student of pedagogy", bio: "Kateřina has lived in Starý Lískovec for almost her entire life. She is now raising two children here with her husband, and through them discovered just how important cultural life really is. As a founding member of Blechy v kožichu she works to revive the cultural scene and bring the community in our district together." },
     },
     {
