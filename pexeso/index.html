@@ -167,8 +167,9 @@
     .card__front { transform: rotateY(180deg); background: var(--surface); display: flex; align-items: center; justify-content: center; }
     .card__front img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; flex-shrink: 0; }
     .card__front .card__label {
+      /* sits on its own dark photo-bottom scrim regardless of page theme -> fixed light text, not var(--text) */
       position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 0.4rem 0.5rem; font-size: 0.75rem; font-weight: 700; line-height: 1.2; color: var(--text);
+      padding: 0.4rem 0.5rem; font-size: 0.75rem; font-weight: 700; line-height: 1.2; color: #fff;
       background: linear-gradient(transparent, rgba(0,0,0,0.85));
     }
     .card.matched .card__face { border-color: var(--green); }
