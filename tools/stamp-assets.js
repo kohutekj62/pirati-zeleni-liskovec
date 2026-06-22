@@ -3,14 +3,17 @@
  * stamp-assets.js — cache-busting for the static site
  *
  * WHY
- *   Browsers cache css/js aggressively. Without a version marker, returning
- *   visitors keep seeing an old js/content.js after you publish a change.
+ *   Browsers (and the GitHub Pages/Fastly CDN) cache css/js/images
+ *   aggressively. Without a version marker, returning visitors keep seeing
+ *   an old js/content.js — or an old logo.png after a rebrand — long after
+ *   you publish a change, because the URL never changed.
  *
  * WHAT IT DOES
- *   Rewrites every local <script src> / <link href> in the HTML pages to
- *   carry a ?v=<hash> query, where <hash> is a short hash of that file's
- *   current contents. The query changes only when the file actually changes,
- *   so unchanged files stay cached and changed files are re-fetched at once.
+ *   Rewrites every local <script src> / <link href> / <img src> in the HTML
+ *   pages to carry a ?v=<hash> query, where <hash> is a short hash of that
+ *   file's current contents. The query changes only when the file actually
+ *   changes, so unchanged files stay cached and changed files are re-fetched
+ *   at once.
  *
  * USAGE
  *   node tools/stamp-assets.js          (run before you commit a css/js change)
@@ -25,10 +28,12 @@ const crypto = require('crypto');
 const ROOT = path.resolve(__dirname, '..');
 
 // HTML pages to process (relative to repo root)
-const PAGES = ['index.html', 'pexeso/index.html'];
+const PAGES = ['index.html', 'pexeso/index.html', '404.html'];
 
-// Matches  src="…"  or  href="…"  pointing at a local .js/.css (with optional ?v=…)
-const ASSET_RE = /(src|href)=("|')([^"']+?\.(?:js|css))(\?v=[^"']*)?\2/g;
+// Matches  src="…"  or  href="…"  pointing at a local .js/.css/.png/.svg/.jpg
+// (with optional ?v=…) — images get cache-busted too, since a rebrand changes
+// the bytes behind logo/favicon URLs that otherwise never change name.
+const ASSET_RE = /(src|href)=("|')([^"']+?\.(?:js|css|png|jpe?g|svg))(\?v=[^"']*)?\2/g;
 
 function shortHash(absPath) {
   const buf = fs.readFileSync(absPath);
