@@ -356,8 +356,9 @@ const CONTENT = {
     },
     {
       name: "Hana Blažek Hlaváčková", party: "Piráti", photo: "hana-blazek-hlavackova.jpg",
-      cs: { bio: "Hana je vystudovaná učitelka, ale většinu pracovního života věnovala datové analýze a správě systémů v mezinárodní firmě. Nyní je na rodičovské dovolené. Ve volném čase ráda čte, kreativně tvoří s dětmi a jezdí na výlety. Ve Starém Lískovci by ráda viděla komunitu pro všechny věkové kategorie, která by se navzájem podporovala." },
-      en: { bio: "Hana trained as a teacher but spent most of her career in data analysis and systems administration at an international company. She is currently on parental leave. In her free time she enjoys reading, creative activities with her children and day trips. In Starý Lískovec she would love to see a community that spans all age groups and supports one another." },
+      age: 36,
+      cs: { profession: "datová analytička", bio: "Hana je vystudovaná učitelka, ale většinu pracovního života věnovala datové analýze a správě systémů v mezinárodní firmě. Nyní je na rodičovské dovolené. Ve volném čase ráda čte, kreativně tvoří s dětmi a jezdí na výlety. Ve Starém Lískovci by ráda viděla komunitu pro všechny věkové kategorie, která by se navzájem podporovala." },
+      en: { profession: "data analyst", bio: "Hana trained as a teacher but spent most of her career in data analysis and systems administration at an international company. She is currently on parental leave. In her free time she enjoys reading, creative activities with her children and day trips. In Starý Lískovec she would love to see a community that spans all age groups and supports one another." },
     },
   ],
 
