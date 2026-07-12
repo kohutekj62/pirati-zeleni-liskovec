@@ -441,24 +441,12 @@ const CONTENT = {
         • image → file in assets/  (or "" to show a branded placeholder).
      ====================================================================== */
   news: [
-    { date: "2026-03-01", image: "",
-      cs: { title: "Koalice Piráti + Zelení vzniká", excerpt: "Oznamujeme vznik koalice pro komunální volby 2026 ve Starém Lískovci pod názvem Lískovec jsi Ty! Jsme rádi, že stojíme společně." },
-      en: { title: "Pirates + Greens coalition formed", excerpt: "We announce the formation of our coalition for the 2026 municipal elections in Starý Lískovec under the name Lískovec jsi Ty!" } },
-    { date: "2026-04-20", image: "",
-      cs: { title: "Zahájili jsme přípravy kampaně", excerpt: "Scházíme se pravidelně a připravujeme program, vizuální identitu a plán setkání s občany. Děkujeme všem dobrovolníkům za pomoc!" },
-      en: { title: "Campaign preparations under way", excerpt: "We are meeting regularly and preparing our programme, visual identity and plan for citizen meetings. Thank you to all our volunteers!" } },
-    { date: "2026-05-15", image: "",
-      cs: { title: "Kandidátní listina potvrzena", excerpt: "Naše kandidátní listina 21 kandidátů za koalici Piráti + Zelení je úředně zaregistrována na Magistrátu města Brna. Jdeme do voleb!" },
-      en: { title: "Candidate list confirmed", excerpt: "Our 21-candidate Pirates + Greens coalition list has been officially registered with Brno City Hall. We're running!" } },
-    { date: "2026-06-01", image: "",
-      cs: { title: "Spustili jsme naši kampaň!", excerpt: "Vítejte na našich nových stránkách. V příštích týdnech zde najdete novinky z kampaně, pozvánky na akce a naše postoje k dění ve Starém Lískovci." },
-      en: { title: "Our campaign is live!", excerpt: "Welcome to our new website. Over the coming weeks you'll find campaign news, event invitations and our positions on what's happening in Starý Lískovec here." } },
-    { date: "2026-06-15", image: "",
-      cs: { title: "Představujeme náš program", excerpt: "Zveřejnili jsme šest programových priorit pro lepší Starý Lískovec. Přečtěte si je v sekci Program a dejte nám vědět, co si o nich myslíte." },
-      en: { title: "Introducing our programme", excerpt: "We've published six priorities for a better Starý Lískovec. Read them in the Programme section and let us know what you think." } },
-    { date: "2026-07-01", image: "",
-      cs: { title: "Brzy se potkáme v ulicích", excerpt: "Připravili jsme řadu setkání, úklidů a diskusí. Podívejte se do sekce Setkejme se a přijďte si s námi popovídat naživo." },
-      en: { title: "We'll meet you in the streets soon", excerpt: "We've prepared a series of meetings, clean-ups and discussions. Check the Meet us section and come and talk to us in person." } },
+    { date: "2026-06-23", image: "assets/news-kvetinovy-swap.jpg",
+      cs: { title: "Květinový Swap", excerpt: "V pondělí 23. června jsme se sešli v Sady Kafé na květinovém swapu – komunitní výměně pokojových i zahradních rostlin. Každý přinesl přebytky z domova nebo zahrady a odnesl si domů něco nového. U skleničky místního moštu jsme si povídali o zeleni, o sousedství a o tom, jak pečovat o naši čtvrť. Děkujeme všem, kdo dorazili!" },
+      en: { title: "Flower Swap", excerpt: "On Monday 23 June we gathered at Sady Kafé for a flower swap – a community exchange of houseplants and garden plants. Everyone brought surplus from home or their garden and took something new home. Over a glass of local juice we talked about greenery, community and how to take care of our neighbourhood. Thank you to everyone who came!" } },
+    { date: "2026-01-01", image: "",
+      cs: { title: "Placeholder", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
+      en: { title: "Placeholder", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." } },
   ],
 
   /* ========================================================================
