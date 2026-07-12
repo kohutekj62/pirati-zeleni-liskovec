@@ -50,11 +50,14 @@
     var banner = document.getElementById("dev-banner");
     if (!banner) return;
 
+    // No text in prod — stay hidden.
+    var textEl = banner.querySelector(".dev-banner__text");
+    if (!textEl || !textEl.textContent.trim()) return;
+
     // Stay hidden if the visitor already closed it this session.
-    if (sessionStorage.getItem("slon-dev-banner-closed")) {
-      banner.hidden = true;
-      return;
-    }
+    if (sessionStorage.getItem("slon-dev-banner-closed")) return;
+
+    banner.hidden = false;
 
     document.getElementById("dev-banner-close").addEventListener("click", function () {
       banner.hidden = true;
