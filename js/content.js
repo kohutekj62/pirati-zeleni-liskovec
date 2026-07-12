@@ -369,7 +369,9 @@ const CONTENT = {
      ====================================================================== */
   people_other: [
     { name: "Jakub Czapek",        party: "Piráti", profession: "doplníme" },
-    { name: "Jakub Dlabaja",       party: "Zelení", profession: "doplníme" },
+    { name: "Jakub Dlabaja",       party: "Zelení", age: 27,
+      cs: { profession: "koordinátor servisních operací" },
+      en: { profession: "service operations coordinator" } },
     { name: "Jitka Filipová",      party: "Piráti", profession: "doplníme" },
     { name: "Volné místo",         party: "",        profession: "" },
     { name: "Volné místo",         party: "",        profession: "" },
