@@ -225,13 +225,13 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
    ---------------------------------------------------------------------------- */
 .hero {
   position: relative; overflow: hidden;
-  color: #f4f4f5;                 /* hero keeps a dark photo backdrop → light text inside it */
+  color: #1a1a1a;                 /* light overlay → dark text */
   border-top: 3px solid var(--color-green);
   border-bottom: 3px solid var(--color-green);
   background:
-    radial-gradient(60% 60% at 80% 10%, rgba(253, 100, 120, 0.45), transparent 60%),
-    radial-gradient(50% 50% at 10% 90%, rgba(1, 195, 109, 0.22), transparent 60%),
-    linear-gradient(to right, rgba(10,10,10,0.68) 0%, rgba(10,10,10,0.38) 100%),
+    radial-gradient(60% 60% at 80% 10%, rgba(253, 100, 120, 0.15), transparent 60%),
+    radial-gradient(50% 50% at 10% 90%, rgba(1, 195, 109, 0.12), transparent 60%),
+    linear-gradient(to right, rgba(245,243,238,0.82) 0%, rgba(245,243,238,0.55) 100%),
     url('../header-photo.jpg') center / cover no-repeat;
 }
 .hero__inner {
@@ -241,8 +241,8 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 .hero__text { flex: 1 1 60%; }
 .hero__kicker {
   display: inline-block; margin: 0 0 1rem;
-  color: var(--color-green); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  font-size: 0.9rem; border: 1px solid rgba(1, 195, 109, 0.4); border-radius: var(--radius-pill);
+  color: var(--color-green-ink); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: 0.9rem; border: 1px solid rgba(1, 130, 73, 0.45); border-radius: var(--radius-pill);
   padding: 0.35rem 0.9rem;
 }
 /* One continuous gradient across the whole two-line title, not a separate
@@ -256,21 +256,21 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
    touches, not the title itself. */
 .hero__title {
   font-size: clamp(3rem, 11vw, 7rem); margin: 0;
-  -webkit-text-fill-color: #f4f4f5;
-  color: #f4f4f5;
+  -webkit-text-fill-color: #1a1a1a;
+  color: #1a1a1a;
 }
 .hero__title span:last-child {
-  background: linear-gradient(90deg, #f4f4f5 0%, var(--color-green) 55%);
+  background: linear-gradient(90deg, #1a1a1a 0%, var(--color-green-ink) 55%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.hero__tagline { font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: rgba(244, 244, 245, 0.85); max-width: 30ch; margin: 1rem 0 2rem; }
+.hero__tagline { font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: rgba(26, 26, 26, 0.75); max-width: 30ch; margin: 1rem 0 2rem; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 1rem; }
 /* Ghost button sits on the dark hero, so it needs light text + a light outline.
    Hover fills with green, not black or pink — both of those fail contrast
    with white text (2.3:1 / 2.9:1), so the fill switches to black text instead. */
-.hero .btn--ghost { color: #fff; border-color: rgba(255, 255, 255, 0.55); }
+.hero .btn--ghost { color: #1a1a1a; border-color: rgba(26, 26, 26, 0.40); }
 .hero .btn--ghost:hover { background: var(--color-green); border-color: var(--color-green); color: #000; }
 
 .hero__art { flex: 0 1 320px; display: flex; justify-content: center; }
