@@ -265,7 +265,7 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.hero__tagline { font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: rgba(26, 26, 26, 0.75); max-width: 30ch; margin: 1rem 0 2rem; }
+.hero__tagline { font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: rgba(26, 26, 26, 0.75); max-width: 50ch; margin: 1rem 0 2rem; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 1rem; }
 /* Ghost button sits on the dark hero, so it needs light text + a light outline.
    Hover fills with green, not black or pink — both of those fail contrast
