@@ -296,13 +296,13 @@ const RENDER = (function () {
         el("p",    { class: "news-card__excerpt", text: data.excerpt }),
       ]});
       return el("article", {
-        class: "news-card" + (isOldest ? " news-card--oldest" : ""),
+        class: "news-card",
         children: [media, body],
       });
     }
 
-    var cards = slice.map(function (n, idx) {
-      return buildCard(n, atOldEnd && idx === slice.length - 1 && all.length > PAGE);
+    var cards = slice.map(function (n) {
+      return buildCard(n, false);
     });
 
     var prevBtn = el("button", { class: "news-carousel__btn", text: "‹",
