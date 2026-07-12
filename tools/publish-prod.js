@@ -45,12 +45,20 @@ try {
   fs.writeFileSync(contentPath, src, 'utf8');
   console.log('dev_banner cleared, other candidates hidden');
 
-  // ── 4. Re-stamp asset hashes (content.js hash changed) ───────────────────────
+  // ── 4. Swap pamphlet QR URL dev → prod ───────────────────────────────────────
+  const pamphletPath = path.join(ROOT, 'pexeso', 'pamphlet.html');
+  let pamphlet = fs.readFileSync(pamphletPath, 'utf8');
+  const PROD_URL = 'https://kohutekj62.github.io/pirati-zeleni-liskovec/pexeso/';
+  pamphlet = pamphlet.replace(/https:\/\/kohutekj62\.github\.io\/pirati-zeleni-liskovec-dev\/pexeso\//g, PROD_URL);
+  fs.writeFileSync(pamphletPath, pamphlet, 'utf8');
+  console.log('pamphlet QR URL → prod');
+
+  // ── 5. Re-stamp asset hashes (content.js hash changed) ───────────────────────
   run('node tools/stamp-assets.js');
   console.log('Asset hashes re-stamped');
 
-  // ── 5. Commit ─────────────────────────────────────────────────────────────────
-  run('git add js/content.js index.html pexeso/index.html 404.html js/render.js');
+  // ── 6. Commit ─────────────────────────────────────────────────────────────────
+  run('git add js/content.js pexeso/pamphlet.html index.html pexeso/index.html 404.html js/render.js');
   run('git commit -m "publish: clear dev banner for production"');
 
   // ── 6. Push to prod ───────────────────────────────────────────────────────────
