@@ -193,12 +193,21 @@ const RENDER = (function () {
         text: formatDate(ev.date) + (ev.time ? " · " + ev.time : "") });
       if (isPast) dateLine.appendChild(el("span", { class: "event__badge", text: t("event_past") }));
 
-      var body = el("div", { children: [
+      var bodyChildren = [
         dateLine,
         el("h3",  { class: "event__title", text: data.title }),
         el("div", { class: "event__place", text: data.place }),
         el("p",   { class: "event__desc",  text: data.desc }),
-      ]});
+      ];
+      if (ev.fb || ev.map) {
+        var links = [];
+        if (ev.fb)  links.push(el("a", { class: "event__link event__link--f", text: "f",
+          attrs: { href: ev.fb,  target: "_blank", rel: "noopener noreferrer", title: "Facebook" } }));
+        if (ev.map) links.push(el("a", { class: "event__link event__link--m", text: "m",
+          attrs: { href: ev.map, target: "_blank", rel: "noopener noreferrer", title: "Mapy.com" } }));
+        bodyChildren.push(el("div", { class: "event__links", children: links }));
+      }
+      var body = el("div", { children: bodyChildren });
       return el("li", { class: cls, children: [
         el("span", { class: "event__dot", attrs: { "aria-hidden": "true" } }), body,
       ]});

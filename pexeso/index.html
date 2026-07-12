@@ -14,6 +14,7 @@
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=9f3288eb" />
   <link rel="stylesheet" href="../css/fonts.css?v=e0b8a13a" />
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     [hidden] { display: none !important; } /* ░ ensures hidden attr beats element/class display rules ░ */
@@ -115,7 +116,12 @@
     }
     .round-card:hover { border-color: var(--green-ink); transform: translateY(-3px); }
     .round-card.done  { border-color: var(--green); opacity: 0.75; }
-    .round-card__emoji { font-size: 2rem; margin-bottom: 0.4rem; }
+    .round-card__icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.85rem; flex-shrink: 0;
+    }
+    .round-card__icon svg { width: 28px; height: 28px; stroke: #fff; color: #fff; }
     .round-card__title { font-family: var(--font-d); font-size: 1.4rem; color: var(--green-ink); }
     .round-card__badge { display: inline-block; margin-top: 0.5rem; font-size: 0.75rem; font-weight: 700; color: var(--green-ink); }
 
@@ -689,17 +695,30 @@ function toggleReview() {
   btn.textContent = open ? "Kontrola odkazů ▴" : "Kontrola odkazů ▾";
 }
 
+const CATEGORY_META = {
+  1: { icon: "trees",           bg: "#16a34a" },
+  2: { icon: "graduation-cap",  bg: "#2563eb" },
+  3: { icon: "landmark",        bg: "#d97706" },
+  4: { icon: "briefcase",       bg: "#7c3aed" },
+  5: { icon: "trophy",          bg: "#e11d48" },
+  6: { icon: "bus",             bg: "#0284c7" },
+};
+
 function renderRoundsGrid() {
   const grid = document.getElementById("rounds-grid");
   grid.innerHTML = ROUNDS.map(r => {
-    const done = completedRounds.includes(r.id); // show ✓ badge if already finished
+    const done = completedRounds.includes(r.id);
+    const meta = CATEGORY_META[r.id] || { icon: "map-pin", bg: "var(--green)" };
     return `<button class="round-card${done ? " done" : ""}" data-round="${r.id}">
-      <div class="round-card__emoji">${r.emoji}</div>
+      <div class="round-card__icon" style="background:${meta.bg}">
+        <i data-lucide="${meta.icon}"></i>
+      </div>
       <div class="round-card__title">${r[lang].title}</div>
       <div class="round-card__sub">${r.places.length} ${t("places_label")}</div>
       ${done ? `<span class="round-card__badge">${t("done_badge")}</span>` : ""}
     </button>`;
   }).join("");
+  lucide.createIcons();
   // Wire up click handlers after the HTML is written (can't do it before — the
   // elements don't exist in the DOM until innerHTML is set).
   grid.querySelectorAll(".round-card").forEach(btn => {
