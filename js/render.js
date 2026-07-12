@@ -289,7 +289,7 @@ const RENDER = (function () {
     }
 
     var cards = slice.map(function (n, idx) {
-      return buildCard(n, atOldEnd && idx === slice.length - 1);
+      return buildCard(n, atOldEnd && idx === slice.length - 1 && all.length > PAGE);
     });
 
     var prevBtn = el("button", { class: "news-carousel__btn", text: "‹",
