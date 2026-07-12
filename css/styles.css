@@ -355,7 +355,8 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 .person__bio  { color: var(--color-muted); font-size: 0.95rem; margin: 0.3rem 0 0; text-align: left; }
 
 /* party tag */
-.party-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+.party-tag { display: inline-flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase; line-height: 1;
   letter-spacing: 0.05em; padding: 0.2rem 0.7rem; border-radius: var(--radius-pill); color: #000; }
 .party-tag--pirati { background: var(--pirati); color: #fff; } /* black fill is dark — needs light text */
 .party-tag--zeleni { background: var(--zeleni); }
