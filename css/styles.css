@@ -237,10 +237,14 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
     url('../header-photo.jpg') center / cover no-repeat;
 }
 .hero__inner {
-  display: flex; align-items: center; gap: var(--gap);
-  padding-block: clamp(3rem, 9vw, 7rem);
+  display: flex; align-items: stretch; gap: var(--gap);
+  min-height: clamp(420px, 62vw, 640px);
+  padding-block: clamp(2rem, 5vw, 3.5rem);
 }
-.hero__text { flex: 1 1 60%; }
+.hero__text {
+  display: flex; flex-direction: column; justify-content: space-between;
+  flex: 1 1 60%;
+}
 .hero__kicker {
   display: inline-block; margin: 0 0 1rem;
   color: var(--color-green-ink); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
