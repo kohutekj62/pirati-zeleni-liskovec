@@ -28,7 +28,7 @@ const CONTENT = {
         Until then the site still works; buttons just point to a placeholder.
      ====================================================================== */
   config: {
-    email:            "slon@staryliskovec-on.cz",    // your campaign e-mail
+    email:            "info@pirati-zeleni-liskovec.cz",    // your campaign e-mail
     phone:            "",                            // hidden — no phone support
     facebook:         "https://www.facebook.com/pirati.staryliskovec/",
     instagram:        "https://www.instagram.com/pirati.staryliskovec/",
@@ -38,7 +38,7 @@ const CONTENT = {
     // Working contact form. Create a free form at https://formspree.io, then paste
     // ONLY the code from your form URL here (the part after /f/). Example: "xpzgkqab".
     // Leave as "" and the form falls back to opening the visitor's e-mail app instead.
-    formspreeId:      "xvznwgqr",
+    formspreeId:      "",                            // TODO: set up new Formspree form for info@pirati-zeleni-liskovec.cz
 
     // Newsletter sign-up. Paste the "form action" URL from your e-mail tool
     // (Mailchimp / Ecomail / MailerLite). Leave "" to disable the newsletter box.
@@ -87,7 +87,7 @@ const CONTENT = {
 
       // -- Section titles + lead sentences --
       about_title:    "O nás",
-      about_lead:     "Koalice Pirátů a Zelených pro Brno-Starý Lískovec.",
+      about_lead:     "Koalice Pirátů a Zelených pro Brno – Starý Lískovec.",
       program_title:  "Program",
       program_lead:   "Šest priorit pro lepší Starý Lískovec. Klikněte na bod a rozbalte detail.",
       people_title:   "Lidé",
@@ -129,7 +129,7 @@ const CONTENT = {
       lang_label:     "Jazyk",
       skip_link:      "Přeskočit na obsah",
       back_to_top:    "Nahoru",
-      footer_about:   "Koalice Pirátů a Zelených pro městskou část Brno-Starý Lískovec.",
+      footer_about:   "Koalice Pirátů a Zelených pro městskou část Brno – Starý Lískovec.",
       footer_rights:  "Vytvořeno s nasazením pro Starý Lískovec.",
       footer_credit:  "Web vytváříme vlastními silami s pomocí umělé inteligence. Našli jste chybu nebo nepřesnost? Dejte nám prosím vědět na ",
       footer_nav:     "Rozcestník",
@@ -161,7 +161,7 @@ const CONTENT = {
       hero_logo_alt: "Piráti a Zelení pro Lískovec logo",
 
       about_title:    "About us",
-      about_lead:     "A coalition of the Pirates and the Greens for Brno-Starý Lískovec.",
+      about_lead:     "A coalition of the Pirates and the Greens for Brno – Starý Lískovec.",
       program_title:  "Programme",
       program_lead:   "Six priorities for a better Starý Lískovec. Click a point to expand it.",
       people_title:   "People",
@@ -200,7 +200,7 @@ const CONTENT = {
       lang_label:     "Language",
       skip_link:      "Skip to content",
       back_to_top:    "Top",
-      footer_about:   "A coalition of the Pirates and the Greens for the Brno-Starý Lískovec district.",
+      footer_about:   "A coalition of the Pirates and the Greens for the Brno – Starý Lískovec district.",
       footer_rights:  "Made with dedication for Starý Lískovec.",
       footer_credit:  "We are building this site ourselves with the help of artificial intelligence. Found an error or an inaccuracy? Please let us know at ",
       footer_nav:     "Quick links",
@@ -216,7 +216,7 @@ const CONTENT = {
      ====================================================================== */
   about: {
     cs: [
-      "Jsme tým lidí, kterým Brno-Starý Lískovec není lhostejný.",
+      "Jsme tým lidí, kterým Brno – Starý Lískovec není lhostejný.",
       "Rádi bychom, aby byla radnice otevřena veřejnosti a městská část byla vedena transparentně, pečovalo se o veřejné prostranství a předcházelo se zbytečným poškozením majetku. Chceme, aby se v Brně-Starém Lískovci cítili dobře všichni občané, bez ohledu na to, zda zde žijí jako několikátá generace, nebo se přistěhovali letos, jsou senioři, děti nebo lidé se zdravotním omezením.",
       "Podporujeme aktivní životní styl, kvalitní vzdělávání a ochranu zeleně ve městě.",
       "Jsme tu pro vás, připraveni naslouchat a pracovat s plným nasazením.",
@@ -224,8 +224,8 @@ const CONTENT = {
       "Děkujeme, že nám věříte a podporujete naši vizi pro Brno – Starý Lískovec.",
     ],
     en: [
-      "We are a team of people who care about Brno-Starý Lískovec.",
-      "We would like the town hall to be open to the public and the district to be run transparently, with proper care for public spaces and prevention of unnecessary damage to property. We want all residents of Brno-Starý Lískovec to feel at home, regardless of whether they have lived here for generations or moved in this year, whether they are seniors, children or people with health limitations.",
+      "We are a team of people who care about Brno – Starý Lískovec.",
+      "We would like the town hall to be open to the public and the district to be run transparently, with proper care for public spaces and prevention of unnecessary damage to property. We want all residents of Brno – Starý Lískovec to feel at home, regardless of whether they have lived here for generations or moved in this year, whether they are seniors, children or people with health limitations.",
       "We support an active lifestyle, quality education and the protection of urban greenery.",
       "We are here for you, ready to listen and work with full commitment.",
       "We are a coalition of the Pirates and the Greens.",
@@ -348,6 +348,7 @@ const CONTENT = {
     },
     {
       name: "Ayudh Ray", party: "Piráti", photo: "ayudh-ray.jpg",
+      age: 21,
       cs: { profession: "student, koordinátor Mladého Pirátstva", bio: "Ayudh je student Fakulty sociálních věd Univerzity Karlovy. Je koordinátorem Mladého Pirátstva v Jihomoravském kraji a bývalým 1. místopředsedou Krajského studentského sněmu Jihomoravského kraje. Dlouhodobě se věnuje participaci mladých lidí a jednal s krajskými institucemi. Během války na Ukrajině pomáhal s integrací uprchlíků výukou češtiny. Jeho prioritou je kvalitní veřejný prostor, dostupná doprava a více prostoru pro mladé lidi." },
       en: { profession: "student, Young Pirates coordinator", bio: "Ayudh is a student at the Faculty of Social Sciences, Charles University. He is the coordinator of Young Pirates in the South Moravian Region and a former 1st Vice-Chair of the Regional Student Senate of the South Moravian Region. He has long focused on youth participation and has engaged with regional institutions. During the war in Ukraine he helped refugees integrate by teaching Czech. His priorities are quality public spaces, accessible transport and more room for young people." },
     },
