@@ -277,7 +277,7 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
    Hover fills with green, not black or pink — both of those fail contrast
    with white text (2.3:1 / 2.9:1), so the fill switches to black text instead. */
 .hero .btn--ghost { color: #1a1a1a; border-color: rgba(26, 26, 26, 0.40); }
-.hero .btn--ghost:hover { background: var(--color-green); border-color: var(--color-green); color: #000; }
+.hero .btn--ghost:hover { background: rgba(7, 130, 69, 0.12); border-color: var(--color-green-ink); color: var(--color-green-ink); }
 
 .hero__art { flex: 0 1 320px; display: flex; justify-content: center; }
 .hero__logo { width: clamp(180px, 30vw, 340px); height: auto; border-radius: var(--radius); filter: drop-shadow(0 0 24px rgba(1, 195, 109, 0.5)); }
