@@ -179,7 +179,7 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 
 .brand { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--color-text); }
 .brand:hover { color: var(--color-text); }
-.brand__svg  { height: 44px; width: auto; display: block; }
+.brand__svg  { height: 51px; width: auto; display: block; }
 
 /* Desktop navigation */
 .main-nav { margin-left: auto; display: flex; gap: clamp(0.5rem, 1.5vw, 1.4rem); }
