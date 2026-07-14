@@ -650,6 +650,15 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 }
 
 @media (max-width: 480px) {
+  /* Kicker pill was wrapping to two lines at phone widths — shrink it
+     enough to stay on one line rather than let it wrap awkwardly. */
+  .hero__kicker { font-size: 0.7rem; letter-spacing: 0.04em; padding: 0.3rem 0.7rem; white-space: nowrap; }
+  /* Push the CTA row further down so it clears the buildings and lands
+     in the vineyard band, matching the desktop layout. hero__inner's
+     min-height is a floor, not a cap, so this margin is free to grow
+     the section rather than fight the space-between distribution. */
+  .hero__cta { margin-top: 5rem; }
+
   .people-grid { grid-template-columns: 1fr; gap: 1rem; }
   .person {
     background: var(--color-surface-2);
