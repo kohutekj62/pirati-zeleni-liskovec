@@ -543,8 +543,8 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
    ---------------------------------------------------------------------------- */
 .site-footer { background: var(--color-surface); border-top: 1px solid var(--color-border); padding-block: 3rem 1.5rem; margin-top: 2rem; }
 .site-footer__inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--gap); align-items: start; }
-.site-footer__brand { display: flex; gap: 1rem; align-items: flex-start; color: var(--color-muted); max-width: 40ch; }
-.site-footer__brand img { border-radius: 8px; }
+.site-footer__brand { display: flex; gap: 1rem; align-items: flex-start; color: var(--color-muted); max-width: 52ch; }
+.site-footer__brand img { border-radius: 8px; flex-shrink: 0; }
 .site-footer__nav { display: flex; flex-direction: column; gap: 0.5rem; }
 .site-footer__nav a { color: var(--color-text); }
 .site-footer__nav a:hover { color: var(--color-green-ink); }
