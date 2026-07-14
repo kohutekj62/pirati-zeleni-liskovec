@@ -102,7 +102,7 @@ const CONTENT = {
       contact_title:  "Spojme se",
       contact_lead:   "Ozvěte se nám. Každá zpráva, komentář i sdílení nám pomáhá.",
       partners_title: "Přátelé",
-      partners_lead:  "Jsme součástí celku. Hrdě se hlásíme k našim mateřským stranám.",
+      partners_lead:  "Jsme součástí celku. Hrdě se hlásíme k našim mateřským stranám.",
 
       other_candidates_label: "Další kandidáti",
 
@@ -469,8 +469,8 @@ const CONTENT = {
      ====================================================================== */
   partners: {
     cs: {
-      intro: "Naše kandidátka spojuje síly pro rozvoj Starého Lískovce. Hrdě se hlásíme k hodnotám a celostátnímu programu našich mateřských stran, které nám poskytují zázemí a podporu.",
-      outro: "Společně prosazujeme moderní a udržitelný rozvoj nejen v naší městské části, ale i v celém regionu a České republice.",
+      intro: "Naše kandidátka spojuje síly pro rozvoj Starého Lískovce. Hrdě se hlásíme k hodnotám a celostátnímu programu našich mateřských stran, které nám poskytují zázemí a podporu.",
+      outro: "Společně prosazujeme moderní a udržitelný rozvoj nejen v naší městské části, ale i v celém regionu a České republice.",
       pirati_region:   "Piráti Jihomoravského kraje",
       pirati_national: "Česká pirátská strana",
       zeleni_region:   "Zelení v Jihomoravském kraji",
