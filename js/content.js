@@ -38,7 +38,7 @@ const CONTENT = {
     // Working contact form. Create a free form at https://formspree.io, then paste
     // ONLY the code from your form URL here (the part after /f/). Example: "xpzgkqab".
     // Leave as "" and the form falls back to opening the visitor's e-mail app instead.
-    formspreeId:      "",                            // TODO: set up new Formspree form for info@pirati-zeleni-liskovec.cz
+    formspreeId:      "xpqvqdzl",                     // Formspree form for info@pirati-zeleni-liskovec.cz
 
     // Newsletter sign-up. Paste the "form action" URL from your e-mail tool
     // (Mailchimp / Ecomail / MailerLite). Leave "" to disable the newsletter box.
