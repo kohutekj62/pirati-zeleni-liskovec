@@ -396,40 +396,56 @@ const CONTENT = {
         • date  → ISO format "YYYY-MM-DD" (used to sort and show the date nicely).
         • time  → free text, shown as-is (e.g. "17:00" or "dopoledne").
         Past events automatically get a faded "proběhlo / past" style.
+
+        Optional, used only for Google's Event structured data:
+        • host             → real-world organizer, e.g. "Blechy v kožichu z.s.",
+                              when it's someone else's event we're just promoting.
+                              Omit when the coalition itself is organizing.
+        • durationMinutes  → overrides the 2h default event length.
+        • price            → overrides the "free" (0 CZK) default.
+        • image            → "assets/" + image, same convention as news items;
+                              falls back to the shared OG image if omitted.
      ====================================================================== */
   events: [
     { date: "2026-07-20", time: "17:30",
       fb:  "https://www.facebook.com/blechyvkozichu/",
+      host: "Blechy v kožichu z.s.",
       map: "https://mapy.com/cs/turisticka?source=base&id=2569303&x=16.5598997&y=49.1681551&z=19&ovl=3",
       cs: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Každé prázdninové pondělí v 17:30 čtou Blechy v kožichu z.s. dětem na Červeném hřišti naproti Potrefené huse. Knížky vyberte na jejich Facebooku." },
       en: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Every summer-holiday Monday at 17:30, Blechy v kožichu z.s. read to children at Červené hřiště opposite Potrefená husa. Choose the book on their Facebook page." } },
     { date: "2026-07-27", time: "17:30",
       fb:  "https://www.facebook.com/blechyvkozichu/",
+      host: "Blechy v kožichu z.s.",
       map: "https://mapy.com/cs/turisticka?source=base&id=2569303&x=16.5598997&y=49.1681551&z=19&ovl=3",
       cs: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Každé prázdninové pondělí v 17:30 čtou Blechy v kožichu z.s. dětem na Červeném hřišti naproti Potrefené huse. Knížky vyberte na jejich Facebooku." },
       en: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Every summer-holiday Monday at 17:30, Blechy v kožichu z.s. read to children at Červené hřiště opposite Potrefená husa. Choose the book on their Facebook page." } },
     { date: "2026-08-03", time: "17:30",
       fb:  "https://www.facebook.com/blechyvkozichu/",
+      host: "Blechy v kožichu z.s.",
       map: "https://mapy.com/cs/turisticka?source=base&id=2569303&x=16.5598997&y=49.1681551&z=19&ovl=3",
       cs: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Každé prázdninové pondělí v 17:30 čtou Blechy v kožichu z.s. dětem na Červeném hřišti naproti Potrefené huse. Knížky vyberte na jejich Facebooku." },
       en: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Every summer-holiday Monday at 17:30, Blechy v kožichu z.s. read to children at Červené hřiště opposite Potrefená husa. Choose the book on their Facebook page." } },
     { date: "2026-08-10", time: "17:30",
       fb:  "https://www.facebook.com/blechyvkozichu/",
+      host: "Blechy v kožichu z.s.",
       map: "https://mapy.com/cs/turisticka?source=base&id=2569303&x=16.5598997&y=49.1681551&z=19&ovl=3",
       cs: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Každé prázdninové pondělí v 17:30 čtou Blechy v kožichu z.s. dětem na Červeném hřišti naproti Potrefené huse. Knížky vyberte na jejich Facebooku." },
       en: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Every summer-holiday Monday at 17:30, Blechy v kožichu z.s. read to children at Červené hřiště opposite Potrefená husa. Choose the book on their Facebook page." } },
     { date: "2026-08-17", time: "17:30",
       fb:  "https://www.facebook.com/blechyvkozichu/",
+      host: "Blechy v kožichu z.s.",
       map: "https://mapy.com/cs/turisticka?source=base&id=2569303&x=16.5598997&y=49.1681551&z=19&ovl=3",
       cs: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Každé prázdninové pondělí v 17:30 čtou Blechy v kožichu z.s. dětem na Červeném hřišti naproti Potrefené huse. Knížky vyberte na jejich Facebooku." },
       en: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Every summer-holiday Monday at 17:30, Blechy v kožichu z.s. read to children at Červené hřiště opposite Potrefená husa. Choose the book on their Facebook page." } },
     { date: "2026-08-24", time: "17:30",
       fb:  "https://www.facebook.com/blechyvkozichu/",
+      host: "Blechy v kožichu z.s.",
       map: "https://mapy.com/cs/turisticka?source=base&id=2569303&x=16.5598997&y=49.1681551&z=19&ovl=3",
       cs: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Každé prázdninové pondělí v 17:30 čtou Blechy v kožichu z.s. dětem na Červeném hřišti naproti Potrefené huse. Knížky vyberte na jejich Facebooku." },
       en: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Every summer-holiday Monday at 17:30, Blechy v kožichu z.s. read to children at Červené hřiště opposite Potrefená husa. Choose the book on their Facebook page." } },
     { date: "2026-08-31", time: "17:30",
       fb:  "https://www.facebook.com/blechyvkozichu/",
+      host: "Blechy v kožichu z.s.",
       map: "https://mapy.com/cs/turisticka?source=base&id=2569303&x=16.5598997&y=49.1681551&z=19&ovl=3",
       cs: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Každé prázdninové pondělí v 17:30 čtou Blechy v kožichu z.s. dětem na Červeném hřišti naproti Potrefené huse. Knížky vyberte na jejich Facebooku." },
       en: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Every summer-holiday Monday at 17:30, Blechy v kožichu z.s. read to children at Červené hřiště opposite Potrefená husa. Choose the book on their Facebook page." } },

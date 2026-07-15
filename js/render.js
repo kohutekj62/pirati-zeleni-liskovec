@@ -449,15 +449,24 @@ const RENDER = (function () {
       graph.push(entry);
     });
 
-    /* Event schema for upcoming events only */
+    /* Event schema for upcoming events only.
+       ev.host (optional): real-world org actually running the event, e.g.
+       "Blechy v kožichu z.s." — set this when the coalition is just
+       publicizing someone else's event, so organizer/performer aren't
+       misattributed to us. Omit it when we're the ones organizing.
+       ev.durationMinutes (optional): overrides the 2h default duration used
+       to compute endDate. ev.image (optional): "assets/" + ev.image, same
+       convention as news entries; falls back to the shared OG image. */
+    var pad2 = function (n) { return (n < 10 ? "0" : "") + n; };
     CONTENT.events.forEach(function (ev) {
       var evDate = new Date(ev.date + "T00:00:00");
       if (evDate < today) return;
       var data = ev.cs;
+      var hasTime = ev.time && ev.time.match(/^\d{1,2}:\d{2}$/);
       var entry = {
         "@type": "Event",
         "name": data.title,
-        "startDate": ev.date + (ev.time && ev.time.match(/^\d{1,2}:\d{2}$/) ? "T" + ev.time : ""),
+        "startDate": ev.date + (hasTime ? "T" + ev.time : ""),
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "location": {
@@ -470,9 +479,24 @@ const RENDER = (function () {
             "addressCountry": "CZ"
           }
         },
-        "organizer": { "@id": ORG },
-        "description": data.desc
+        "organizer": ev.host ? { "@type": "Organization", "name": ev.host } : { "@id": ORG },
+        "description": data.desc,
+        "image": BASE + "assets/" + (ev.image || "og-pic.png"),
+        "offers": {
+          "@type": "Offer",
+          "price": ev.price != null ? String(ev.price) : "0",
+          "priceCurrency": "CZK",
+          "availability": "https://schema.org/InStock",
+          "url": BASE + "#meet"
+        }
       };
+      if (ev.host) entry.performer = { "@type": "Organization", "name": ev.host };
+      if (hasTime) {
+        var end = new Date(ev.date + "T" + ev.time + ":00");
+        end.setMinutes(end.getMinutes() + (ev.durationMinutes != null ? ev.durationMinutes : 120));
+        entry.endDate = end.getFullYear() + "-" + pad2(end.getMonth() + 1) + "-" + pad2(end.getDate()) +
+          "T" + pad2(end.getHours()) + ":" + pad2(end.getMinutes());
+      }
       graph.push(entry);
     });
 
