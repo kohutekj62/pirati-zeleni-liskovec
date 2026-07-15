@@ -2,7 +2,7 @@
 /**
  * Publish dev → prod:
  *   1. Abort if working tree is dirty
- *   2. Branch off current HEAD, clear the dev_banner, re-stamp asset hashes
+ *   2. Branch off current HEAD, clear the dev_banner, write prod's CNAME, re-stamp asset hashes
  *   3. Push that branch to the `prod` remote as `main`
  *   4. Delete the temp branch — master is untouched throughout
  *
@@ -53,15 +53,22 @@ try {
   fs.writeFileSync(pamphletPath, pamphlet, 'utf8');
   console.log('pamphlet QR URL → prod');
 
-  // ── 5. Re-stamp asset hashes (content.js hash changed) ───────────────────────
+  // ── 5. Ensure prod custom domain CNAME file ──────────────────────────────────
+  // Only prod serves on a custom domain — this file must never reach master/dev,
+  // so it's written straight onto the temp branch, not tracked at the source.
+  const cnamePath = path.join(ROOT, 'CNAME');
+  fs.writeFileSync(cnamePath, 'www.pirati-zeleni-liskovec.cz\n', 'utf8');
+  console.log('CNAME written for prod custom domain');
+
+  // ── 6. Re-stamp asset hashes (content.js hash changed) ───────────────────────
   run('node tools/stamp-assets.js');
   console.log('Asset hashes re-stamped');
 
-  // ── 6. Commit ─────────────────────────────────────────────────────────────────
-  run('git add js/content.js pexeso/pamphlet.html index.html pexeso/index.html 404.html js/render.js');
+  // ── 7. Commit ─────────────────────────────────────────────────────────────────
+  run('git add js/content.js pexeso/pamphlet.html index.html pexeso/index.html 404.html js/render.js CNAME');
   run('git commit -m "publish: clear dev banner for production"');
 
-  // ── 6. Push to prod ───────────────────────────────────────────────────────────
+  // ── 8. Push to prod ───────────────────────────────────────────────────────────
   run('git push prod HEAD:main --force', { stdio: 'inherit' });
   console.log('\nPublished to prod (kohutekj62/pirati-zeleni-liskovec)');
 
