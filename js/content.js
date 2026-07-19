@@ -51,7 +51,7 @@ const CONTENT = {
     zeleniNational: "https://www.zeleni.cz/",
 
     // Set to false in prod (publish script flips this) to hide the incomplete candidate list.
-    show_other_candidates: true,
+    show_other_candidates: false,
   },
 
   /* ========================================================================
@@ -63,7 +63,7 @@ const CONTENT = {
   ui: {
     cs: {
       // -- Dev disclaimer banner (remove the text or set to "" to hide the banner) --
-      dev_banner: "🚧 Tato stránka je ve vývoji. Obsah není finální a může se měnit.",
+      dev_banner: "",
 
       // -- Navigation menu --
       nav_about:     "O nás",
@@ -140,7 +140,7 @@ const CONTENT = {
 
     en: {
       // -- Dev disclaimer banner --
-      dev_banner: "🚧 This page is under development. Content is not final and may change.",
+      dev_banner: "",
 
       nav_about:     "About",
       nav_program:   "Programme",
