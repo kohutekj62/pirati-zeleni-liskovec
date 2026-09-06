@@ -7,7 +7,13 @@ node tools/stamp-assets.js >/dev/null 2>&1 || {
   echo "stamp-assets.js failed — commit aborted"; exit 1;
 }
 
-# Re-stage the HTML pages so the refreshed stamps are part of this commit
+# Hide/show the footer link to the transparency notice depending on whether
+# its invoice placeholders are still unresolved. See tools/sync-transparency-visibility.js.
+node tools/sync-transparency-visibility.js >/dev/null 2>&1 || {
+  echo "sync-transparency-visibility.js failed — commit aborted"; exit 1;
+}
+
+# Re-stage the HTML pages so the refreshed stamps/visibility are part of this commit
 git add index.html pexeso/index.html
 
 exit 0
