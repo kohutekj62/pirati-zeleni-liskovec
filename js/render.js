@@ -211,9 +211,13 @@ const RENDER = (function () {
           attrs: { href: ev.map, target: "_blank", rel: "noopener noreferrer", title: "Mapy.com" } }));
         bodyChildren.push(el("div", { class: "event__links", children: links }));
       }
-      var body = el("div", { children: bodyChildren });
+      var body = el("div", { class: "event__body", children: bodyChildren });
+      var rowChildren = [body];
+      if (ev.image) rowChildren.push(el("img", { class: "event__media",
+        attrs: { src: "assets/" + ev.image, alt: "", loading: "lazy" } }));
+      var row = el("div", { class: "event__row", children: rowChildren });
       return el("li", { class: cls, children: [
-        el("span", { class: "event__dot", attrs: { "aria-hidden": "true" } }), body,
+        el("span", { class: "event__dot", attrs: { "aria-hidden": "true" } }), row,
       ]});
     }
 

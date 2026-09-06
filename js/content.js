@@ -437,12 +437,24 @@ const CONTENT = {
                               falls back to the shared OG image if omitted.
      ====================================================================== */
   events: [
-    { date: "2026-08-31", time: "17:30",
+    { date: "2026-09-09", time: "17:30",
+      fb:  "https://www.facebook.com/blechyvkozichu/",
+      image: "event-prochazku-9-9.jpg",
+      map: "https://mapy.com/cs/turisticka?source=base&id=2547800&x=16.5656289&y=49.1690337&z=19&ovl=3",
+      cs: { title: "Na procházku", place: "Most u konečné trolejbusu", desc: "Zajímá vás rozvoj naší čtvrti, doprava nebo péče o zeleň? Přijďte si o tom s námi popovídat na procházce, kde bude i náš zastupitel a odborník na dopravu a urbanismus Martin Novák. Z Osové po severní hranici Lískovce až k Jemelkovu mlýnu (2,5 km)." },
+      en: { title: "Walking Tour", place: "Most u konečné trolejbusu", desc: "Interested in how our district is developing — transport, or the care of green spaces? Come talk about it with us on a walk, joined by our councillor and transport & urban-planning expert Martin Novák. From Osová along the northern edge of Lískovec to Jemelkův mlýn (2.5 km)." } },
+    { date: "2026-09-23", time: "17:30",
+      fb:  "https://www.facebook.com/blechyvkozichu/",
+      map: "https://mapy.com/cs/turisticka?source=base&id=2547800&x=16.5656289&y=49.1690337&z=19&ovl=3",
+      cs: { title: "Na procházku II", place: "Most u konečné trolejbusu", desc: "Zajímá vás rozvoj naší čtvrti, doprava nebo péče o zeleň? Přijďte si o tom s námi popovídat na procházce, kde bude i náš zastupitel a odborník na dopravu a urbanismus Martin Novák. Z Osové tentokrát po jižní hranici Lískovce až k fotbalovému hřišti (2,5 km)." },
+      en: { title: "Walking Tour II", place: "Most u konečné trolejbusu", desc: "Interested in how our district is developing — transport, or the care of green spaces? Come talk about it with us on a walk, joined by our councillor and transport & urban-planning expert Martin Novák. This time from Osová along the southern edge of Lískovec to the football pitch (2.5 km)." } },
+    { date: "2026-09-24", time: "18:00–20:00",
       fb:  "https://www.facebook.com/blechyvkozichu/",
       host: "Blechy v kožichu z.s.",
-      map: "https://mapy.com/cs/turisticka?source=base&id=2569303&x=16.5598997&y=49.1681551&z=19&ovl=3",
-      cs: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Každé prázdninové pondělí v 17:30 čtou Blechy v kožichu z.s. dětem na Červeném hřišti naproti Potrefené huse. Knížky vyberte na jejich Facebooku." },
-      en: { title: "Blechy čtou dětem", place: "Červené hřiště", desc: "Every summer-holiday Monday at 17:30, Blechy v kožichu z.s. read to children at Červené hřiště opposite Potrefená husa. Choose the book on their Facebook page." } },
+      image: "event-sudoku-24-9.jpg",
+      map: "https://mapy.com/cs/turisticka?source=firm&id=13209131&x=16.5652266&y=49.1678552&z=19&ovl=3",
+      cs: { title: "III. sudoku večer", place: "Poliklinika Starý Lískovec", desc: "Sousedská soutěž v luštění a beseda o sudoku s Janem Novotným, mistrem světa v týmové soutěži a autorem sudoku (nejen) ve Zpravodaji. Dozvíte se, jak luštit, kde hledat zajímavé úlohy, a nahlédnete do světa závodního sudoku. Vstupné dobrovolné." },
+      en: { title: "3rd Sudoku Evening", place: "Poliklinika Starý Lískovec", desc: "A neighbourhood puzzle contest and talk about sudoku with Jan Novotný, world champion in the team competition and author of the sudoku puzzles in Zpravodaj. He'll share tips on solving, where to find interesting puzzles, and a look into the world of competitive sudoku. Admission by donation." } },
   ],
 
   /* ========================================================================
@@ -451,6 +463,9 @@ const CONTENT = {
         • image → file in assets/  (or "" to show a branded placeholder).
      ====================================================================== */
   news: [
+    { date: "2026-08-31", image: "news-blechy-ctou-detem-31-8.jpg",
+      cs: { title: "Blechy čtou dětem - Poslední prázdninové čtení", excerpt: "Poslední prázdninový den vyšel na pondělí, takže jsme si pořádně zařádili. Kromě knížky na děti čekalo malování na obličej, zpívání a hraní v doprovodu kytar, tvoření a stůl hlavolamů." },
+      en: { title: "Blechy Read to Kids - Last Day of the Holidays", excerpt: "The last day of the summer holidays fell on a Monday, so we really made the most of it. Alongside story time, kids could enjoy face painting, singing and playing with guitar accompaniment, arts and crafts, and a table of puzzles." } },
     { date: "2026-08-24", image: "news-blechy-ctou-detem-24-8.jpg",
       cs: { title: "Blechy čtou dětem - Pohádky o dopravních značkách", excerpt: "V pondělí 24. srpna četly dětem na Červeném hřišti Michala Martišková a Kateřina Křížová Pohádky o dopravních značkách." },
       en: { title: "Blechy Read to Kids - Traffic Sign Tales", excerpt: "On Monday 24 August, Michala Martišková and Kateřina Křížová read Traffic Sign Tales to the children at Červené hřiště." } },
