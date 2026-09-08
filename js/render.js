@@ -73,7 +73,13 @@ const RENDER = (function () {
         el("h3",   { class: "program-card__title", text: data.title }),
         el("span", { class: "program-card__chevron", text: "▾", attrs: { "aria-hidden": "true" } }),
       ]});
-      var body = el("div", { class: "program-card__body", children: [ el("p", { text: data.text }) ] });
+      var list_ = el("ul", { class: "program-card__list", children:
+        (data.items || []).map(function (point) { return el("li", { text: point }); })
+      });
+      var body = el("div", { class: "program-card__body", children: [
+        el("p", { class: "program-card__intro", text: data.intro }),
+        list_,
+      ]});
       list.appendChild(el("details", { class: "program-card", children: [summary, body] }));
     });
   }

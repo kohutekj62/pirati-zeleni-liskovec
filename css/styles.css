@@ -348,7 +348,10 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 .program-card__icon { font-size: 1.6rem; }
 .program-card__chevron { transition: transform var(--transition); color: var(--color-green-deep); font-size: 1.4rem; }
 .program-card[open] .program-card__chevron { transform: rotate(180deg); }
-.program-card__body { padding: 0 1.4rem 1.4rem 5rem; color: var(--color-muted); }
+.program-card__body { padding: 0 1.4rem 1.4rem 1.4rem; color: var(--color-muted); }
+.program-card__intro { margin: 0 0 0.9rem; }
+.program-card__list { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.program-card__list li::marker { color: var(--color-green-deep); }
 
 /* ----------------------------------------------------------------------------
    LIDÉ  (candidate photo cards)
@@ -659,7 +662,6 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
   .about__photo img { height: auto; }
   .program-list,
   .partners-list { grid-template-columns: 1fr; }
-  .program-card__body { padding-left: 1.4rem; }
 
   .people-grid { grid-template-columns: repeat(2, 1fr); }
   .candidates-other__item { grid-template-columns: 2.2rem 4.5rem 1fr; }
