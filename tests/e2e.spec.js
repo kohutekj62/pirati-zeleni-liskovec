@@ -152,21 +152,8 @@ test.describe("Starý Lískovec ON website", () => {
     await expect(btn).toHaveAttribute("aria-expanded", "false");
   });
 
-  test("mobile: dev-banner is visible at page load", async ({ page }) => {
-    const btn = page.locator("#menu-btn");
-    if (!(await btn.isVisible())) { test.skip(true, "desktop layout"); }
-
-    await expect(page.locator("#dev-banner")).toBeVisible();
-  });
-
-  test("mobile: dev-banner can be dismissed", async ({ page }) => {
-    const btn = page.locator("#menu-btn");
-    if (!(await btn.isVisible())) { test.skip(true, "desktop layout"); }
-
-    const banner = page.locator("#dev-banner");
-    await expect(banner).toBeVisible();
-    await page.locator("#dev-banner-close").click();
-    await expect(banner).toBeHidden();
+  test("the dev banner does not appear on the home page", async ({ page }) => {
+    await expect(page.locator("#dev-banner")).toHaveCount(0);
   });
 
   test("mobile: no horizontal scrollbar (no content wider than viewport)", async ({ page }) => {
@@ -188,5 +175,36 @@ test.describe("Starý Lískovec ON website", () => {
     const img = photo.locator("img");
     await expect.poll(() => img.evaluate((el) => el.naturalWidth), "photo image should have loaded")
       .toBeGreaterThan(0);
+  });
+});
+
+// ============================================================================
+//  The transparency notice is the only page that still carries the dev banner,
+//  because it is the only page waiting on outside data (the vydavatel's
+//  invoices). tools/sync-transparency-visibility.js drops the banner as soon as
+//  those placeholders are filled in, so these tests skip themselves once that
+//  happens rather than failing.
+// ============================================================================
+test.describe("Transparency notice", () => {
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/transparentnost/", { waitUntil: "domcontentloaded" });
+  });
+
+  test("carries the dev banner while invoice figures are still missing", async ({ page }) => {
+    const unresolved = await page.locator("span.todo", { hasText: /faktur/i }).count();
+    if (unresolved === 0) { test.skip(true, "invoice placeholders resolved — banner is gone by design"); }
+
+    await expect(page.locator("#dev-banner")).toBeVisible();
+  });
+
+  test("the dev banner can be dismissed", async ({ page }) => {
+    const unresolved = await page.locator("span.todo", { hasText: /faktur/i }).count();
+    if (unresolved === 0) { test.skip(true, "invoice placeholders resolved — banner is gone by design"); }
+
+    const banner = page.locator("#dev-banner");
+    await expect(banner).toBeVisible();
+    await page.locator("#dev-banner-close").click();
+    await expect(banner).toBeHidden();
   });
 });

@@ -2,9 +2,8 @@
 /**
  * Publish dev → prod:
  *   1. Abort if working tree is dirty
- *   2. Branch off current HEAD, clear the dev_banner (unless the transparency
- *      notice still has unresolved invoice placeholders), write prod's CNAME,
- *      bump sitemap.xml's lastmod, re-stamp asset hashes
+ *   2. Branch off current HEAD, write prod's CNAME, bump sitemap.xml's
+ *      lastmod, re-stamp asset hashes
  *   3. Push that branch to the `prod` remote as `main`
  *   4. Delete the temp branch — master is untouched throughout
  *
@@ -14,7 +13,6 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const { hasUnresolvedInvoicePlaceholders } = require('./sync-transparency-visibility');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -40,18 +38,7 @@ try {
   run(`git checkout -b ${tempBranch}`);
   console.log(`Branched off ${base} → ${tempBranch}`);
 
-  // ── 3. Clear dev_banner — stays up while invoice placeholders remain ────────
-  const contentPath = path.join(ROOT, 'js', 'content.js');
-  if (hasUnresolvedInvoicePlaceholders(ROOT)) {
-    console.log('Unresolved invoice placeholder(s) in transparentnost/index.html — dev banner stays up');
-  } else {
-    let src = fs.readFileSync(contentPath, 'utf8');
-    src = src.replace(/dev_banner:\s*"[^"]*"/g, 'dev_banner: ""');
-    fs.writeFileSync(contentPath, src, 'utf8');
-    console.log('dev_banner cleared');
-  }
-
-  // ── 4. Swap pamphlet QR URL dev → prod ───────────────────────────────────────
+  // ── 3. Swap pamphlet QR URL dev → prod ───────────────────────────────────────
   const pamphletPath = path.join(ROOT, 'pexeso', 'pamphlet.html');
   let pamphlet = fs.readFileSync(pamphletPath, 'utf8');
   const PROD_URL = 'https://www.pirati-zeleni-liskovec.cz/pexeso/';

@@ -26,7 +26,6 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    setupDevBanner();
     setupMenu();
     setupLanguageToggle();
     setupContactForm();
@@ -39,35 +38,6 @@
     document.addEventListener("slon:langchange", function () {
       updateLangToggle();
       updateMenuLabel();
-    });
-  }
-
-  /* =======================================================================
-     DEV DISCLAIMER BANNER  —  dismissible with the ✕ button.
-     Hidden for the rest of the session once closed (sessionStorage).
-     ===================================================================== */
-  function setupDevBanner() {
-    var banner = document.getElementById("dev-banner");
-    if (!banner) return;
-
-    // No text in prod — stay hidden.
-    var textEl = banner.querySelector(".dev-banner__text");
-    if (!textEl || !textEl.textContent.trim()) return;
-
-    // Stay hidden if the visitor already closed it this session.
-    if (sessionStorage.getItem("slon-dev-banner-closed")) return;
-
-    banner.hidden = false;
-
-    document.getElementById("dev-banner-close").addEventListener("click", function () {
-      banner.hidden = true;
-      try { sessionStorage.setItem("slon-dev-banner-closed", "1"); } catch (e) {}
-    });
-
-    // Update the close button's aria-label when the language switches.
-    document.addEventListener("slon:langchange", function () {
-      var btn = document.getElementById("dev-banner-close");
-      if (btn) btn.setAttribute("aria-label", I18N.lang === "en" ? "Close" : "Zavřít");
     });
   }
 
@@ -86,7 +56,7 @@
     }
     function toggleMenu() {
       // Snap the dropdown to the actual header bottom so it aligns correctly
-      // whether or not the dev-banner is visible above the header.
+      // wherever the header happens to sit.
       if (header) {
         nav.style.top = header.getBoundingClientRect().bottom + "px";
       }

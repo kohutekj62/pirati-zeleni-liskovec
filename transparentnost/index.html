@@ -28,7 +28,7 @@
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=0862e7c3" />
   <link rel="stylesheet" href="../css/fonts.css?v=76ba7bf3" />
-  <link rel="stylesheet" href="../css/styles.css?v=aa1e7e9b" />
+  <link rel="stylesheet" href="../css/styles.css?v=1f5e6b6e" />
 
   <style>
     /* ── Stránka je textová: úzký sloupec, čitelné řádkování ───────────────── */
@@ -91,6 +91,18 @@
 <body>
 
   <a class="skip-link" href="#main">Přeskočit na obsah</a>
+
+  <!-- ========================================================================
+       DEV DISCLAIMER BANNER  —  only this page carries it, because only this
+       page is still unfinished (the invoice figures below arrive from the
+       vydavatel). tools/sync-transparency-visibility.js flips the hidden
+       attribute automatically: once every [DOPLNIT podle faktury …]
+       placeholder is resolved, the banner disappears on the next commit.
+       ===================================================================== -->
+  <div class="dev-banner" id="dev-banner" role="banner">
+    <span class="dev-banner__text">🚧 Toto oznámení se ještě dokončuje. Údaje o částkách doplníme, jakmile dorazí faktury od vydavatele.</span>
+    <button class="dev-banner__close" id="dev-banner-close" type="button" aria-label="Zavřít">✕</button>
+  </div>
 
   <!-- Hlavička: logo vede zpět na hlavní stránku -->
   <header class="site-header">
@@ -265,6 +277,19 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Dev banner — dismissible, stays closed for the rest of the browser session.
+    (function () {
+      var banner = document.getElementById("dev-banner");
+      if (!banner || banner.hidden) return;
+      try {
+        if (sessionStorage.getItem("slon-dev-banner-closed")) { banner.hidden = true; return; }
+      } catch (e) {}
+      document.getElementById("dev-banner-close").addEventListener("click", function () {
+        banner.hidden = true;
+        try { sessionStorage.setItem("slon-dev-banner-closed", "1"); } catch (e) {}
+      });
+    }());
   </script>
 
 </body>

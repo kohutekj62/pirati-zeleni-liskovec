@@ -8,8 +8,9 @@
  * is resolved, the footer link to that notice is hidden on index.html —
  * no reason to send visitors to a legal notice that isn't finished yet.
  *
- * Also used by tools/publish-prod.js to decide whether the dev banner can
- * be cleared for production.
+ * The same check drives the "still being finished" banner at the top of the
+ * notice itself — the banner is the only one left on the site, so it appears
+ * exactly while the placeholders are unresolved and vanishes once they aren't.
  *
  * USAGE
  *   node tools/sync-transparency-visibility.js   (run before you commit —
@@ -51,9 +52,33 @@ function syncFooterLink(root) {
     : '✓  footer transparency-notice link visible (invoice placeholders resolved)');
 }
 
-module.exports = { hasUnresolvedInvoicePlaceholders, syncFooterLink };
+const BANNER_RE = /(<div class="dev-banner" id="dev-banner" role="banner")(\s+hidden)?(>)/;
+
+function syncNoticeBanner(root) {
+  const noticePath = path.join(root, 'transparentnost', 'index.html');
+  let notice = fs.readFileSync(noticePath, 'utf8');
+
+  if (!BANNER_RE.test(notice)) {
+    console.warn('  ⚠  sync-transparency-visibility: dev-banner markup not found (left as-is)');
+    return;
+  }
+
+  const unresolved = hasUnresolvedInvoicePlaceholders(root);
+  notice = notice.replace(BANNER_RE, (m, pre, hiddenAttr, gt) => {
+    if (unresolved) return hiddenAttr ? `${pre}${gt}` : m;
+    return hiddenAttr ? m : `${pre} hidden${gt}`;
+  });
+  fs.writeFileSync(noticePath, notice, 'utf8');
+
+  console.log(unresolved
+    ? '✓  dev banner shown on the transparency notice (invoice placeholder(s) unresolved)'
+    : '✓  dev banner hidden on the transparency notice (invoice placeholders resolved)');
+}
+
+module.exports = { hasUnresolvedInvoicePlaceholders, syncFooterLink, syncNoticeBanner };
 
 if (require.main === module) {
   const ROOT = path.resolve(__dirname, '..');
   syncFooterLink(ROOT);
+  syncNoticeBanner(ROOT);
 }

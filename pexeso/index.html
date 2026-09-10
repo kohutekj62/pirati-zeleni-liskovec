@@ -44,19 +44,6 @@
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: var(--font-b); min-height: 100dvh; overflow-x: hidden; }
 
-    /* ── DEV BANNER ── */
-    .dev-banner {
-      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
-      background: var(--green); color: #000;
-      font-size: 0.85rem; font-weight: 600; padding: 0.5rem 1rem;
-    }
-    .dev-banner__text { flex: 1; }
-    .dev-banner__close {
-      flex: 0 0 auto; background: none; border: 0; cursor: pointer;
-      font-size: 1rem; font-weight: 700; color: #000; padding: 0 0.25rem; opacity: 0.6;
-    }
-    .dev-banner__close:hover { opacity: 1; }
-    .dev-banner[hidden] { display: none; }
 
     /* ── HEADER ── */
     .site-header {
@@ -319,10 +306,6 @@
 </head>
 <body>
 
-<div class="dev-banner" id="dev-banner" role="banner">
-  <span class="dev-banner__text" data-i18n="dev_banner">🚧 Tato stránka je ve vývoji. Obsah není finální a může se měnit.</span>
-  <button class="dev-banner__close" id="dev-banner-close" type="button" aria-label="Zavřít">✕</button>
-</div>
 
 <header class="site-header">
   <a href="../" aria-label="Piráti a Zelení pro Lískovec">
@@ -551,7 +534,6 @@ const UI = {
     footer_credit: "Web vytváříme vlastními silami s pomocí umělé inteligence. Našli jste chybu nebo nepřesnost? Dejte nám prosím vědět na <a href=\"mailto:info@pirati-zeleni-liskovec.cz\">info@pirati-zeleni-liskovec.cz</a>.",
     done_badge: "✓ Splněno",
     moves: "Tahů",
-    dev_banner: "🚧 Tato stránka je ve vývoji. Obsah není finální a může se měnit.",
     share_round: "Sdílet", share_all: "Sdílet",
     share_round_text: "Poznáváme místa Starého Lískovce — zahraj si pexeso s námi!",
     share_all_text:   "Poznáváme místa Starého Lískovce — zahraj si pexeso s námi!",
@@ -573,7 +555,6 @@ const UI = {
     footer_credit: "We build this site ourselves with the help of artificial intelligence. Found an error or an inaccuracy? Please let us know at <a href=\"mailto:info@pirati-zeleni-liskovec.cz\">info@pirati-zeleni-liskovec.cz</a>.",
     done_badge: "✓ Done",
     moves: "Moves",
-    dev_banner: "🚧 This page is under development. Content is not final and may change.",
     share_round: "Share", share_all: "Share",
     share_round_text: "We're discovering the places of Starý Lískovec — play the memory game with us!",
     share_all_text:   "We're discovering the places of Starý Lískovec — play the memory game with us!",
@@ -774,8 +755,7 @@ function shuffle(arr) {
 // On mobile: 3 columns × 6 rows.  On desktop: 6 columns × 3 rows.
 //
 // The available height is: viewport − browser chrome (address bar etc.) − game header.
-// --chrome-h is a CSS custom property set on :root; it accounts for the site header
-// and dev banner heights.
+// --chrome-h is a CSS custom property set on :root; it accounts for the site header height.
 //
 // We calculate the max card size that fits both horizontally (cardByW) and vertically
 // (cardByH), take the smaller of the two, and clamp it to at least 60 px.
@@ -1077,19 +1057,6 @@ document.addEventListener("keydown", e => {
 
 window.addEventListener("resize", updateGridSize);
 
-// Dev banner — hidden once per browser session (sessionStorage clears when the tab closes).
-// The try/catch around sessionStorage.setItem handles private-browsing mode where
-// storage writes can throw a security error.
-(function () {
-  const banner = document.getElementById("dev-banner");
-  if (!banner) return;
-  if (sessionStorage.getItem("slon-dev-banner-closed")) { banner.hidden = true; return; }
-  const closeBtn = document.getElementById("dev-banner-close");
-  if (closeBtn) closeBtn.addEventListener("click", () => {
-    banner.hidden = true;
-    try { sessionStorage.setItem("slon-dev-banner-closed", "1"); } catch (e) {}
-  });
-}());
 
 // ░░ TEMPORARY — secret reveal for the review tooling ░░
 // The "Kontrola odkazů" button and its link-check panel ship hidden
