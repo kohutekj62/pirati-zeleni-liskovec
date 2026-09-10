@@ -253,7 +253,7 @@ const CONTENT = {
         intro: "Zeleň v Lískovci nechceme jen udržovat, ale skutečně rozvíjet – aby propojovala celou čtvrť a dělala z ní příjemnější místo k životu i v horkých letních dnech.",
         items: [
           "Úklidová četa zajistí flexibilní údržbu nejen zeleně",
-          "Mozaiková seč pro zeleňující plochy",
+          "Mozaiková seč pro zelenější plochy",
           "Akumulace vody z obecních střech pro zálivku",
           "Zpevnění cest tam, kudy lidé opravdu chodí",
           "Zeleň do správy SVJ, komunitní zahradničení",
