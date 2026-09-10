@@ -577,6 +577,9 @@ const CONTENT = {
         • image → file in assets/  (or "" to show a branded placeholder).
      ====================================================================== */
   news: [
+    { date: "2026-09-09", image: "news-prochazku-9-9.jpg",
+      cs: { title: "Na procházku", excerpt: "Sešlo se nás 10. Všichni, kteří nedorazili, se pravděpodobně podívali na předpověď počasí, která naprosto jasně říkala, že bude lepší nikam nechodit. I tak jsme se dozvěděli pár zajímavých informací, než nás povětrnostní podmínky přesvědčily, že se máme raději odebrat domů a dát si teplý čaj a horkou koupel." },
+      en: { title: "Walking Tour", excerpt: "Ten of us made it. Everyone who didn't had probably checked the forecast, which stated in no uncertain terms that going nowhere was the better plan. Even so, we picked up a few interesting things before the weather convinced us we'd be better off heading home for a warm cup of tea and a hot bath." } },
     { date: "2026-08-31", image: "news-blechy-ctou-detem-31-8.jpg",
       cs: { title: "Blechy čtou dětem - Poslední prázdninové čtení", excerpt: "Poslední prázdninový den vyšel na pondělí, takže jsme si pořádně zařádili. Kromě knížky na děti čekalo malování na obličej, zpívání a hraní v doprovodu kytar, tvoření a stůl hlavolamů." },
       en: { title: "Blechy Read to Kids - Last Day of the Holidays", excerpt: "The last day of the summer holidays fell on a Monday, so we really made the most of it. Alongside story time, kids could enjoy face painting, singing and playing with guitar accompaniment, arts and crafts, and a table of puzzles." } },
