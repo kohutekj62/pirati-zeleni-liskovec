@@ -95,6 +95,8 @@ const CONTENT = {
       meet_title:     "Setkejme se",
       meet_lead:      "Přijďte za námi do ulic. Těšíme se na vás.",
       event_past:     "Proběhlo",
+      poster_open:    "Zobrazit leták",
+      poster_close:   "Zavřít leták",
       events_older:   "Předchozí",
       events_newer:   "Následující",
       news_title:     "Kronika",
@@ -170,6 +172,8 @@ const CONTENT = {
       meet_title:     "Meet us",
       meet_lead:      "Come and find us on the streets. We look forward to seeing you.",
       event_past:     "Done",
+      poster_open:    "View the flyer",
+      poster_close:   "Close the flyer",
       events_older:   "Previous",
       events_newer:   "Next",
       news_title:     "Story Book",
@@ -551,14 +555,9 @@ const CONTENT = {
                               falls back to the shared OG image if omitted.
      ====================================================================== */
   events: [
-    { date: "2026-09-09", time: "17:30",
-      fb:  "https://www.facebook.com/blechyvkozichu/",
-      image: "event-prochazku-9-9.jpg",
-      map: "https://mapy.com/cs/turisticka?source=base&id=2547800&x=16.5656289&y=49.1690337&z=19&ovl=3",
-      cs: { title: "Na procházku", place: "Most u konečné trolejbusu", desc: "Zajímá vás rozvoj naší čtvrti, doprava nebo péče o zeleň? Přijďte si o tom s námi popovídat na procházce, kde bude i náš zastupitel a odborník na dopravu a urbanismus Martin Novák. Z Osové po severní hranici Lískovce až k Jemelkovu mlýnu (2,5 km)." },
-      en: { title: "Walking Tour", place: "Most u konečné trolejbusu", desc: "Interested in how our district is developing — transport, or the care of green spaces? Come talk about it with us on a walk, joined by our councillor and transport & urban-planning expert Martin Novák. From Osová along the northern edge of Lískovec to Jemelkův mlýn (2.5 km)." } },
     { date: "2026-09-23", time: "17:30",
       fb:  "https://www.facebook.com/blechyvkozichu/",
+      image: "event-prochazku-23-9.jpg",
       map: "https://mapy.com/cs/turisticka?source=base&id=2547800&x=16.5656289&y=49.1690337&z=19&ovl=3",
       cs: { title: "Na procházku II", place: "Most u konečné trolejbusu", desc: "Zajímá vás rozvoj naší čtvrti, doprava nebo péče o zeleň? Přijďte si o tom s námi popovídat na procházce, kde bude i náš zastupitel a odborník na dopravu a urbanismus Martin Novák. Z Osové tentokrát po jižní hranici Lískovce až k fotbalovému hřišti (2,5 km)." },
       en: { title: "Walking Tour II", place: "Most u konečné trolejbusu", desc: "Interested in how our district is developing — transport, or the care of green spaces? Come talk about it with us on a walk, joined by our councillor and transport & urban-planning expert Martin Novák. This time from Osová along the southern edge of Lískovec to the football pitch (2.5 km)." } },
@@ -569,6 +568,13 @@ const CONTENT = {
       map: "https://mapy.com/cs/turisticka?source=firm&id=13209131&x=16.5652266&y=49.1678552&z=19&ovl=3",
       cs: { title: "III. sudoku večer", place: "Poliklinika Starý Lískovec", desc: "Sousedská soutěž v luštění a beseda o sudoku s Janem Novotným, mistrem světa v týmové soutěži a autorem sudoku (nejen) ve Zpravodaji. Dozvíte se, jak luštit, kde hledat zajímavé úlohy, a nahlédnete do světa závodního sudoku. Vstupné dobrovolné." },
       en: { title: "3rd Sudoku Evening", place: "Poliklinika Starý Lískovec", desc: "A neighbourhood puzzle contest and talk about sudoku with Jan Novotný, world champion in the team competition and author of the sudoku puzzles in Zpravodaj. He'll share tips on solving, where to find interesting puzzles, and a look into the world of competitive sudoku. Admission by donation." } },
+    { date: "2026-10-04", time: "15:00",
+      fb:  "https://www.facebook.com/blechyvkozichu/",
+      host: "Blechy v kožichu z.s.",
+      image: "event-drakiada-4-10.jpg",
+      map: "https://mapy.com/cs/turisticka?source=coor&id=16.5677164%2C49.1713744&x=16.5677164&y=49.1713744&z=18&ovl=3",
+      cs: { title: "Drakiáda", place: "Dětské hřiště, Mikuláškovo nám. 1", desc: "Pojďte s námi rozzářit podzimní nebe! Zábava pro děti i dospělé na dětském hřišti na Mikuláškově náměstí. Draka s sebou!" },
+      en: { title: "Kite Festival", place: "Playground, Mikuláškovo nám. 1", desc: "Come and light up the autumn sky with us! Fun for children and grown-ups alike at the playground on Mikuláškovo náměstí. Bring your own kite!" } },
   ],
 
   /* ========================================================================

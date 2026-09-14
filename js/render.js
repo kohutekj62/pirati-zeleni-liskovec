@@ -165,6 +165,46 @@ const RENDER = (function () {
   /* ====================================================================== */
   /* 4) SETKEJME SE  —  4-event window with ◀ ▶ navigation                  */
   /* ====================================================================== */
+  /* ---- Poster lightbox -------------------------------------------------
+     Clicking a flyer thumbnail shows the poster big enough to read; a click
+     anywhere on it (or Escape) closes it again. The overlay is built once
+     and reused, so switching languages or pages does not pile up copies.   */
+  var _poster = null;        /* the overlay element */
+  var _posterOpener = null;  /* thumbnail to hand focus back to on close */
+
+  function posterOverlay() {
+    if (_poster) return _poster;
+    var img = el("img", { class: "poster-view__img", attrs: { alt: "" } });
+    _poster = el("div", { class: "poster-view", children: [img],
+      attrs: { role: "dialog", "aria-modal": "true", tabindex: "-1" } });
+    _poster.hidden = true;
+    _poster.addEventListener("click", closePoster);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !_poster.hidden) closePoster();
+    });
+    document.body.appendChild(_poster);
+    return _poster;
+  }
+
+  function openPoster(src, label, opener) {
+    var box = posterOverlay();
+    var img = box.querySelector(".poster-view__img");
+    img.setAttribute("src", src);
+    img.setAttribute("alt", label);
+    box.setAttribute("aria-label", t("poster_close") + ": " + label);
+    box.hidden = false;
+    document.body.classList.add("poster-open");
+    _posterOpener = opener || null;
+    box.focus();
+  }
+
+  function closePoster() {
+    if (!_poster || _poster.hidden) return;
+    _poster.hidden = true;
+    document.body.classList.remove("poster-open");
+    if (_posterOpener && document.contains(_posterOpener)) _posterOpener.focus();
+    _posterOpener = null;
+  }
   var _eventsStart = null; /* null = auto-detect anchor on first render */
 
   function renderEvents() {
@@ -209,22 +249,32 @@ const RENDER = (function () {
         el("div", { class: "event__place", text: data.place }),
         el("p",   { class: "event__desc",  text: data.desc }),
       ];
+      /* The f / m links live below the row, not inside the text column, so the
+         flyer thumbnail can end level with the last line of the description. */
+      var linkRow = null;
       if (ev.fb || ev.map) {
         var links = [];
         if (ev.fb)  links.push(el("a", { class: "event__link event__link--f", text: "f",
           attrs: { href: ev.fb,  target: "_blank", rel: "noopener noreferrer", title: "Facebook" } }));
         if (ev.map) links.push(el("a", { class: "event__link event__link--m", text: "m",
           attrs: { href: ev.map, target: "_blank", rel: "noopener noreferrer", title: "Mapy.com" } }));
-        bodyChildren.push(el("div", { class: "event__links", children: links }));
+        linkRow = el("div", { class: "event__links", children: links });
       }
       var body = el("div", { class: "event__body", children: bodyChildren });
       var rowChildren = [body];
-      if (ev.image) rowChildren.push(el("img", { class: "event__media",
-        attrs: { src: "assets/" + ev.image, alt: "", loading: "lazy" } }));
+      if (ev.image) {
+        var src = "assets/" + ev.image;
+        var thumb = el("button", { class: "event__media-btn",
+          attrs: { type: "button", "aria-label": t("poster_open") + ": " + data.title },
+          children: [el("img", { class: "event__media",
+            attrs: { src: src, alt: "", loading: "lazy" } })] });
+        thumb.addEventListener("click", function () { openPoster(src, data.title, thumb); });
+        rowChildren.push(thumb);
+      }
       var row = el("div", { class: "event__row", children: rowChildren });
-      return el("li", { class: cls, children: [
-        el("span", { class: "event__dot", attrs: { "aria-hidden": "true" } }), row,
-      ]});
+      var itemChildren = [el("span", { class: "event__dot", attrs: { "aria-hidden": "true" } }), row];
+      if (linkRow) itemChildren.push(linkRow);
+      return el("li", { class: cls, children: itemChildren });
     }
 
     /* Timeline — nearest upcoming event gets the glowing dot */

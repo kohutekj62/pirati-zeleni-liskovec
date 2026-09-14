@@ -27,7 +27,10 @@ test.describe("Starý Lískovec ON website", () => {
   test("builds the right number of items from content.js", async ({ page }) => {
     await expect(page.locator("#program-list .program-card")).toHaveCount(6);
     await expect(page.locator("#people-grid .person")).toHaveCount(8);
-    await expect(page.locator("#events-list .event")).toHaveCount(4);
+    // The timeline shows a window of at most 4 events, so expect whatever
+    // content.js currently holds, capped at that page size.
+    const expectedEvents = await page.evaluate(() => Math.min(4, CONTENT.events.length));
+    await expect(page.locator("#events-list .event")).toHaveCount(expectedEvents);
     // Mobile viewport (≤480px) shows 1 news card at a time; desktop shows 3.
     const vp = page.viewportSize();
     const expectedNews = vp && vp.width <= 480 ? 1 : 3;
@@ -114,6 +117,29 @@ test.describe("Starý Lískovec ON website", () => {
     await expect(page.locator("#cf-status")).toHaveClass(/is-ok/);
   });
 
+  test("clicking an event flyer opens it full size, clicking it again closes it", async ({ page }) => {
+    const thumb = page.locator(".event__media-btn").first();
+    const poster = page.locator(".poster-view");
+    await expect(poster).toBeHidden();
+
+    await thumb.click();
+    await expect(poster).toBeVisible();
+    // The poster is shown at its own size, never blown up past it, so it stays sharp.
+    const shown = await page.locator(".poster-view__img").evaluate((img) => ({
+      width: img.getBoundingClientRect().width, natural: img.naturalWidth,
+    }));
+    expect(shown.width).toBeLessThanOrEqual(shown.natural);
+
+    await page.locator(".poster-view__img").click();
+    await expect(poster).toBeHidden();
+
+    // Escape closes it too, and focus returns to the thumbnail that opened it.
+    await thumb.click();
+    await expect(poster).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(poster).toBeHidden();
+    await expect(thumb).toBeFocused();
+  });
   test("the hamburger menu opens on a phone-sized screen", async ({ page }) => {
     const btn = page.locator("#menu-btn");
     // This only applies to the small-screen layout; skip on desktop.

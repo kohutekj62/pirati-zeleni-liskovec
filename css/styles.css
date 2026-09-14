@@ -424,10 +424,25 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
   background: linear-gradient(var(--color-pirati), var(--color-green), var(--color-gold));
 }
 .event { position: relative; padding: 0 0 1.6rem 72px; }
-.event__row { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+/* Thumbnails hang from the bottom of the row so the flyer's lower edge lines
+   up with the last line of the event text. */
+.event__row { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
 .event__body { min-width: 0; flex: 1; }
-.event__media { width: 64px; height: 64px; object-fit: cover; border-radius: var(--radius);
-  flex-shrink: 0; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }
+/* The thumbnail is a button so the poster can be opened by mouse or keyboard. */
+.event__media-btn { display: block; padding: 0; border: 0; background: none; line-height: 0;
+  flex-shrink: 0; max-width: 30%; cursor: zoom-in; border-radius: var(--radius); }
+.event__media-btn:focus-visible { outline: 3px solid var(--color-green-deep); outline-offset: 3px; }
+.event__media { width: auto; height: 132px; max-width: 100%; aspect-ratio: auto 3 / 4; object-fit: contain; border-radius: var(--radius);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }
+
+/* Poster lightbox — a click anywhere on it closes it again. */
+.poster-view { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center;
+  justify-content: center; padding: 1.5rem; background: rgba(0, 0, 0, 0.85); cursor: zoom-out; }
+.poster-view[hidden] { display: none; }
+.poster-view:focus { outline: none; }
+.poster-view__img { width: auto; height: auto; max-width: 100%; max-height: 100%;
+  border-radius: var(--radius); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); }
+body.poster-open { overflow: hidden; }
 .event__dot {
   position: absolute; left: 19px; top: 4px; width: 20px; height: 20px; border-radius: 50%;
   background: var(--color-green); border: 3px solid var(--color-bg); box-shadow: 0 0 0 2px var(--color-green);
@@ -673,7 +688,9 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
   .event__dot { left: 11px; }
   .event--nearest .event__dot { left: 8px; width: 22px; height: 22px; top: 3px; }
   .event--nearest .event__title { font-size: 1.2rem; }
-  .event__media { width: 48px; height: 48px; }
+  .event__media-btn { max-width: 32%; }
+  .event__media { height: 84px; }
+  .poster-view { padding: 0.75rem; }
 
   .site-footer__inner { grid-template-columns: 1fr; gap: 1.5rem; }
 }
