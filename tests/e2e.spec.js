@@ -69,31 +69,39 @@ test.describe("Starý Lískovec ON website", () => {
     expect(await first.evaluate((el) => el.open)).toBe(true);      // open after a click
   });
 
-  test("people cards show a real photo, falling back to the logo when one is missing", async ({ page }) => {
+  test("every people card shows a photo that really loads", async ({ page }) => {
     const cards = page.locator("#people-grid .person");
     await expect(cards).toHaveCount(8);
 
-    const first = cards.first();
+    // Guard against the "invisible photo" bug: each photo frame must have a
+    // real rendered height (not collapsed to zero) and the <img> inside must
+    // actually have loaded. The images are loading="lazy", so scroll each one
+    // into view first or the browser never even fetches it.
+    for (let i = 0; i < 8; i++) {
+      const card = cards.nth(i);
+      const name = await card.locator(".person__name").textContent();
+      const img = card.locator(".person__photo img");
+      await img.scrollIntoViewIfNeeded();
+      const photoBox = await card.locator(".person__photo").boundingBox();
+      expect(photoBox && photoBox.height, ).toBeGreaterThan(150);
+      await expect(img, ).toBeVisible();
+      await expect.poll(() => img.evaluate((el) => el.naturalWidth), )
+        .toBeGreaterThan(0);
+    }
+  });
 
-    // Guard against the "invisible photo" bug: the photo frame must have a
-    // real rendered height (not collapsed to zero), and the <img> inside —
-    // whether it's the real photo or the onerror-triggered logo fallback —
-    // must actually have loaded.
-    const photoBox = await first.locator(".person__photo").boundingBox();
-    expect(photoBox && photoBox.height, "photo frame should have real height").toBeGreaterThan(150);
+  test("a missing photo file falls back to the logo, not a broken image", async ({ page }) => {
+    // Everyone has a photo on disk today, so pretend one file went missing
+    // rather than pinning the test to whichever candidate lacks one.
+    await page.route("**/assets/people/*.jpg", (route) =>
+      route.request().url().includes("vendula-svobodova") ? route.fulfill({ status: 404 }) : route.continue()
+    );
+    await page.reload({ waitUntil: "domcontentloaded" });
 
-    const img = first.locator(".person__photo img");
-    await expect(img, "photo image should be visible").toBeVisible();
-    await expect.poll(() => img.evaluate((el) => el.naturalWidth), "photo image should have loaded")
-      .toBeGreaterThan(0);
-
-    // A candidate with no photo file on disk falls back to the logo
-    // placeholder instead of a broken-image icon. The <img> is loading="lazy",
-    // so scroll it into view first or the browser never even fetches it.
-    const missingPhoto = page.locator('#people-grid .person:has-text("Kateřina Křížová") .person__photo img');
-    await missingPhoto.scrollIntoViewIfNeeded();
-    await expect(missingPhoto).toHaveClass(/is-placeholder/);
-    await expect.poll(() => missingPhoto.evaluate((el) => el.naturalWidth), "placeholder logo should have loaded")
+    const img = page.locator('#people-grid .person:has-text("Vendula Svobodová") .person__photo img');
+    await img.scrollIntoViewIfNeeded();
+    await expect(img).toHaveClass(/is-placeholder/);
+    await expect.poll(() => img.evaluate((el) => el.naturalWidth), "placeholder logo should have loaded")
       .toBeGreaterThan(0);
   });
 
