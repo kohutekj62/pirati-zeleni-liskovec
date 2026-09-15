@@ -727,11 +727,20 @@ body.poster-open { overflow: hidden; }
   /* Kicker pill was wrapping to two lines at phone widths — shrink it
      enough to stay on one line rather than let it wrap awkwardly. */
   .hero__kicker { font-size: 0.7rem; letter-spacing: 0.04em; padding: 0.3rem 0.7rem; white-space: nowrap; }
+  /* The header photo is 3.7:1, so on a phone-shaped hero "cover" already shows
+     its full height — there is no slack to slide it up with background-position.
+     Scaling it past the box height creates that slack, and anchoring the bottom
+     spends it on the buildings, which rise clear of the buttons; the vineyard
+     then fills the band the buttons sit in. */
+  .hero {
+    background-size: auto, auto, auto, auto, auto 145%;
+    background-position: center, center, center, center, center bottom;
+  }
   /* Push the CTA row further down so it clears the buildings and lands
      in the vineyard band, matching the desktop layout. hero__inner's
      min-height is a floor, not a cap, so this margin is free to grow
      the section rather than fight the space-between distribution. */
-  .hero__cta { margin-top: 5rem; }
+  .hero__cta { margin-top: 7rem; }
 
   .people-grid { grid-template-columns: 1fr; gap: 1rem; }
   /* Phones: no fill, just an outline — same treatment as the chronicle cards. */
