@@ -688,7 +688,11 @@ body.poster-open { overflow: hidden; }
   .event__dot { left: 11px; }
   .event--nearest .event__dot { left: 8px; width: 22px; height: 22px; top: 3px; }
   .event--nearest .event__title { font-size: 1.2rem; }
-  .event__media-btn { max-width: 32%; }
+  /* Phones: the flyer hangs from the title line instead of the last line of
+     the description — the offset is the date line (0.95rem text on the 1.75
+     body line-height) plus the title's own top margin. */
+  .event__media-btn { max-width: 32%; align-self: flex-start;
+    margin-top: calc(0.95rem * 1.75 + 0.15rem); }
   .event__media { height: 84px; }
   .poster-view { padding: 0.75rem; }
 
