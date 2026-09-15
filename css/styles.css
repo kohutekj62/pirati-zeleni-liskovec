@@ -35,8 +35,14 @@
      borders, dots); dark is for anything that needs to read as text on white
      (4.9:1 AA) and doubles as the "pop brighter on hover/active" resting state. */
   --color-green:       #78c048; /* wordmark's light gradient end — FILLS ONLY */
-  --color-green-deep:  #158056; /* wordmark's dark gradient end — text-safe on white, hover/active default */
+  --color-green-deep:  #158056; /* wordmark's dark gradient end — text-safe on white.
+                                   Reserved for things that DO something: links, focus rings,
+                                   form status, the current nav item. Plain text stays black. */
   --color-gold:         #f0c018; /* the 2026 logo ring's gold gradient end — FILLS ONLY, used sparingly for accent-line gradients */
+
+  /* The coalition green → gold sweep from assets/přechod.png, as a fill. One
+     definition so the hero buttons and the programme numbers stay in step. */
+  --gradient-brand: linear-gradient(115deg, var(--color-green) 0%, var(--color-green) 20%, var(--color-gold) 90%);
 
   /* RGB triplets of the colours above, for rgba() tints — keeps every faded/
      glowing variant locked to the same source value instead of a hand-typed
@@ -168,7 +174,11 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
 
-.btn--green { background: var(--color-green); color: var(--color-pirati-dark); }
+/* Green buttons carry the coalition green → gold sweep. border-box: .btn has a
+   2px transparent border, and a gradient is sized to the padding box by
+   default — the leftover rim then repeats the far end of the gradient and
+   reads as a thin gold/green outline around the pill. */
+.btn--green { background: var(--gradient-brand) border-box no-repeat; color: var(--color-pirati-dark); }
 .btn--green:hover { background: var(--color-pirati-dark); color: #fff; }
 
 .btn--ghost { background: transparent; color: var(--color-text); border-color: var(--color-green-deep); }
@@ -264,8 +274,8 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 }
 .hero__kicker {
   display: inline-block; margin: 0 0 1rem;
-  color: var(--color-green-deep); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  font-size: 0.9rem; border: 1px solid rgba(var(--color-green-deep-rgb), 0.45); border-radius: var(--radius-pill);
+  color: var(--color-text); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: 0.9rem; border: 1px solid rgba(var(--color-text-rgb), 0.35); border-radius: var(--radius-pill);
   padding: 0.35rem 0.9rem;
 }
 /* One continuous gradient across the whole two-line title, not a separate
@@ -321,7 +331,7 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 .about__grid { display: grid; grid-template-columns: 1fr; gap: var(--gap); justify-items: center; }
 .about__text { max-width: 72ch; }
 .about__text p { margin: 0 0 1rem; font-size: 1.08rem; }
-.about__text p:first-child { font-size: 1.3rem; color: var(--color-green-deep); font-weight: 500; } /* lead-in sentence stands out */
+.about__text p:first-child { font-size: 1.3rem; font-weight: 500; } /* lead-in sentence stands out through size + weight, not colour */
 .about__photo { order: -1; width: 100%; max-width: 760px; border-radius: var(--radius); overflow: hidden; }
 .about__photo img { width: 100%; height: auto; display: block; } /* full photo, never cropped */
 
@@ -331,7 +341,10 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
    ---------------------------------------------------------------------------- */
 .program-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
 .program-card {
-  background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius);
+  /* The six programme points carry the same green → gold sweep as the hero
+     buttons. Text inside drops the muted grey for full-strength body colour —
+     grey on the gradient only reaches 3.2:1, black clears 8:1. */
+  background: var(--gradient-brand); border: 1px solid var(--color-border); border-radius: var(--radius);
   overflow: hidden; transition: border-color var(--transition);
 }
 .program-card[open] { border-color: var(--color-green); }
@@ -342,17 +355,17 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 .program-card__summary::-webkit-details-marker { display: none; } /* hide default triangle */
 .program-card__num {
   flex: 0 0 auto; width: 2.4rem; height: 2.4rem; display: grid; place-items: center;
-  background: var(--color-green); color: var(--color-pirati-dark); font-family: var(--font-display); font-size: 1.5rem;
+  background: var(--gradient-brand); color: var(--color-pirati-dark); font-family: var(--font-display); font-size: 1.5rem;
   border-radius: 50%;
 }
 .program-card__title { flex: 1; font-size: 1.55rem; margin: 0; }
 .program-card__icon { font-size: 1.6rem; }
-.program-card__chevron { transition: transform var(--transition); color: var(--color-green-deep); font-size: 1.4rem; }
+.program-card__chevron { transition: transform var(--transition); color: var(--color-text); font-size: 1.4rem; }
 .program-card[open] .program-card__chevron { transform: rotate(180deg); }
-.program-card__body { padding: 0 1.4rem 1.4rem 1.4rem; color: var(--color-muted); }
+.program-card__body { padding: 0 1.4rem 1.4rem 1.4rem; color: var(--color-text); }
 .program-card__intro { margin: 0 0 0.9rem; }
 .program-card__list { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
-.program-card__list li::marker { color: var(--color-green-deep); }
+.program-card__list li::marker { color: currentColor; }
 
 /* ----------------------------------------------------------------------------
    LIDÉ  (candidate photo cards)
@@ -396,7 +409,7 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 .candidates-other__summary {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0.75rem 1.1rem; list-style: none; cursor: pointer; user-select: none;
-  background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius);
+  background: var(--gradient-brand); border: 1px solid var(--color-border); border-radius: var(--radius);
   font-weight: 700; font-size: 1rem; color: var(--color-text);
 }
 .candidates-other__summary::-webkit-details-marker { display: none; }
@@ -449,7 +462,7 @@ body.poster-open { overflow: hidden; }
   transition: box-shadow var(--transition);
 }
 .section--alt .event__dot { border-color: var(--color-surface); }
-.event__date { color: var(--color-green-deep); font-weight: 700; font-size: 0.95rem; }
+.event__date { color: var(--color-text); font-weight: 700; font-size: 0.95rem; }
 .event__title { font-size: 1.2rem; margin: 0.15rem 0; }
 .event__place { color: var(--color-muted); font-size: 0.95rem; }
 .event__desc  { color: var(--color-muted); margin: 0.2rem 0 0; }
@@ -516,13 +529,16 @@ body.poster-open { overflow: hidden; }
 
 
 .news-card {
-  background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius);
+  /* No fill at all: the card sits on the page background and is held together
+     by its outline, so the photos carry all the colour. */
+  background: transparent;
+  border: 1px solid var(--color-border); border-radius: var(--radius);
   overflow: hidden; display: flex; flex-direction: column; transition: transform var(--transition);
 }
 .news-card:hover { transform: translateY(-4px); }
 .news-card__media { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; }
 .news-card__body { padding: 1.2rem 1.4rem; display: flex; flex-direction: column; gap: 0.4rem; }
-.news-card__date { color: var(--color-green-deep); font-weight: 700; font-size: 0.85rem; }
+.news-card__date { color: var(--color-text); font-weight: 700; font-size: 0.85rem; }
 .news-card__title { font-size: 1.25rem; margin: 0; }
 .news-card__excerpt { color: var(--color-muted); margin: 0; }
 
@@ -550,13 +566,15 @@ body.poster-open { overflow: hidden; }
 .contact__intro { color: var(--color-muted); }
 .contact__details { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-direction: column; gap: 0.6rem; }
 .contact__details li { display: flex; gap: 0.6rem; align-items: baseline; }
-.contact__details .label { color: var(--color-green-deep); min-width: 7.5rem; font-weight: 500; }
+.contact__details .label { color: var(--color-text); min-width: 7.5rem; font-weight: 500; }
 .contact__social { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 .contact__social a {
   display: inline-grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
-  background: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-text); font-weight: 700;
+  background: var(--gradient-brand); border: 1px solid var(--color-border); color: var(--color-text); font-weight: 700;
 }
-.contact__social a:hover { background: var(--color-green); color: var(--color-pirati-dark); }
+/* Filled with the brand sweep, so hover goes black like the buttons rather
+   than dropping back to a flat green. */
+.contact__social a:hover { background: var(--color-pirati-dark); color: #fff; }
 
 .newsletter {
   background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius);
@@ -574,9 +592,15 @@ body.poster-open { overflow: hidden; }
 .partners__outro { margin-top: 2rem; }
 .partners-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap); margin: 2rem 0; }
 .partner-card {
-  background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius);
+  /* Brand sweep as the fill; the top edge keeps each party's own colour, which
+     is the one place party accents belong. */
+  background: var(--gradient-brand); border: 1px solid var(--color-border); border-radius: var(--radius);
   padding: 1.6rem; text-align: center; border-top: 4px solid var(--accent, var(--color-green));
 }
+/* The deep-green link colour only reaches 2.2:1 on the sweep, so links inside
+   these cards go near-black and take an underline to stay recognisable. */
+.partner-card__links a { color: var(--color-text); text-decoration: underline; text-underline-offset: 3px; }
+.partner-card__links a:hover { color: var(--color-pirati-dark); text-decoration-thickness: 2px; }
 .partner-card--pirati { --accent: var(--pirati); }
 .partner-card--zeleni { --accent: var(--color-green); }
 .partner-card__name { font-size: 1.6rem; font-family: var(--font-display); }
