@@ -260,7 +260,7 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
     radial-gradient(50% 50% at 10% 90%, rgba(var(--color-green-rgb), 0.12), transparent 60%),
     linear-gradient(to right, rgba(245,243,238,0.45) 0%, rgba(245,243,238,0.12) 100%),
     linear-gradient(rgba(90, 90, 90, 0.28), rgba(90, 90, 90, 0.28)),
-    url('../header-photo.jpg') center / cover no-repeat;
+    url('../header-photo.jpg') var(--hero-photo-pos, center) / var(--hero-photo-size, cover) no-repeat;
 }
 .hero__inner {
   display: flex; align-items: stretch; gap: var(--gap);
@@ -727,11 +727,17 @@ body.poster-open { overflow: hidden; }
   /* Kicker pill was wrapping to two lines at phone widths — shrink it
      enough to stay on one line rather than let it wrap awkwardly. */
   .hero__kicker { font-size: 0.7rem; letter-spacing: 0.04em; padding: 0.3rem 0.7rem; white-space: nowrap; }
+  /* The header panorama is ~3.7x wider than a phone screen, so plain
+     "cover" scales it down until the whole thing fits by height and the
+     Starý Lískovec skyline shrinks to a thin strip right where the buttons
+     sit. Zoom into the photo instead and park the panelák band in the
+     clear sky between the tagline and the CTA, where nothing covers it. */
+  .hero { --hero-photo-size: auto 160%; --hero-photo-pos: 50% 86%; }
   /* Push the CTA row further down so it clears the buildings and lands
      in the vineyard band, matching the desktop layout. hero__inner's
      min-height is a floor, not a cap, so this margin is free to grow
      the section rather than fight the space-between distribution. */
-  .hero__cta { margin-top: 5rem; }
+  .hero__cta { margin-top: 7rem; }
 
   .people-grid { grid-template-columns: 1fr; gap: 1rem; }
   /* Phones: no fill, just an outline — same treatment as the chronicle cards. */
