@@ -27,3 +27,6 @@ Thumbs.db
 # Keep shared skills (e.g. /rebrand) in the repo; ignore everything else.
 .claude/*
 !.claude/skills/
+
+# --- Facebook page access token for tools/fetch-fb-posts.js (never upload!) ---
+.fb-token

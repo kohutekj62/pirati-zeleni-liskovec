@@ -100,7 +100,7 @@
   <link rel="stylesheet" href="css/fonts.css?v=76ba7bf3" />
 
   <!-- All the styling lives here -->
-  <link rel="stylesheet" href="css/styles.css?v=31c5fd55" />
+  <link rel="stylesheet" href="css/styles.css?v=99f8aae8" />
 </head>
 
 <body>
@@ -265,9 +265,32 @@
     </section>
 
     <!-- ======================================================================
+         5b) Z FACEBOOKU  — a strip of the latest posts from our Facebook page.
+              The texts and photos are copied onto this site by "npm run fb"
+              (tools/fetch-fb-posts.js) and live in js/fb-posts.js — nothing
+              is loaded from Facebook while someone browses the site, so no
+              cookies and no cookie banner. Stays hidden until there is
+              something to show.
+         ===================================================================== -->
+    <section class="section section--alt" id="fb" aria-labelledby="fb-title" hidden>
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title" id="fb-title" data-i18n="fb_title">Z Facebooku</h2>
+          <p class="section__lead" data-i18n="fb_lead"></p>
+        </header>
+        <!-- Post cards appear here -->
+        <div class="fb-strip" id="fb-strip"></div>
+        <p class="fb-follow">
+          <a class="btn btn--ghost" id="fb-follow-link" href="https://www.facebook.com/pirati.staryliskovec/"
+             target="_blank" rel="noopener noreferrer" data-i18n="fb_follow">Sledovat nás na Facebooku</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================================================================
          6) SPOJME SE  (Get in touch)  — contact form + newsletter + details
          ===================================================================== -->
-    <section class="section section--alt" id="contact" aria-labelledby="contact-title">
+    <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="container">
         <header class="section__head">
           <h2 class="section__title" id="contact-title" data-i18n="contact_title">Spojme se</h2>
@@ -326,7 +349,7 @@
     <!-- ======================================================================
          7) PŘÁTELÉ  (Partners / parent parties)  — from content.js → partners:
          ===================================================================== -->
-    <section class="section" id="partners" aria-labelledby="partners-title">
+    <section class="section section--alt" id="partners" aria-labelledby="partners-title">
       <div class="container">
         <header class="section__head">
           <h2 class="section__title" id="partners-title" data-i18n="partners_title">Přátelé</h2>
@@ -386,9 +409,10 @@
     (These are plain <script> tags so the site also works by just double-clicking
      index.html — no build step, no server required.)
   -->
-  <script src="js/content.js?v=808dca92"></script>
+  <script src="js/content.js?v=5428b947"></script>
+  <script src="js/fb-posts.js?v=4acf204a"></script>
   <script src="js/i18n.js?v=2afdb0dd"></script>
-  <script src="js/render.js?v=ac0294dd"></script>
+  <script src="js/render.js?v=ac5c9be1"></script>
   <script src="js/main.js?v=c1f92de6"></script>
 </body>
 </html>

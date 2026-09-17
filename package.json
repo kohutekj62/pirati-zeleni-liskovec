@@ -6,6 +6,7 @@
   "scripts": {
     "//": "------- These are shortcuts you run in a terminal with: npm run <name> -------",
     "serve": "http-server . -p 4173 -c-1",
+    "fb": "node tools/fetch-fb-posts.js",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "report": "playwright show-report",

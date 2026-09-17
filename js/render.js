@@ -390,6 +390,54 @@ const RENDER = (function () {
   }
 
   /* ====================================================================== */
+  /* 5b) Z FACEBOOKU  —  posts copied onto the site by "npm run fb"          */
+  /* ====================================================================== */
+  /* The data lives in js/fb-posts.js, a generated file. It is deliberately
+     NOT part of content.js: content.js is written by hand, this one is
+     overwritten by the fetch script every time. Nothing here talks to
+     Facebook — the texts and photos are already on our own server. */
+  function renderFbPosts() {
+    var section = document.getElementById("fb");
+    var strip   = document.getElementById("fb-strip");
+    if (!section || !strip) return;
+
+    var data  = window.FB_POSTS || {};
+    var posts = (data.posts || []).slice().sort(function (a, b) {
+      return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
+    });
+
+    clear(strip);
+
+    /* No posts fetched yet → hide the whole section instead of showing an
+       empty strip. This is also the state of a fresh checkout. */
+    if (!posts.length) { section.hidden = true; return; }
+    section.hidden = false;
+
+    posts.forEach(function (post) {
+      var media = post.image
+        ? el("img", { class: "fb-post__media", attrs: { src: post.image, alt: "", loading: "lazy" } })
+        : null;
+
+      strip.appendChild(el("a", {
+        class: "fb-post",
+        attrs: { href: post.url, target: "_blank", rel: "noopener noreferrer" },
+        children: [
+          media,
+          el("div", { class: "fb-post__body", children: [
+            el("span", { class: "fb-post__date", text: formatDate(post.date) }),
+            el("p",    { class: "fb-post__text", text: post.text }),
+            el("span", { class: "fb-post__more", text: t("fb_more") + " ›" }),
+          ]}),
+        ],
+      }));
+    });
+
+    /* Point the "follow us" button at whichever page the posts came from. */
+    var follow = document.getElementById("fb-follow-link");
+    if (follow && data.page) follow.setAttribute("href", data.page);
+  }
+
+  /* ====================================================================== */
   /* 6) SPOJME SE  —  contact intro + e-mail / phone / social links          */
   /* ====================================================================== */
   function renderContact() {
@@ -579,6 +627,7 @@ const RENDER = (function () {
     renderOtherCandidates();
     renderEvents();
     renderNews();
+    renderFbPosts();
     renderContact();
     renderFooterSocial();
     renderPartners();

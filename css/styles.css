@@ -543,6 +543,46 @@ body.poster-open { overflow: hidden; }
 .news-card__excerpt { color: var(--color-muted); margin: 0; }
 
 /* ----------------------------------------------------------------------------
+   Z FACEBOOKU  (strip of the latest posts)
+   A horizontal strip you swipe/scroll sideways, rather than a second grid —
+   it reads as a feed and keeps the Kronika above it as the main story.
+   Deliberately in the coalition palette, not Facebook blue: the posts are
+   ours, Facebook is only where they were first published.
+   ---------------------------------------------------------------------------- */
+.fb-strip {
+  display: flex; gap: var(--gap);
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  padding-bottom: 0.75rem;          /* breathing room for the scrollbar */
+  scrollbar-width: thin;
+}
+.fb-post {
+  flex: 0 0 clamp(250px, 30%, 340px);
+  scroll-snap-align: start;
+  display: flex; flex-direction: column;
+  /* Same no-fill treatment as the Kronika cards: outline only, photos carry
+     the colour. */
+  background: transparent;
+  border: 1px solid var(--color-border); border-radius: var(--radius);
+  overflow: hidden; text-decoration: none; color: inherit;
+  transition: transform var(--transition), border-color var(--transition);
+}
+.fb-post:hover { transform: translateY(-4px); border-color: var(--color-green); }
+.fb-post:focus-visible { outline: 3px solid var(--color-green-deep); outline-offset: 2px; }
+.fb-post__media { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; }
+.fb-post__body { padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
+.fb-post__date { color: var(--color-text); font-weight: 700; font-size: 0.85rem; }
+/* Facebook posts run long and keep their own line breaks — show the opening
+   few lines and let the card stay the same height as its neighbours. */
+.fb-post__text {
+  color: var(--color-muted); margin: 0; white-space: pre-line;
+  display: -webkit-box; -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6; line-clamp: 6; overflow: hidden;
+}
+.fb-post__more { margin-top: auto; padding-top: 0.6rem; color: var(--color-green-deep); font-weight: 700; font-size: 0.9rem; }
+.fb-follow { text-align: center; margin: clamp(1.5rem, 4vw, 2.5rem) 0 0; }
+
+/* ----------------------------------------------------------------------------
    SPOJME SE  (contact + newsletter)
    ---------------------------------------------------------------------------- */
 .contact__grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); }
@@ -748,6 +788,9 @@ body.poster-open { overflow: hidden; }
     padding: 1.25rem;
   }
   .news-cards { grid-template-columns: 1fr; }
+  /* One post fills the screen, the next one peeks in so it is obvious the
+     strip scrolls sideways. */
+  .fb-post { flex-basis: 84%; }
 }
 
 /* ----------------------------------------------------------------------------
