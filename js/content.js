@@ -570,6 +570,13 @@ const CONTENT = {
       map: "https://mapy.com/cs/turisticka?source=coor&id=16.5677164%2C49.1713744&x=16.5677164&y=49.1713744&z=18&ovl=3",
       cs: { title: "Drakiáda", place: "Dětské hřiště, Mikuláškovo nám. 1", desc: "Pojďte s námi rozzářit podzimní nebe! Zábava pro děti i dospělé na dětském hřišti na Mikuláškově náměstí. Draka s sebou!" },
       en: { title: "Kite Festival", place: "Playground, Mikuláškovo nám. 1", desc: "Come and light up the autumn sky with us! Fun for children and grown-ups alike at the playground on Mikuláškovo náměstí. Bring your own kite!" } },
+    { date: "2026-10-07", time: "10:00–18:00",
+      fb:  "https://www.facebook.com/blechyvkozichu/",
+      host: "Blechy v kožichu z.s.",
+      image: "event-swap-7-10.jpg",
+      map: "https://mapy.com/cs/turisticka?source=firm&id=12733252&x=16.5550197&y=49.1684172&z=19&ovl=3",
+      cs: { title: "Swap oblečení", place: "Kurská, v prostoru vedle restaurace DON", desc: "Máte ve skříni oblečení, které už nenosíte? Přineste ho a vyměňte za kousky, které vám udělají radost. Šetrné k peněžence i k planetě. Přijít můžete kdykoli od 10 do 18 hodin." },
+      en: { title: "Clothes Swap", place: "Kurská, in the space next to restaurace DON", desc: "Got clothes in your wardrobe you no longer wear? Bring them along and swap them for pieces you'll love. Kind to your wallet and to the planet. Drop by any time between 10 am and 6 pm." } },
   ],
 
   /* ========================================================================

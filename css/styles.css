@@ -447,6 +447,10 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 .event__media-btn:focus-visible { outline: 3px solid var(--color-green-deep); outline-offset: 3px; }
 .event__media { width: auto; height: 132px; max-width: 100%; aspect-ratio: auto 3 / 4; object-fit: contain; border-radius: var(--radius);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }
+/* Landscape flyers (flagged by render.js once loaded): a fixed height would
+   letterbox them inside the narrowed box, so cap the height instead and let
+   the whole image shrink by its own ratio. */
+.event__media--wide { height: auto; max-height: 132px; }
 
 /* Poster lightbox — a click anywhere on it closes it again. */
 .poster-view { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center;
@@ -758,6 +762,7 @@ body.poster-open { overflow: hidden; }
   .event__media-btn { max-width: 32%; align-self: flex-start;
     margin-top: calc(0.95rem * 1.75 + 0.15rem); }
   .event__media { height: 84px; }
+  .event__media--wide { height: auto; max-height: 84px; }
   .poster-view { padding: 0.75rem; }
 
   .site-footer__inner { grid-template-columns: 1fr; gap: 1.5rem; }

@@ -264,10 +264,15 @@ const RENDER = (function () {
       var rowChildren = [body];
       if (ev.image) {
         var src = "assets/" + ev.image;
+        var img = el("img", { class: "event__media", attrs: { src: src, alt: "", loading: "lazy" } });
+        /* Until it loads, the thumbnail holds a portrait-shaped box; a landscape
+           flyer then switches to sizing by its own ratio. */
+        img.addEventListener("load", function () {
+          if (img.naturalWidth > img.naturalHeight) img.classList.add("event__media--wide");
+        });
         var thumb = el("button", { class: "event__media-btn",
           attrs: { type: "button", "aria-label": t("poster_open") + ": " + data.title },
-          children: [el("img", { class: "event__media",
-            attrs: { src: src, alt: "", loading: "lazy" } })] });
+          children: [img] });
         thumb.addEventListener("click", function () { openPoster(src, data.title, thumb); });
         rowChildren.push(thumb);
       }
@@ -563,7 +568,8 @@ const RENDER = (function () {
        publicizing someone else's event, so organizer/performer aren't
        misattributed to us. Omit it when we're the ones organizing.
        ev.durationMinutes (optional): overrides the 2h default duration used
-       to compute endDate. ev.image (optional): "assets/" + ev.image, same
+       to compute endDate; a time range like "10:00–18:00" sets endDate
+       directly instead. ev.image (optional): "assets/" + ev.image, same
        convention as news entries; falls back to the shared OG image. */
     var pad2 = function (n) { return (n < 10 ? "0" : "") + n; };
     var todayStr = today.getFullYear() + "-" + pad2(today.getMonth() + 1) + "-" + pad2(today.getDate());
@@ -571,13 +577,15 @@ const RENDER = (function () {
       var evDate = new Date(ev.date + "T00:00:00");
       if (evDate < today) return;
       var data = ev.cs;
-      var hasTime = ev.time && ev.time.match(/^\d{1,2}:\d{2}$/);
+      var times = ev.time && ev.time.match(/^(\d{1,2}:\d{2})(?:\s*[–-]\s*(\d{1,2}:\d{2}))?$/);
+      var hasTime = !!times;
+      var startTime = hasTime ? times[1] : "";
       var host = ev.host ? { "@type": "Organization", "name": ev.host } : null;
       if (host && ev.fb) host.url = ev.fb;
       var entry = {
         "@type": "Event",
         "name": data.title,
-        "startDate": ev.date + (hasTime ? "T" + ev.time : ""),
+        "startDate": ev.date + (hasTime ? "T" + startTime : ""),
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "location": {
@@ -603,8 +611,10 @@ const RENDER = (function () {
         }
       };
       if (host) entry.performer = host;
-      if (hasTime) {
-        var end = new Date(ev.date + "T" + ev.time + ":00");
+      if (hasTime && times[2]) {
+        entry.endDate = ev.date + "T" + times[2];
+      } else if (hasTime) {
+        var end = new Date(ev.date + "T" + startTime + ":00");
         end.setMinutes(end.getMinutes() + (ev.durationMinutes != null ? ev.durationMinutes : 120));
         entry.endDate = end.getFullYear() + "-" + pad2(end.getMonth() + 1) + "-" + pad2(end.getDate()) +
           "T" + pad2(end.getHours()) + ":" + pad2(end.getMinutes());
