@@ -21,9 +21,8 @@
 
 const CAROUSEL = (function () {
 
-  /* How long each thing stays on screen, in milliseconds. */
-  var SHOW_PHOTO = 5000;    // a single photo
-  var SHOW_PAIR  = 7000;    // a before/after pair — two photos to take in
+  /* How long each slide (a photo or a before/after pair) stays on screen, in milliseconds. */
+  var SHOW = 5000;
 
   var root, slides = [], dots = [], toggle;
   var current = 0;
@@ -189,8 +188,6 @@ const CAROUSEL = (function () {
     });
   }
 
-  function isPair(i) { return !!slides[i].imgs[2]; }
-
   function step(dir) { show(current + dir); schedule(); }
   function go(i)     { show(i);             schedule(); }
 
@@ -200,7 +197,7 @@ const CAROUSEL = (function () {
     clearTimeout(timer);
     timer = null;
     if (!playing || !inView || hovered || focused || document.hidden || slides.length < 2) return;
-    timer = setTimeout(function () { step(1); }, isPair(current) ? SHOW_PAIR : SHOW_PHOTO);
+    timer = setTimeout(function () { step(1); }, SHOW);
   }
 
   /* ---- start ------------------------------------------------------------- */
