@@ -44,11 +44,12 @@ Press `Ctrl + C` in the terminal to stop it.
 | File / folder | What it holds | Do you edit it? |
 |---|---|---|
 | **`js/content.js`** | ⭐ **All the text** (Czech + English), candidates, program, events, news, links | **Yes — this is your main file** |
-| `assets/` | Images: the logo, the elephant, candidate photos | Yes — drop new photos here |
+| `assets/` | Images: the logo, the elephant, candidate photos, the O nás carousel (`assets/carousel/`) | Yes — drop new photos here |
 | `css/styles.css` | Colours, fonts, spacing, the whole look | Only to change the design |
 | `index.html` | The page structure (the skeleton) | Rarely |
 | `js/i18n.js` | The Czech/English switching machinery | No |
 | `js/render.js` | Builds the lists from `content.js` | No |
+| `js/carousel.js` | The O nás photo carousel (the photos themselves are in `content.js`) | No |
 | `js/main.js` | Clicks: menu, language, the elephant flip, forms | No |
 | `js/fb-posts.js` | The Facebook posts shown in the strip — **generated**, see section 12 | No — `npm run fb` writes it |
 | `pexeso/data/places.csv` | ⭐ **All pexeso content** — every place, description, coordinate, photo and link in one spreadsheet | **Yes — open in Excel** |
@@ -75,6 +76,32 @@ what each part does.
 ### 🖼️ Change a candidate's photo
 1. Put the new photo in `assets/people/` (use a simple name: lowercase, no spaces, e.g. `jana-nova.jpg`).
 2. In `js/content.js`, find that person and change their `photo:` line to the new file name.
+
+### 🎞️ Change the O nás photo carousel
+The photos taking turns above the O nás text are listed in `js/content.js` under
+**`carousel:`**, in the order they are shown. A click on a photo opens our Facebook
+page — or the exact post, if you paste its address into that photo's `link: ""`.
+
+1. **Make web-ready copies.** Photos from a phone or Google Drive are far too big for
+   the web. Rename the originals to something simple first (e.g. `zastavka-pred.jpg`,
+   `zastavka-po.jpg`), then run:
+
+   ```bash
+   npm run carousel -- "C:\Users\me\Downloads\zastavka-pred.jpg" "C:\Users\me\Downloads\zastavka-po.jpg"
+   ```
+
+   Small `.webp` copies appear in `assets/carousel/`; your originals stay as they are.
+2. **Add them to `carousel:`** — copy an existing block and edit it:
+   - a single photo: `{ image: "carousel/name.webp", link: "", cs: "…", en: "…" },`
+   - a before/after pair: `{ before: "carousel/…-pred.webp", after: "carousel/…-po.webp", link: "", cs: { before: "…", after: "…" }, en: { … } },`
+     — shown as one slide: the "before" photo, which then fades into the "after" one.
+
+   `cs` / `en` describe the photo for people who cannot see it (screen readers). They
+   never appear on the photo itself.
+3. **To remove a photo,** delete its block, and its file from `assets/carousel/`.
+
+The carousel pauses on its own while the mouse is over it, and visitors can stop it
+with the ⏸ button under it.
 
 ### ➕ Add or remove a candidate / program point / event / news post
 In `js/content.js`, each item is one block inside `{ ... }`.

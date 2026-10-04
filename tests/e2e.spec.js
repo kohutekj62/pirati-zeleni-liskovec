@@ -210,6 +210,50 @@ test.describe("Starý Lískovec ON website", () => {
     await expect.poll(() => img.evaluate((el) => el.naturalWidth), "photo image should have loaded")
       .toBeGreaterThan(0);
   });
+
+  test("the O nás carousel has one slide per content.js entry, linking to Facebook", async ({ page }) => {
+    const expected = await page.evaluate(() => CONTENT.carousel.length);
+    const carousel = page.locator("#about-carousel");
+    await carousel.scrollIntoViewIfNeeded();
+
+    await expect(carousel.locator(".carousel__slide")).toHaveCount(expected);
+    await expect(carousel.locator(".carousel__dot")).toHaveCount(expected);
+    await expect(carousel.locator(".carousel__slide.is-active")).toHaveCount(1);
+    for (const href of await carousel.locator(".carousel__slide").evaluateAll((as) => as.map((a) => a.href))) {
+      expect(href, "every slide should open Facebook or Instagram").toMatch(/facebook\.com|instagram\.com/);
+    }
+    // The photo on show really loads
+    const img = carousel.locator(".carousel__slide.is-active .carousel__img").first();
+    await expect.poll(() => img.evaluate((el) => el.naturalWidth), "carousel photo should have loaded")
+      .toBeGreaterThan(0);
+  });
+
+  test("carousel dots, arrow keys and the pause button work", async ({ page }) => {
+    const carousel = page.locator("#about-carousel");
+    const slides = carousel.locator(".carousel__slide");
+    await carousel.scrollIntoViewIfNeeded();
+
+    // Pause first, so the automatic advance cannot interfere
+    const toggle = carousel.locator(".carousel__toggle");
+    const playingLabel = await toggle.getAttribute("aria-label");
+    await toggle.click();
+    await expect(toggle).not.toHaveAttribute("aria-label", playingLabel);
+
+    // A dot jumps to its slide
+    await carousel.locator(".carousel__dot").nth(2).click();
+    await expect(slides.nth(2)).toHaveClass(/is-active/);
+    await expect(carousel.locator(".carousel__dot").nth(2)).toHaveAttribute("aria-current", "true");
+
+    // On a before/after pair, → first reveals the "after" photo, then moves on
+    const pair = await page.evaluate(() => CONTENT.carousel.findIndex((it) => it.before && it.after));
+    await carousel.locator(".carousel__dot").nth(pair).focus();
+    await page.keyboard.press("Enter");
+    await expect(slides.nth(pair)).toHaveClass(/is-active/);
+    await page.keyboard.press("ArrowRight");
+    await expect(slides.nth(pair)).toHaveClass(/is-after/);
+    await page.keyboard.press("ArrowRight");
+    await expect(slides.nth(pair + 1)).toHaveClass(/is-active/);
+  });
 });
 
 // ============================================================================

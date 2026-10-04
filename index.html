@@ -100,7 +100,7 @@
   <link rel="stylesheet" href="css/fonts.css?v=76ba7bf3" />
 
   <!-- All the styling lives here -->
-  <link rel="stylesheet" href="css/styles.css?v=36bcf117" />
+  <link rel="stylesheet" href="css/styles.css?v=12ac5365" />
 </head>
 
 <body>
@@ -190,10 +190,10 @@
         <div class="about__grid">
           <!-- Paragraphs are inserted here by render.js -->
           <div class="about__text" id="about-text"></div>
-          <!-- One photo placeholder for this section -->
-          <figure class="about__photo">
-            <img src="assets/team.jpg?v=e1f6a2e6" alt="Tým Piráti a Zelení pro Lískovec" />
-          </figure>
+          <!-- Photo carousel: the photos take turns every few seconds, a click
+               opens our Facebook. Built by js/carousel.js from
+               content.js → carousel: — the photos are in assets/carousel/. -->
+          <div class="about__photo carousel" id="about-carousel" hidden></div>
         </div>
       </div>
     </section>
@@ -405,14 +405,16 @@
       1) content.js  — all the text & data
       2) i18n.js     — the Czech/English switching
       3) render.js   — builds the lists from the content
+      3b) carousel.js — the photo carousel under O nás
       4) main.js     — menu, language button, forms
     (These are plain <script> tags so the site also works by just double-clicking
      index.html — no build step, no server required.)
   -->
-  <script src="js/content.js?v=71cf950f"></script>
+  <script src="js/content.js?v=58100f5e"></script>
   <script src="js/fb-posts.js?v=dc6ad5ed"></script>
   <script src="js/i18n.js?v=2afdb0dd"></script>
   <script src="js/render.js?v=cbacae0f"></script>
-  <script src="js/main.js?v=c1f92de6"></script>
+  <script src="js/carousel.js?v=f13aab3f"></script>
+  <script src="js/main.js?v=2cff3d12"></script>
 </body>
 </html>

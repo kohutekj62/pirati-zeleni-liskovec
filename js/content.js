@@ -88,6 +88,10 @@ const CONTENT = {
       // -- Section titles + lead sentences --
       about_title:    "O nás",
       about_lead:     "Koalice Pirátů a Zelených pro Brno – Starý Lískovec.",
+      carousel_label: "Fotografie z naší kampaně",
+      carousel_pause: "Zastavit prezentaci",
+      carousel_play:  "Spustit prezentaci",
+      carousel_slide: "Snímek",
       program_title:  "Program",
       program_lead:   "Šest priorit pro lepší Starý Lískovec. Klikněte na bod a rozbalte detail.",
       people_title:   "Lidé",
@@ -169,6 +173,10 @@ const CONTENT = {
 
       about_title:    "About us",
       about_lead:     "A coalition of the Pirates and the Greens for Brno – Starý Lískovec.",
+      carousel_label: "Photos from our campaign",
+      carousel_pause: "Pause the slideshow",
+      carousel_play:  "Play the slideshow",
+      carousel_slide: "Slide",
       program_title:  "Programme",
       program_lead:   "Six priorities for a better Starý Lískovec. Click a point to expand it.",
       people_title:   "People",
@@ -246,6 +254,58 @@ const CONTENT = {
       "Thank you for believing in us and supporting our vision for Brno – Starý Lískovec.",
     ],
   },
+
+  /* ========================================================================
+     3b) O NÁS — PHOTO CAROUSEL  —  the photos that take turns above the
+         O nás text, a new one every few seconds. Shown in this order.
+         The photos live in assets/carousel/ — prepare new ones with
+         "npm run carousel" (README section 4), it makes them small enough.
+
+         • A single photo:      { image: "carousel/….webp", link: "", cs: "…", en: "…" },
+         • A before/after pair: { before: "…", after: "…", link: "",
+                                  cs: { before: "…", after: "…" }, en: { … } },
+           shown as one slide: the "before" photo, then it fades into the "after".
+
+         link: where a click on the photo goes — paste the address of the
+               Facebook post it comes from. Left "" it opens our Facebook page.
+         cs/en: what the photo shows, for people who cannot see it (screen
+               readers, or when the photo fails to load). Never shown on top.
+     ====================================================================== */
+  carousel: [
+    { image: "carousel/tadyjsmedoma-vendula-svobodova.webp", link: "",
+      cs: "Vendula Svobodová – oblíbené místo? Sady v Lískovci. „Když rozkvetou, je to tam jak v pohádce.“ #TADYJSMEDOMA",
+      en: "Vendula Svobodová – favourite place? The orchards in Lískovec. “When they blossom, it's like a fairy tale.” #TADYJSMEDOMA" },
+    { before: "carousel/zastavka-pred.webp", after: "carousel/zastavka-po.webp", link: "",
+      cs: { before: "Co kdyby tato místa… Tramvajová zastávka u podchodu dnes: rozpálená dlažba bez jediného stromu.",
+            after:  "…vypadala takto. Tatáž zastávka ve stínu stromů – vizualizace." },
+      en: { before: "What if these places… A tram stop by the underpass today: hot paving, not a single tree.",
+            after:  "…looked like this. The same tram stop in the shade of trees – a visualisation." } },
+    { image: "carousel/tadyjsmedoma-michala-martiskova.webp", link: "",
+      cs: "Michala Martišková – oblíbené místo? Vlčí máky u kolejí. „Každé jaro se těším, až u nás rozkvetou vlčí máky.“ #TADYJSMEDOMA",
+      en: "Michala Martišková – favourite place? The poppies by the tram tracks. “Every spring I look forward to the poppies blooming here.” #TADYJSMEDOMA" },
+    { image: "carousel/tadyjsmedoma-martin-novak.webp", link: "",
+      cs: "Martin Novák – oblíbené místo? Okolo Leskavy. „Děti se tady naučily jezdit na kole a já tam rád běhám směrem na Bohunice.“ #TADYJSMEDOMA",
+      en: "Martin Novák – favourite place? Along the Leskava brook. “The kids learned to ride a bike here, and I like to run there towards Bohunice.” #TADYJSMEDOMA" },
+    { before: "carousel/chodnik-pred.webp", after: "carousel/chodnik-po.webp", link: "",
+      cs: { before: "Vyprahlé ulice… Chodník podél ulice, vyschlá tráva a žádný stín.",
+            after:  "…takhle! Tentýž chodník lemovaný stromořadím – vizualizace." },
+      en: { before: "Parched streets… A pavement along the road, dried-out grass and no shade.",
+            after:  "…like this! The same pavement lined with trees – a visualisation." } },
+    { image: "carousel/tadyjsmedoma-jan-novotny.webp", link: "",
+      cs: "Jan Novotný – oblíbené místo? Na Kosmonautech. „S dětmi trávíme čas za domy na ul. Kosmonautů. Jak rostou, přesouváme se z dětských hřišť na volnočasové plochy.“ #TADYJSMEDOMA",
+      en: "Jan Novotný – favourite place? Kosmonautů street. “We spend time with the kids behind the houses on Kosmonautů. As they grow, we move from playgrounds to the leisure areas.” #TADYJSMEDOMA" },
+    { image: "carousel/tadyjsmedoma-anna-kohutkova.webp", link: "",
+      cs: "Anna Kohutková – oblíbené místo? Ulice Kroupova. „Mám ráda pocit venkova na Kroupově ulici. Někdy tam dokonce kokrhá kohout.“ #TADYJSMEDOMA",
+      en: "Anna Kohutková – favourite place? Kroupova street. “I love the village feel of Kroupova street. Sometimes there's even a rooster crowing.” #TADYJSMEDOMA" },
+    { before: "carousel/lavicky-pred.webp", after: "carousel/lavicky-po.webp", link: "",
+      cs: { before: "Místa k odpočinku… Lavičky u chodníku na plném slunci.",
+            after:  "…takto! Tytéž lavičky ve stínu stromů – vizualizace." },
+      en: { before: "Places to rest… Benches by the pavement in full sun.",
+            after:  "…like this! The same benches in the shade of trees – a visualisation." } },
+    { image: "carousel/tadyjsmedoma-hana-blazek-hlavackova.webp", link: "",
+      cs: "Hana Blažek Hlaváčková – oblíbené místo? Park na Točné. „Mám na něj hezké vzpomínky. Chodila jsem tam číst, když děti spaly v kočárku. Teď chodíme koukat na kachny. Je tady příjemný stín.“ #TADYJSMEDOMA",
+      en: "Hana Blažek Hlaváčková – favourite place? The park on Točná street. “I have lovely memories of it. I used to go there to read while the kids slept in the pram. Now we go to watch the ducks. There's pleasant shade.” #TADYJSMEDOMA" },
+  ],
 
   /* ========================================================================
      4) PROGRAM  —  six priorities. Each "{ ... }" block is one point.
