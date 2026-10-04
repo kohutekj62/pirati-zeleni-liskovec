@@ -242,3 +242,44 @@ test.describe("Transparency notice", () => {
     await expect(banner).toBeHidden();
   });
 });
+
+// ============================================================================
+//  "Ze sociálních sítí" is fed by js/social-posts.js, which npm run social
+//  rebuilds from the social/ folder. These tests swap in their own small list
+//  so they don't depend on which posts happen to be picked right now.
+// ============================================================================
+test.describe("Social media strip", () => {
+
+  function serveSocialPosts(page, posts) {
+    return page.route(/\/js\/social-posts\.js/, (route) => route.fulfill({
+      contentType: "text/javascript",
+      body: "window.SOCIAL_POSTS = " + JSON.stringify(posts) + ";",
+    }));
+  }
+
+  test("stays hidden while no posts are picked", async ({ page }) => {
+    await serveSocialPosts(page, []);
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#social")).toBeHidden();
+  });
+
+  test("shows the picked posts newest first, linking out to each network", async ({ page }) => {
+    await serveSocialPosts(page, [
+      { date: "2026-08-31", network: "instagram", url: "https://www.instagram.com/p/TEST/",
+        image: "", width: 0, height: 0, text: "Starší příspěvek" },
+      { date: "2026-09-23", network: "facebook", url: "https://www.facebook.com/pirati.staryliskovec/posts/TEST",
+        image: "", width: 0, height: 0, text: "Novější příspěvek" },
+    ]);
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+
+    const cards = page.locator("#social-strip .social-post");
+    await expect(page.locator("#social")).toBeVisible();
+    await expect(cards).toHaveCount(2);
+    await expect(cards.first()).toContainText("Novější příspěvek");
+    await expect(cards.first()).toContainText("Facebook");
+    await expect(cards.first()).toHaveAttribute("href", /facebook\.com/);
+    await expect(cards.nth(1)).toHaveAttribute("href", /instagram\.com/);
+    await expect(cards.first()).toHaveAttribute("rel", /noopener/);
+    await expect(page.locator("#social-follow a")).toHaveCount(2);
+  });
+});
