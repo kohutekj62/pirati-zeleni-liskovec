@@ -17,9 +17,9 @@ test.describe("Starý Lískovec ON website", () => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
   });
 
-  test("shows the hero and all seven main sections", async ({ page }) => {
+  test("shows the hero and all eight main sections", async ({ page }) => {
     await expect(page.locator("#hero")).toBeVisible();
-    for (const id of ["about", "program", "people", "meet", "news", "contact", "partners"]) {
+    for (const id of ["about", "program", "campaign", "people", "meet", "news", "contact", "partners"]) {
       await expect(page.locator("#" + id), `section #${id} should be on the page`).toBeVisible();
     }
   });
@@ -38,7 +38,7 @@ test.describe("Starý Lískovec ON website", () => {
   });
 
   test("the menu links point at the sections", async ({ page }) => {
-    const expected = ["#about", "#program", "#people", "#meet", "#news", "#contact", "#partners"];
+    const expected = ["#about", "#program", "#campaign", "#people", "#meet", "#news", "#contact", "#partners"];
     const hrefs = await page.locator(".main-nav a").evaluateAll(
       (els) => els.map((a) => a.getAttribute("href"))
     );
@@ -211,9 +211,9 @@ test.describe("Starý Lískovec ON website", () => {
       .toBeGreaterThan(0);
   });
 
-  test("the O nás carousel has one slide per content.js entry, linking to Facebook", async ({ page }) => {
+  test("the Kampaň carousel has one slide per content.js entry, linking to Facebook", async ({ page }) => {
     const expected = await page.evaluate(() => CONTENT.carousel.length);
-    const carousel = page.locator("#about-carousel");
+    const carousel = page.locator("#campaign-carousel");
     await carousel.scrollIntoViewIfNeeded();
 
     await expect(carousel.locator(".carousel__slide")).toHaveCount(expected);
@@ -229,7 +229,7 @@ test.describe("Starý Lískovec ON website", () => {
   });
 
   test("carousel dots, arrow keys and the pause button work", async ({ page }) => {
-    const carousel = page.locator("#about-carousel");
+    const carousel = page.locator("#campaign-carousel");
     const slides = carousel.locator(".carousel__slide");
     await carousel.scrollIntoViewIfNeeded();
 

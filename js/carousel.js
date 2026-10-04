@@ -1,5 +1,5 @@
 /* ==========================================================================
-   carousel.js  —  the photo carousel above the O nás text
+   carousel.js  —  the photo carousel in the Kampaň section
    ==========================================================================
    The photos and their descriptions come from content.js → carousel: —
    edit them there, not here.
@@ -205,7 +205,7 @@ const CAROUSEL = (function () {
 
   /* ---- start ------------------------------------------------------------- */
   function init() {
-    root = document.getElementById("about-carousel");
+    root = document.getElementById("campaign-carousel");
     var items = (CONTENT.carousel || []).filter(function (it) { return it.image || (it.before && it.after); });
     if (!root || !items.length) return;
 

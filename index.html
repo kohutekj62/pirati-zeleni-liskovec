@@ -100,7 +100,7 @@
   <link rel="stylesheet" href="css/fonts.css?v=76ba7bf3" />
 
   <!-- All the styling lives here -->
-  <link rel="stylesheet" href="css/styles.css?v=358bc092" />
+  <link rel="stylesheet" href="css/styles.css?v=b015d993" />
 </head>
 
 <body>
@@ -123,6 +123,7 @@
       <nav class="main-nav" id="main-nav" aria-label="Hlavní menu">
         <a href="#about"    data-i18n="nav_about">O nás</a>
         <a href="#program"  data-i18n="nav_program">Program</a>
+        <a href="#campaign" data-i18n="nav_campaign">Kampaň</a>
         <a href="#people"   data-i18n="nav_people">Lidé</a>
         <a href="#meet"     data-i18n="nav_meet">Setkejme se</a>
         <a href="#news"     data-i18n="nav_news">Aktuality</a>
@@ -183,11 +184,6 @@
          ===================================================================== -->
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="container">
-        <!-- Photo carousel, opening the section above its title: the photos
-             take turns every few seconds, a click opens our Facebook. Built by
-             js/carousel.js from content.js → carousel: — the photos are in
-             assets/carousel/. -->
-        <div class="about__photo carousel" id="about-carousel" hidden></div>
         <header class="section__head">
           <h2 class="section__title" id="about-title" data-i18n="about_title">O nás</h2>
           <p class="section__lead" data-i18n="about_lead"></p>
@@ -195,6 +191,10 @@
         <div class="about__grid">
           <!-- Paragraphs are inserted here by render.js -->
           <div class="about__text" id="about-text"></div>
+          <!-- One photo placeholder for this section -->
+          <figure class="about__photo">
+            <img src="assets/team.jpg?v=e1f6a2e6" alt="Tým Piráti a Zelení pro Lískovec" />
+          </figure>
         </div>
       </div>
     </section>
@@ -215,10 +215,25 @@
     </section>
 
     <!-- ======================================================================
+         2b) KAMPAŇ  (Campaign)  — a photo carousel: the campaign posters and
+             before/after pairs take turns every few seconds, a click opens
+             our Facebook. Built by js/carousel.js from content.js → carousel:
+             — the photos are in assets/carousel/.
+         ===================================================================== -->
+    <section class="section" id="campaign" aria-labelledby="campaign-title">
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title" id="campaign-title" data-i18n="campaign_title">Kampaň</h2>
+        </header>
+        <div class="campaign__carousel carousel" id="campaign-carousel" hidden></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
          3) LIDÉ   — the candidates. Built by render.js from
                      content.js  →  people:
          ===================================================================== -->
-    <section class="section" id="people" aria-labelledby="people-title">
+    <section class="section section--alt" id="people" aria-labelledby="people-title">
       <div class="container">
         <header class="section__head">
           <h2 class="section__title" id="people-title" data-i18n="people_title">Lidé</h2>
@@ -235,7 +250,7 @@
          4) SETKEJME SE   — campaign events timeline. Built by render.js from
                             content.js  →  events:
          ===================================================================== -->
-    <section class="section section--alt" id="meet" aria-labelledby="meet-title">
+    <section class="section" id="meet" aria-labelledby="meet-title">
       <div class="container">
         <header class="section__head">
           <h2 class="section__title" id="meet-title" data-i18n="meet_title">Setkejme se</h2>
@@ -254,7 +269,7 @@
     <!-- ======================================================================
          5) AKTUALITY  (News)   — built by render.js from content.js → news:
          ===================================================================== -->
-    <section class="section" id="news" aria-labelledby="news-title">
+    <section class="section section--alt" id="news" aria-labelledby="news-title">
       <div class="container">
         <header class="section__head">
           <h2 class="section__title" id="news-title" data-i18n="news_title">Aktuality</h2>
@@ -379,6 +394,7 @@
         <h2 class="visually-hidden" data-i18n="footer_nav">Rozcestník</h2>
         <a href="#about"    data-i18n="nav_about">O nás</a>
         <a href="#program"  data-i18n="nav_program">Program</a>
+        <a href="#campaign" data-i18n="nav_campaign">Kampaň</a>
         <a href="#people"   data-i18n="nav_people">Lidé</a>
         <a href="#meet"     data-i18n="nav_meet">Setkejme se</a>
         <a href="#contact"  data-i18n="nav_contact">Spojme se</a>
@@ -406,16 +422,16 @@
       1) content.js  — all the text & data
       2) i18n.js     — the Czech/English switching
       3) render.js   — builds the lists from the content
-      3b) carousel.js — the photo carousel under O nás
+      3b) carousel.js — the photo carousel in the Kampaň section
       4) main.js     — menu, language button, forms
     (These are plain <script> tags so the site also works by just double-clicking
      index.html — no build step, no server required.)
   -->
-  <script src="js/content.js?v=1bc4c4e3"></script>
+  <script src="js/content.js?v=5dd21076"></script>
   <script src="js/fb-posts.js?v=dc6ad5ed"></script>
   <script src="js/i18n.js?v=2afdb0dd"></script>
   <script src="js/render.js?v=cbacae0f"></script>
-  <script src="js/carousel.js?v=687600d4"></script>
-  <script src="js/main.js?v=2cff3d12"></script>
+  <script src="js/carousel.js?v=67e84ad4"></script>
+  <script src="js/main.js?v=fbba7c37"></script>
 </body>
 </html>

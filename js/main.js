@@ -22,7 +22,7 @@
     I18N.initLang();        // read remembered language (Czech by default)
     I18N.apply();           // fill in all the fixed labels
     RENDER.renderAll();     // build the lists (program, people, events, …)
-    CAROUSEL.init();        // the photo carousel above the O nás text
+    CAROUSEL.init();        // the photo carousel in the Kampaň section
     updateLangToggle();     // show the right CZ/EN state on the switch
 
     document.getElementById("year").textContent = new Date().getFullYear();

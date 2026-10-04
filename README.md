@@ -44,12 +44,12 @@ Press `Ctrl + C` in the terminal to stop it.
 | File / folder | What it holds | Do you edit it? |
 |---|---|---|
 | **`js/content.js`** | ⭐ **All the text** (Czech + English), candidates, program, events, news, links | **Yes — this is your main file** |
-| `assets/` | Images: the logo, the elephant, candidate photos, the O nás carousel (`assets/carousel/`) | Yes — drop new photos here |
+| `assets/` | Images: the logo, the elephant, candidate photos, the Kampaň carousel (`assets/carousel/`) | Yes — drop new photos here |
 | `css/styles.css` | Colours, fonts, spacing, the whole look | Only to change the design |
 | `index.html` | The page structure (the skeleton) | Rarely |
 | `js/i18n.js` | The Czech/English switching machinery | No |
 | `js/render.js` | Builds the lists from `content.js` | No |
-| `js/carousel.js` | The O nás photo carousel (the photos themselves are in `content.js`) | No |
+| `js/carousel.js` | The Kampaň photo carousel (the photos themselves are in `content.js`) | No |
 | `js/main.js` | Clicks: menu, language, the elephant flip, forms | No |
 | `js/fb-posts.js` | The Facebook posts shown in the strip — **generated**, see section 12 | No — `npm run fb` writes it |
 | `pexeso/data/places.csv` | ⭐ **All pexeso content** — every place, description, coordinate, photo and link in one spreadsheet | **Yes — open in Excel** |
@@ -77,8 +77,8 @@ what each part does.
 1. Put the new photo in `assets/people/` (use a simple name: lowercase, no spaces, e.g. `jana-nova.jpg`).
 2. In `js/content.js`, find that person and change their `photo:` line to the new file name.
 
-### 🎞️ Change the O nás photo carousel
-The photos taking turns above the O nás text are listed in `js/content.js` under
+### 🎞️ Change the Kampaň photo carousel
+The photos taking turns in the **Kampaň** section are listed in `js/content.js` under
 **`carousel:`**, in the order they are shown. A click on a photo opens our Facebook
 page — or the exact post, if you paste its address into that photo's `link: ""`.
 

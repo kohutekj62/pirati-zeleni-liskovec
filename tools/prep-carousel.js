@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * prep-carousel.js — make web-ready copies of photos for the O nás carousel
+ * prep-carousel.js — make web-ready copies of photos for the Kampaň carousel
  *
  * WHY
  *   Photos straight from a phone or Google Drive weigh 1–5 MB each; the
- *   carousel shows a dozen of them right under the hero, so they have to be
+ *   carousel shows a dozen of them near the top of the page, so they have to be
  *   small. This turns each one into a WebP of at most 1000 px, typically
  *   80–150 kB, in assets/carousel/. Your originals are not touched.
  *
@@ -16,7 +16,7 @@
  *   zastavka-pred.jpg / zastavka-po.jpg for a before/after pair.
  *
  *   It then prints the lines to paste into js/content.js → carousel:
- *   (README section 4, "Change the O nás photo carousel").
+ *   (README section 4, "Change the Kampaň photo carousel").
  */
 
 const fs = require('fs');
