@@ -5,7 +5,8 @@
    edit them there, not here.
 
    What it does:
-   • Shows one photo at a time and fades to the next one every few seconds.
+   • Shows one photo at a time and fades to the next one every few seconds,
+     in a random order that is shuffled anew on every visit.
    • A before/after pair is one slide showing both photos together: side by
      side, or one above the other on a phone.
    • A click on the photo opens its Facebook post (or our Facebook page).
@@ -36,6 +37,15 @@ const CAROUSEL = (function () {
     if (cls) node.className = cls;
     for (var k in attrs || {}) node.setAttribute(k, attrs[k]);
     return node;
+  }
+
+  /* Put a list into a random order (Fisher–Yates shuffle). */
+  function shuffle(list) {
+    for (var i = list.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = list[i]; list[i] = list[j]; list[j] = tmp;
+    }
+    return list;
   }
 
   /* Which network a link points to, for screen readers ("… (Facebook)"). */
@@ -210,7 +220,7 @@ const CAROUSEL = (function () {
     root.setAttribute("aria-roledescription", "carousel");
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) playing = false;
 
-    build(items);
+    build(shuffle(items));   // items is a filtered copy, so content.js keeps its order
     applyText();
     show(0);
     root.hidden = false;

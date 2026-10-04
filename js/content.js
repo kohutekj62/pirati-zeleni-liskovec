@@ -454,7 +454,8 @@ const CONTENT = {
 
   /* ========================================================================
      4b) KAMPAŇ — PHOTO CAROUSEL  —  the photos that take turns in the
-         Kampaň section, a new one every few seconds. Shown in this order.
+         Kampaň section, a new one every few seconds. They are shuffled into
+         a new random order on every visit, so the order here does not matter.
          The photos live in assets/carousel/ — prepare new ones with
          "npm run carousel" (README section 4), it makes them small enough.
 
@@ -503,6 +504,26 @@ const CONTENT = {
     { image: "carousel/tadyjsmedoma-hana-blazek-hlavackova.webp", link: "",
       cs: "Hana Blažek Hlaváčková – oblíbené místo? Park na Točné. „Mám na něj hezké vzpomínky. Chodila jsem tam číst, když děti spaly v kočárku. Teď chodíme koukat na kachny. Je tady příjemný stín.“ #TADYJSMEDOMA",
       en: "Hana Blažek Hlaváčková – favourite place? The park on Točná street. “I have lovely memories of it. I used to go there to read while the kids slept in the pram. Now we go to watch the ducks. There's pleasant shade.” #TADYJSMEDOMA" },
+    { image: "carousel/kampan-vydejni-boxy.webp", link: "",
+      cs: "Nemusíme vymýšlet kolo… Stačí se obrátit na odborníky. Příručky Strategie pro výdejní boxy ve městě, Strategie kultivace města a Kuchařka kultivace českých měst.",
+      en: "No need to reinvent the wheel… Just turn to the experts. The handbooks Strategy for parcel lockers in the city, Strategy for cultivating the city and The cookbook of cultivating Czech towns." },
+    { image: "carousel/kampan-skolni-jidelna.webp", link: "",
+      cs: "Školní stravování v Kohoutovicích. Stačí chtít… Článek: První školní jídelna v Brně se švédskými stoly.",
+      en: "School meals in Kohoutovice. It just takes the will… An article: The first school canteen in Brno with a self-service buffet." },
+    { before: "carousel/kampan-kultura-pred.webp", after: "carousel/kampan-kultura-po.webp", link: "",
+      cs: { before: "Běžný kulturní přehled v Lískovci… Prázdná vývěska s jediným plakátem.",
+            after:  "11 akcí každý měsíc? S podporou městské části to jde samo. Měsíční program Knihovny Ostopovice." },
+      en: { before: "The usual cultural listings in Lískovec… An empty noticeboard with a single notice.",
+            after:  "11 events every month? With the district's support, it comes naturally. The monthly programme of the Ostopovice library." } },
+    { image: "carousel/kampan-lesni-skolka.webp", link: "",
+      cs: "Státní lesní školka? Žádný problém! Bohužel ne u nás… Lesní mateřská škola v Brně-Bosonohách.",
+      en: "A public forest kindergarten? No problem! Sadly not here… The forest kindergarten in Brno-Bosonohy." },
+    { image: "carousel/kampan-skola-ostopovice.webp", link: "",
+      cs: "Rekonstrukce MŠ a ZŠ může vypadat i takhle. Chce to vizi a odvahu! Mateřská a základní škola Ostopovice z výšky.",
+      en: "A nursery and primary school renovation can look like this too. It takes vision and courage! The Ostopovice nursery and primary school from above." },
+    { image: "carousel/kampan-sachovy-koutek.webp", link: "",
+      cs: "Šachový koutek může být klidným místem pro starší i mladší. Šachové kostky na veřejném prostranství v Brně-Bosonohách.",
+      en: "A chess corner can be a quiet place for old and young alike. Chess cubes in a public space in Brno-Bosonohy." },
   ],
 
   /* ========================================================================

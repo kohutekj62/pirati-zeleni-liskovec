@@ -79,7 +79,8 @@ what each part does.
 
 ### 🎞️ Change the Kampaň photo carousel
 The photos taking turns in the **Kampaň** section are listed in `js/content.js` under
-**`carousel:`**, in the order they are shown. A click on a photo opens our Facebook
+**`carousel:`**. They are shown in a random order, shuffled anew for every visitor, so
+it does not matter where in the list you add one. A click on a photo opens our Facebook
 page — or the exact post, if you paste its address into that photo's `link: ""`.
 
 1. **Make web-ready copies.** Photos from a phone or Google Drive are far too big for
