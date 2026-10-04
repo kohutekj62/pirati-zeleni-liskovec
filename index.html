@@ -100,7 +100,7 @@
   <link rel="stylesheet" href="css/fonts.css?v=76ba7bf3" />
 
   <!-- All the styling lives here -->
-  <link rel="stylesheet" href="css/styles.css?v=7d4569d4" />
+  <link rel="stylesheet" href="css/styles.css?v=36bcf117" />
 </head>
 
 <body>
@@ -265,23 +265,25 @@
     </section>
 
     <!-- ======================================================================
-         5b) ZE SOCIÁLNÍCH SÍTÍ  — a strip of hand-picked Facebook and
-              Instagram posts. They are copied onto this site from the social/
-              folder by "npm run social" (tools/import-social.js) and live in
-              js/social-posts.js — nothing is loaded from Facebook or Instagram
-              while someone browses the site, so no cookies and no cookie
-              banner. Stays hidden until there is something to show.
+         5b) Z FACEBOOKU  — a strip of the latest posts from our Facebook page.
+              The texts and photos are copied onto this site by "npm run fb"
+              (tools/fetch-fb-posts.js) and live in js/fb-posts.js — nothing
+              is loaded from Facebook while someone browses the site, so no
+              cookies and no cookie banner. Stays hidden until there is
+              something to show.
          ===================================================================== -->
-    <section class="section section--alt" id="social" aria-labelledby="social-title" hidden>
+    <section class="section section--alt" id="fb" aria-labelledby="fb-title" hidden>
       <div class="container">
         <header class="section__head">
-          <h2 class="section__title" id="social-title" data-i18n="social_title">Ze sociálních sítí</h2>
-          <p class="section__lead" data-i18n="social_lead"></p>
+          <h2 class="section__title" id="fb-title" data-i18n="fb_title">Z Facebooku</h2>
+          <p class="section__lead" data-i18n="fb_lead"></p>
         </header>
         <!-- Post cards appear here -->
-        <div class="social-strip" id="social-strip"></div>
-        <!-- "Follow us" buttons, one per network in content.js → config -->
-        <p class="social-follow" id="social-follow"></p>
+        <div class="fb-strip" id="fb-strip"></div>
+        <p class="fb-follow">
+          <a class="btn btn--ghost" id="fb-follow-link" href="https://www.facebook.com/pirati.staryliskovec/"
+             target="_blank" rel="noopener noreferrer" data-i18n="fb_follow">Sledovat nás na Facebooku</a>
+        </p>
       </div>
     </section>
 
@@ -407,10 +409,10 @@
     (These are plain <script> tags so the site also works by just double-clicking
      index.html — no build step, no server required.)
   -->
-  <script src="js/content.js?v=52d842ad"></script>
-  <script src="js/social-posts.js?v=61d60fbe"></script>
+  <script src="js/content.js?v=71cf950f"></script>
+  <script src="js/fb-posts.js?v=dc6ad5ed"></script>
   <script src="js/i18n.js?v=2afdb0dd"></script>
-  <script src="js/render.js?v=d605537b"></script>
+  <script src="js/render.js?v=cbacae0f"></script>
   <script src="js/main.js?v=c1f92de6"></script>
 </body>
 </html>

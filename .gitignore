@@ -28,5 +28,5 @@ Thumbs.db
 .claude/*
 !.claude/skills/
 
-# --- Facebook page access token from the old Graph API fetcher (never upload!) ---
+# --- Facebook page access token for tools/fetch-fb-posts.js (never upload!) ---
 .fb-token

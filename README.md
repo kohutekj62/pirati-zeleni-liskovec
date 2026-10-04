@@ -50,8 +50,7 @@ Press `Ctrl + C` in the terminal to stop it.
 | `js/i18n.js` | The Czech/English switching machinery | No |
 | `js/render.js` | Builds the lists from `content.js` | No |
 | `js/main.js` | Clicks: menu, language, the elephant flip, forms | No |
-| `social/` | ⭐ Facebook / Instagram posts picked for the web — a `.txt` + photo per post, see section 12 | **Yes — drop posts here** |
-| `js/social-posts.js` | Those posts, ready for the page — **generated** | No — `npm run social` writes it |
+| `js/fb-posts.js` | The Facebook posts shown in the strip — **generated**, see section 12 | No — `npm run fb` writes it |
 | `pexeso/data/places.csv` | ⭐ **All pexeso content** — every place, description, coordinate, photo and link in one spreadsheet | **Yes — open in Excel** |
 | `pexeso/index.html` | The game engine (screens, card flip, scoring, CSV loader) | No |
 | `tests/` | Automated tests | No (just run them) |
@@ -314,80 +313,84 @@ That's it — `https://www.staryliskovec-on.cz` now shows your site.
 3. When Street View opens, look at the URL — it contains something like `@49.1755,16.5900,3a,75y,**135**h`. The number before `h` is the azimuth (heading).
 4. Copy the latitude and longitude into `lat` / `lng`, and the heading into `azimuth`.
 
-## 12. Social media — Facebook & Instagram posts on the website
+## 12. The Facebook strip — your page posts on the website
 
-Under the Kronika there is a strip called **Ze sociálních sítí** with a few posts
-**you pick** from our Facebook and Instagram. If no posts are picked, the strip
-does not appear on the page at all.
+Under the Kronika there is a strip called **Z Facebooku** with the last few posts
+from the coalition's Facebook page.
 
-**Why the posts are copied, not embedded.** Facebook and Instagram offer ready-made
-boxes you can paste into a page, but they load from Meta while someone is browsing
-our site: they would set Meta's cookies on every visitor, which means we would
-legally need a cookie banner, and they ignore our design. So the posts are copied
-onto our own site instead — a visitor's browser never talks to Facebook or
-Instagram. And because we have no access to Meta's developer API, the copying is
-done by hand: a few minutes per post.
+**How it works — and why it is not Facebook's own widget.** Facebook offers a
+ready-made box you can paste into a page, but it loads from Facebook while
+someone is browsing our site: it would set Meta's cookies on every visitor, which
+means we would legally need a cookie banner, and it ignores our design. So we do
+it the other way round: **you** download the posts onto your computer, they get
+published together with the rest of the site, and a visitor's browser never talks
+to Facebook at all. No cookies, no banner, and the posts look like the rest of
+the site.
 
-### Adding a post
+The price is that the strip does not update itself — it refreshes when you run
+one command (below). If there are no posts downloaded, the strip does not appear
+on the page at all.
 
-1. **Copy the link to the post.**
-   *Facebook:* click the date under the page name, then copy the address from the
-   browser bar. *Instagram:* the **⋯** menu on the post → **Copy link**.
-2. **Get its photo.** The original from whoever took it is best. Otherwise, on
-   Facebook right-click the photo → *Save image as…*; Instagram does not allow
-   that, so take a screenshot and crop it. One photo per post — for a gallery,
-   pick the best one.
-3. **Make a text file in the `social/` folder.** Name it with the date of the post
-   and a few words, e.g. `2026-09-23-prochazka.txt`. Inside: the link on the first
-   line, an empty line, then the text of the post pasted as it is:
+### Everyday use
 
-   ```text
-   https://www.facebook.com/pirati.staryliskovec/posts/pfbid02abc…
+```bash
+npm run fb      # downloads the latest posts + photos
+npm run serve   # have a look at the site (optional)
+git add -A && git commit -m "Refresh the Facebook strip" && git push
+```
 
-   Ve středu jsme opět vyrazili na procházku, tentokrát jižní částí…
-   ```
+Then publish as usual (section 7). The texts land in `js/fb-posts.js` and the
+photos in `assets/fb/` — both are ordinary files in the repository, so whatever
+you see locally is exactly what goes live.
 
-   Whether it is Facebook or Instagram is read from the link. Line breaks are kept.
-4. **Put the photo next to it, with the same name:** `2026-09-23-prochazka.jpg`
-   (`.png` and `.webp` work too). A post without a photo is fine.
-5. **Build and check:**
+The strip keeps the **6 newest posts that have some text**. Photo-only posts are
+skipped. Photos of posts that dropped off the strip are deleted automatically.
 
-   ```bash
-   npm run social   # makes small web copies of the photos + js/social-posts.js
-   npm run serve    # have a look at the site (optional)
-   git add -A && git commit -m "social: add the walk of 23 September" && git push
-   ```
+### One-time setup — the access token
 
-   Then publish as usual (section 7).
+`npm run fb` needs a password-like key ("Page access token") that lets it read
+your own page. Making one is free and takes about fifteen minutes of clicking in
+Facebook's developer site. You must be an **administrator of the Facebook page**.
 
-**To take a post off the web**, delete its two files from `social/` and run
-`npm run social` again. Its web photo in `assets/social/` disappears on its own.
+1. Go to **developers.facebook.com** and log in with the account that administers
+   the page. Accept the developer registration if it asks.
+2. **My Apps → Create App.** For "What do you want your app to do?" pick
+   **Other**, then app type **Business**. Name it anything (e.g. "Web SLON").
+   The app can stay in *development* mode forever — you are not publishing an app
+   and no review by Meta is needed, because you are an admin of both the app and
+   the page.
+3. Open the **Graph API Explorer**: developers.facebook.com/tools/explorer
+4. Top right, pick your app in the **Meta App** dropdown.
+5. In **Permissions**, add `pages_show_list` and `pages_read_engagement`.
+6. Click **Generate Access Token** and approve the dialog that opens (make sure
+   the coalition page is ticked).
+7. The token you now have is short-lived (about an hour). To get a permanent one:
+   - open the **Access Token Debugger**: developers.facebook.com/tools/debug/accesstoken
+   - paste the token, click **Debug**, then **Extend Access Token** at the bottom
+   - copy the extended token, go back to the Explorer, paste it in the token
+     field and call `me/accounts`
+   - in the answer find your page and copy its `access_token` — **this** is the
+     one you want. Page tokens made this way do not expire.
+8. In the project folder create a file called **`.fb-token`** and paste the token
+   into it as the only line. The file is git-ignored, so it stays on your
+   computer and never reaches GitHub.
 
-### Good to know
+Then run `npm run fb`. It should print the page name and how many posts it saved.
 
-- The newest post comes first. Four to eight posts is plenty — when you add new
-  ones, remove the oldest.
-- A card shows only the first few lines of the text; "Celý příspěvek na…" opens the
-  whole post on Facebook or Instagram.
-- The posts stay in Czech on the English version of the site (the heading says so).
-- A post that already has its own story in the Kronika does not need to be here
-  too — this strip is for what the Kronika does not cover.
-- Republishing a photo on the website is a new publication: the same care about
-  recognisable people, and children especially, applies as for the Kronika.
-- Never edit `js/social-posts.js` or `assets/social/` by hand — `npm run social`
-  rewrites them from `social/` every time.
+> **Never put the token anywhere else** — not into `content.js`, not into a commit
+> message, not into a chat. Anyone who has it can read your page through the API.
+> If it leaks, remove the app in Facebook settings and make a new token.
 
-### When `npm run social` complains
+### When it stops working
 
-It checks every file and changes nothing until all of them are right. It tells
-you which file is wrong:
+Facebook refuses the request and the script prints why. The usual causes:
 
 | What it says | What to do |
 |---|---|
-| the name must start with the date | rename the file to `YYYY-MM-DD-something.txt` |
-| the first line must be the link | put the post's link on the very first line of the `.txt` |
-| more than one photo with this name | keep one photo per post |
-| photo without a matching `.txt` | the photo and the text file must have exactly the same name |
+| token expired / invalid | make a new token (step 7 above) |
+| unsupported version | Meta retired that API version: `FB_API_VERSION=v24.0 npm run fb` (try the next number up), then change the default in `tools/fetch-fb-posts.js` |
+| missing permission | the token lacks `pages_read_engagement` — redo steps 5–7 |
+| nothing saved, no error | the last posts are photo-only; the strip only takes posts with text |
 
 ---
 
