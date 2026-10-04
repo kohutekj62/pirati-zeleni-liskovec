@@ -244,13 +244,15 @@ test.describe("Starý Lískovec ON website", () => {
     await expect(slides.nth(2)).toHaveClass(/is-active/);
     await expect(carousel.locator(".carousel__dot").nth(2)).toHaveAttribute("aria-current", "true");
 
-    // On a before/after pair, → first reveals the "after" photo, then moves on
+    // A before/after pair shows both photos at once, and → moves on from it
     const pair = await page.evaluate(() => CONTENT.carousel.findIndex((it) => it.before && it.after));
     await carousel.locator(".carousel__dot").nth(pair).focus();
     await page.keyboard.press("Enter");
     await expect(slides.nth(pair)).toHaveClass(/is-active/);
-    await page.keyboard.press("ArrowRight");
-    await expect(slides.nth(pair)).toHaveClass(/is-after/);
+    const photos = slides.nth(pair).locator(".carousel__pair .carousel__img");
+    await expect(photos).toHaveCount(2);
+    await expect(photos.first()).toBeVisible();
+    await expect(photos.last()).toBeVisible();
     await page.keyboard.press("ArrowRight");
     await expect(slides.nth(pair + 1)).toHaveClass(/is-active/);
   });

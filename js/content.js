@@ -264,7 +264,8 @@ const CONTENT = {
          • A single photo:      { image: "carousel/….webp", link: "", cs: "…", en: "…" },
          • A before/after pair: { before: "…", after: "…", link: "",
                                   cs: { before: "…", after: "…" }, en: { … } },
-           shown as one slide: the "before" photo, then it fades into the "after".
+           shown as one slide with both photos together: side by side, on a
+           phone one above the other.
 
          link: where a click on the photo goes — paste the address of the
                Facebook post it comes from. Left "" it opens our Facebook page.

@@ -6,8 +6,8 @@
 
    What it does:
    • Shows one photo at a time and fades to the next one every few seconds.
-   • A before/after pair is one slide: the "before" photo first, then it
-     fades into the "after" one, then the carousel moves on.
+   • A before/after pair is one slide showing both photos together: side by
+     side, or one above the other on a phone.
    • A click on the photo opens its Facebook post (or our Facebook page).
    • Pauses while the mouse is over it, while a control has keyboard focus,
      while it is scrolled out of view and while the browser tab is hidden.
@@ -22,12 +22,11 @@
 const CAROUSEL = (function () {
 
   /* How long each thing stays on screen, in milliseconds. */
-  var SHOW_PHOTO  = 5000;   // a single photo
-  var SHOW_BEFORE = 3000;   // the "before" half of a pair …
-  var SHOW_AFTER  = 4500;   // … and the "after" half
+  var SHOW_PHOTO = 5000;    // a single photo
+  var SHOW_PAIR  = 7000;    // a before/after pair — two photos to take in
 
   var root, slides = [], dots = [], toggle;
-  var current = 0, showingAfter = false;
+  var current = 0;
   var playing = true;        // what the visitor chose with the ⏸/⏵ button
   var inView = false, hovered = false, focused = false;
   var timer = null;
@@ -65,12 +64,17 @@ const CAROUSEL = (function () {
       /* (the photos get their address only in load() — that defers the download) */
       var main     = el("img", "carousel__img", lazy);
       a.appendChild(backdrop);
-      a.appendChild(main);
 
       var after = null;
       if (isPair) {
-        after = el("img", "carousel__img carousel__img--after", lazy);
-        a.appendChild(after);
+        /* Both photos at once, "before" first in reading order */
+        after = el("img", "carousel__img", lazy);
+        var pair = el("div", "carousel__pair");
+        pair.appendChild(main);
+        pair.appendChild(after);
+        a.appendChild(pair);
+      } else {
+        a.appendChild(main);
       }
       var where = el("span", "visually-hidden");
       where.textContent = " (" + networkName(url) + ")";
@@ -174,16 +178,12 @@ const CAROUSEL = (function () {
     s.loaded = true;
   }
 
-  function show(i, after) {
+  function show(i) {
     current = (i + slides.length) % slides.length;
-    showingAfter = !!after;
     load(current);
     load((current + 1) % slides.length);     // fetch the next one in the meantime
 
-    slides.forEach(function (s, k) {
-      s.node.classList.toggle("is-active", k === current);
-      s.node.classList.toggle("is-after", k === current && showingAfter);
-    });
+    slides.forEach(function (s, k) { s.node.classList.toggle("is-active", k === current); });
     dots.forEach(function (d, k) {
       if (k === current) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current");
     });
@@ -191,28 +191,16 @@ const CAROUSEL = (function () {
 
   function isPair(i) { return !!slides[i].imgs[2]; }
 
-  /* One step forward or back — through the "after" half of a pair too. */
-  function step(dir) {
-    if (dir > 0) {
-      if (isPair(current) && !showingAfter) show(current, true);
-      else show(current + 1, false);
-    } else {
-      if (isPair(current) && showingAfter) show(current, false);
-      else { var prev = (current - 1 + slides.length) % slides.length; show(prev, isPair(prev)); }
-    }
-    schedule();
-  }
+  function step(dir) { show(current + dir); schedule(); }
+  function go(i)     { show(i);             schedule(); }
 
-  function go(i) { show(i, false); schedule(); }
-
-  /* (Re)start the countdown to the next step — or stop it if the carousel
+  /* (Re)start the countdown to the next slide — or stop it if the carousel
      should not move right now. */
   function schedule() {
     clearTimeout(timer);
     timer = null;
     if (!playing || !inView || hovered || focused || document.hidden || slides.length < 2) return;
-    var wait = isPair(current) ? (showingAfter ? SHOW_AFTER : SHOW_BEFORE) : SHOW_PHOTO;
-    timer = setTimeout(function () { step(1); }, wait);
+    timer = setTimeout(function () { step(1); }, isPair(current) ? SHOW_PAIR : SHOW_PHOTO);
   }
 
   /* ---- start ------------------------------------------------------------- */
@@ -227,7 +215,7 @@ const CAROUSEL = (function () {
 
     build(items);
     applyText();
-    show(0, false);
+    show(0);
     root.hidden = false;
     schedule();
 

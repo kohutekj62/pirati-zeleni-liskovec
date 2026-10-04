@@ -26,7 +26,7 @@ const sharp = require('sharp');
 const ROOT = path.resolve(__dirname, '..');
 const OUT_DIR = 'assets/carousel';
 
-/* The carousel is at most 760 px wide; 1000 px keeps photos and the text on
+/* The carousel is at most 900 px wide; 1000 px keeps photos and the text on
    the posters sharp on high-density screens. */
 const MAX_SIDE = 1000;
 const QUALITY = 75;

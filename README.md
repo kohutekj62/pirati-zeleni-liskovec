@@ -94,7 +94,7 @@ page — or the exact post, if you paste its address into that photo's `link: ""
 2. **Add them to `carousel:`** — copy an existing block and edit it:
    - a single photo: `{ image: "carousel/name.webp", link: "", cs: "…", en: "…" },`
    - a before/after pair: `{ before: "carousel/…-pred.webp", after: "carousel/…-po.webp", link: "", cs: { before: "…", after: "…" }, en: { … } },`
-     — shown as one slide: the "before" photo, which then fades into the "after" one.
+     — shown as one slide with both photos together: side by side, on a phone one above the other.
 
    `cs` / `en` describe the photo for people who cannot see it (screen readers). They
    never appear on the photo itself.
