@@ -100,7 +100,7 @@
   <link rel="stylesheet" href="css/fonts.css?v=76ba7bf3" />
 
   <!-- All the styling lives here -->
-  <link rel="stylesheet" href="css/styles.css?v=f34ab2c5" />
+  <link rel="stylesheet" href="css/styles.css?v=358bc092" />
 </head>
 
 <body>
@@ -183,6 +183,11 @@
          ===================================================================== -->
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="container">
+        <!-- Photo carousel, opening the section above its title: the photos
+             take turns every few seconds, a click opens our Facebook. Built by
+             js/carousel.js from content.js → carousel: — the photos are in
+             assets/carousel/. -->
+        <div class="about__photo carousel" id="about-carousel" hidden></div>
         <header class="section__head">
           <h2 class="section__title" id="about-title" data-i18n="about_title">O nás</h2>
           <p class="section__lead" data-i18n="about_lead"></p>
@@ -190,10 +195,6 @@
         <div class="about__grid">
           <!-- Paragraphs are inserted here by render.js -->
           <div class="about__text" id="about-text"></div>
-          <!-- Photo carousel: the photos take turns every few seconds, a click
-               opens our Facebook. Built by js/carousel.js from
-               content.js → carousel: — the photos are in assets/carousel/. -->
-          <div class="about__photo carousel" id="about-carousel" hidden></div>
         </div>
       </div>
     </section>

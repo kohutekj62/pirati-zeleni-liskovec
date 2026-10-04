@@ -327,12 +327,13 @@ h1, h2, h3 { line-height: 1.05; margin: 0 0 0.4em; }
 /* ----------------------------------------------------------------------------
    O NÁS  (About)
    ---------------------------------------------------------------------------- */
-/* Stacked layout: the photo carousel leads, the text reads below it */
+/* Stacked layout: the photo carousel opens the section, above its title;
+   the text reads below */
 .about__grid { display: grid; grid-template-columns: 1fr; gap: var(--gap); justify-items: center; }
 .about__text { max-width: 72ch; }
 .about__text p { margin: 0 0 1rem; font-size: 1.08rem; }
 .about__text p:first-child { font-size: 1.3rem; font-weight: 500; } /* lead-in sentence stands out through size + weight, not colour */
-.about__photo { order: -1; width: 100%; max-width: 900px; }
+.about__photo { max-width: 900px; margin: 0 auto clamp(2rem, 5vw, 3.5rem); }
 
 /* ---- Photo carousel (js/carousel.js) ------------------------------------
    The slides sit on top of each other and cross-fade. Photos are never
@@ -799,10 +800,9 @@ body.poster-open { overflow: hidden; }
 
   .about__grid,
   .contact__grid { grid-template-columns: 1fr; }
-  /* On mobile: show the photo carousel above the body text, full-bleed to the screen edges */
+  /* On mobile: the photo carousel runs full-bleed to the screen edges */
   .about__photo {
-    order: -1;
-    justify-self: stretch; width: auto;               /* fill the row, so the margins below can widen it */
+    width: auto;                                      /* so the margins below can widen it */
     margin-inline: calc(-1 * clamp(1rem, 4vw, 2rem)); /* cancel the container padding */
   }
   .carousel__viewport { border-radius: 0; }
