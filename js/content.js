@@ -649,13 +649,6 @@ const CONTENT = {
                               falls back to the shared OG image if omitted.
      ====================================================================== */
   events: [
-    { date: "2026-10-04", time: "15:00",
-      fb:  "https://www.facebook.com/blechyvkozichu/",
-      host: "Blechy v kožichu z.s.",
-      image: "event-drakiada-4-10.jpg",
-      map: "https://mapy.com/cs/turisticka?source=coor&id=16.5677164%2C49.1713744&x=16.5677164&y=49.1713744&z=18&ovl=3",
-      cs: { title: "Drakiáda", place: "Dětské hřiště, Mikuláškovo nám. 1", desc: "Pojďte s námi rozzářit podzimní nebe! Zábava pro děti i dospělé na dětském hřišti na Mikuláškově náměstí. Draka s sebou!" },
-      en: { title: "Kite Festival", place: "Playground, Mikuláškovo nám. 1", desc: "Come and light up the autumn sky with us! Fun for children and grown-ups alike at the playground on Mikuláškovo náměstí. Bring your own kite!" } },
     { date: "2026-10-07", time: "10:00–18:00",
       fb:  "https://www.facebook.com/blechyvkozichu/",
       host: "Blechy v kožichu z.s.",
@@ -671,6 +664,9 @@ const CONTENT = {
         • image → file in assets/  (or "" to show a branded placeholder).
      ====================================================================== */
   news: [
+    { date: "2026-10-04", image: "news-drakiada-4-10.jpg",
+      cs: { title: "Drakiáda", excerpt: "Drakiádu jsme si užili i v absolutním bezvětří. Hlavně že jsme měli dost skořicových sušenek pro všechny." },
+      en: { title: "Kite Festival", excerpt: "We enjoyed the kite festival even with not a breath of wind. What mattered most: there were enough cinnamon biscuits for everyone." } },
     { date: "2026-09-24", image: "news-sudoku-24-9.jpg",
       cs: { title: "III. sudoku večer", excerpt: "Ve čtvrtek jsme se sešli v suterénu lískovecké polikliniky a zasoutěžil si v luštění sudoku. Mistr světa byl k všeobecnému překvapení poražen jednou z účastnic. Zástupci Pirátů si vedli obstojně, zástupci Zelených mizerně." },
       en: { title: "3rd Sudoku Evening", excerpt: "On Thursday we met in the basement of the Lískovec clinic for a sudoku contest. To everyone's surprise, the world champion was beaten by one of the participants. The Pirates held their own — the Greens, not so much." } },
