@@ -211,52 +211,53 @@ test.describe("Starý Lískovec ON website", () => {
       .toBeGreaterThan(0);
   });
 
-  test("the Kampaň carousel has one slide per content.js entry, linking to Facebook", async ({ page }) => {
-    const expected = await page.evaluate(() => CONTENT.carousel.length);
-    const carousel = page.locator("#campaign-carousel");
-    await carousel.scrollIntoViewIfNeeded();
+  test("the Kampaň section runs one carousel per content.js entry, each slide linking to Facebook", async ({ page }) => {
+    const groups = await page.evaluate(() => CONTENT.carousels.map((g) => g.slides.length));
+    const box = page.locator("#campaign-carousel");
+    await box.scrollIntoViewIfNeeded();
 
-    await expect(carousel.locator(".carousel__slide")).toHaveCount(expected);
-    await expect(carousel.locator(".carousel__dot")).toHaveCount(expected);
-    await expect(carousel.locator(".carousel__slide.is-active")).toHaveCount(1);
-    for (const href of await carousel.locator(".carousel__slide").evaluateAll((as) => as.map((a) => a.href))) {
-      expect(href, "every slide should open Facebook or Instagram").toMatch(/facebook\.com|instagram\.com/);
+    const carousels = box.locator(".carousel");
+    await expect(carousels).toHaveCount(groups.length);
+    for (let i = 0; i < groups.length; i++) {
+      const c = carousels.nth(i);
+      await expect(c.locator(".carousel__slide")).toHaveCount(groups[i]);
+      await expect(c.locator(".carousel__dot")).toHaveCount(groups[i]);
+      await expect(c.locator(".carousel__slide.is-active")).toHaveCount(1);
+    }
+    for (const href of await box.locator(".carousel__slide").evaluateAll((as) => as.map((a) => a.href))) {
+      expect(href, "every slide should open Facebook or Instagram").toMatch(/facebook.com|instagram.com/);
     }
     // The photo on show really loads
-    const img = carousel.locator(".carousel__slide.is-active .carousel__img").first();
+    const img = carousels.first().locator(".carousel__slide.is-active .carousel__img");
     await expect.poll(() => img.evaluate((el) => el.naturalWidth), "carousel photo should have loaded")
       .toBeGreaterThan(0);
   });
 
-  test("carousel dots, arrow keys and the pause button work", async ({ page }) => {
-    const carousel = page.locator("#campaign-carousel");
+  test("a story carousel goes through its photos in order, switching by itself and with arrow keys", async ({ page }) => {
+    const carousel = page.locator("#campaign-carousel .carousel").first();   // story 1 is order: fixed
     const slides = carousel.locator(".carousel__slide");
     await carousel.scrollIntoViewIfNeeded();
 
-    // Pause first, so the automatic advance cannot interfere
-    const toggle = carousel.locator(".carousel__toggle");
-    const playingLabel = await toggle.getAttribute("aria-label");
-    await toggle.click();
-    await expect(toggle).not.toHaveAttribute("aria-label", playingLabel);
+    // No pause button or dots on screen
+    await expect(carousel.locator(".carousel__toggle")).toBeHidden();
+    await expect(carousel.locator(".carousel__dot").first()).toBeHidden();
 
-    // A dot jumps to its slide
-    await carousel.locator(".carousel__dot").nth(2).click();
-    await expect(slides.nth(2)).toHaveClass(/is-active/);
-    await expect(carousel.locator(".carousel__dot").nth(2)).toHaveAttribute("aria-current", "true");
+    // Fixed order: slide k holds the k-th photo listed in content.js
+    const listed = await page.evaluate(() => CONTENT.carousels[0].slides.map((s) => s.image));
+    const shown = await slides.evaluateAll((as) => as.map((a) => a.querySelector(".carousel__img").getAttribute("src") || ""));
+    shown.forEach((src, i) => { if (src) expect(src).toBe("assets/" + listed[i]); });
 
-    // A before/after pair shows both photos at once, and → moves on from it
-    // (the slides are shuffled on every visit, so find a pair on the page itself)
-    const pair = await slides.evaluateAll((as) => as.findIndex((a) => a.querySelector(".carousel__pair")));
-    const count = await slides.count();
-    await carousel.locator(".carousel__dot").nth(pair).focus();
-    await page.keyboard.press("Enter");
-    await expect(slides.nth(pair)).toHaveClass(/is-active/);
-    const photos = slides.nth(pair).locator(".carousel__pair .carousel__img");
-    await expect(photos).toHaveCount(2);
-    await expect(photos.first()).toBeVisible();
-    await expect(photos.last()).toBeVisible();
+    // It moves on by itself (park the mouse away so hover does not pause it)
+    await page.mouse.move(0, 0);
+    await expect(slides.nth(0)).toHaveClass(/is-active/);
+    await expect(slides.nth(1)).toHaveClass(/is-active/, { timeout: 9000 });
+
+    // → moves on to the next photo, ← goes back
+    await slides.nth(1).focus();
     await page.keyboard.press("ArrowRight");
-    await expect(slides.nth((pair + 1) % count)).toHaveClass(/is-active/);
+    await expect(slides.nth(2)).toHaveClass(/is-active/);
+    await page.keyboard.press("ArrowLeft");
+    await expect(slides.nth(1)).toHaveClass(/is-active/);
   });
 });
 

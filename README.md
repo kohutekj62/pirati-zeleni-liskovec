@@ -49,7 +49,7 @@ Press `Ctrl + C` in the terminal to stop it.
 | `index.html` | The page structure (the skeleton) | Rarely |
 | `js/i18n.js` | The Czech/English switching machinery | No |
 | `js/render.js` | Builds the lists from `content.js` | No |
-| `js/carousel.js` | The Kampaň photo carousel (the photos themselves are in `content.js`) | No |
+| `js/carousel.js` | The Kampaň photo carousels (the photos themselves are in `content.js`) | No |
 | `js/main.js` | Clicks: menu, language, the elephant flip, forms | No |
 | `js/fb-posts.js` | The Facebook posts shown in the strip — **generated**, see section 12 | No — `npm run fb` writes it |
 | `pexeso/data/places.csv` | ⭐ **All pexeso content** — every place, description, coordinate, photo and link in one spreadsheet | **Yes — open in Excel** |
@@ -77,32 +77,37 @@ what each part does.
 1. Put the new photo in `assets/people/` (use a simple name: lowercase, no spaces, e.g. `jana-nova.jpg`).
 2. In `js/content.js`, find that person and change their `photo:` line to the new file name.
 
-### 🎞️ Change the Kampaň photo carousel
-The photos taking turns in the **Kampaň** section are listed in `js/content.js` under
-**`carousel:`**. They are shown in a random order, shuffled anew for every visitor, so
-it does not matter where in the list you add one. A click on a photo opens our Facebook
-page — or the exact post, if you paste its address into that photo's `link: ""`.
+### 🎞️ Change the Kampaň photo carousels
+The **Kampaň** section shows several small carousels side by side (one under the other on a
+phone). They are listed in `js/content.js` under **`carousels:`** — each has a `title`,
+an `order` and its `slides`:
+
+- `order: "fixed"` — photos change in the order listed (use it for a story, or a before → after).
+- `order: "random"` — shuffled anew for every visitor.
+- `shape: "portrait" | "landscape"` — the shape of that carousel's photos.
+
+A click on a photo opens our Facebook page — or the exact post, if you paste its address into
+that photo's `link: ""`.
 
 1. **Make web-ready copies.** Photos from a phone or Google Drive are far too big for
-   the web. Rename the originals to something simple first (e.g. `zastavka-pred.jpg`,
-   `zastavka-po.jpg`), then run:
+   the web. Rename the originals to something simple first, then run:
 
    ```bash
-   npm run carousel -- "C:\Users\me\Downloads\zastavka-pred.jpg" "C:\Users\me\Downloads\zastavka-po.jpg"
+   npm run carousel -- "C:\Users\me\Downloads\pribeh-c-1.jpg" "C:\Users\me\Downloads\pribeh-c-2.jpg"
    ```
 
    Small `.webp` copies appear in `assets/carousel/`; your originals stay as they are.
-2. **Add them to `carousel:`** — copy an existing block and edit it:
-   - a single photo: `{ image: "carousel/name.webp", link: "", cs: "…", en: "…" },`
-   - a before/after pair: `{ before: "carousel/…-pred.webp", after: "carousel/…-po.webp", link: "", cs: { before: "…", after: "…" }, en: { … } },`
-     — shown as one slide with both photos together: side by side, on a phone one above the other.
+2. **Add them** to a carousel's `slides:` — copy an existing slide and edit it:
+   `{ image: "carousel/name.webp", link: "", cs: "…", en: "…" },`
+   A before/after is simply two slides in a row (before first). For a new carousel, copy a whole
+   `{ title: …, slides: [ … ] }` block.
 
    `cs` / `en` describe the photo for people who cannot see it (screen readers). They
    never appear on the photo itself.
-3. **To remove a photo,** delete its block, and its file from `assets/carousel/`.
+3. **To remove a photo,** delete its slide, and its file from `assets/carousel/`.
 
-The carousel pauses on its own while the mouse is over it, and visitors can stop it
-with the ⏸ button under it.
+The carousels start a moment apart, pause while the mouse is over them, and visitors can stop
+each one with the ⏸ button under it.
 
 ### ➕ Add or remove a candidate / program point / event / news post
 In `js/content.js`, each item is one block inside `{ ... }`.

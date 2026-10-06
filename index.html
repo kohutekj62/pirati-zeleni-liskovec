@@ -100,7 +100,7 @@
   <link rel="stylesheet" href="css/fonts.css?v=76ba7bf3" />
 
   <!-- All the styling lives here -->
-  <link rel="stylesheet" href="css/styles.css?v=9396cd25" />
+  <link rel="stylesheet" href="css/styles.css?v=2e84568c" />
 </head>
 
 <body>
@@ -216,8 +216,8 @@
 
     <!-- ======================================================================
          2b) KAMPAŇ  (Campaign)  — a photo carousel: the campaign posters and
-             before/after pairs take turns every few seconds, a click opens
-             our Facebook. Built by js/carousel.js from content.js → carousel:
+             before → after photos take turns in several parallel carousels, a click opens
+             our Facebook. Built by js/carousel.js from content.js → carousels:
              — the photos are in assets/carousel/.
          ===================================================================== -->
     <section class="section" id="campaign" aria-labelledby="campaign-title">
@@ -225,7 +225,7 @@
         <header class="section__head">
           <h2 class="section__title" id="campaign-title" data-i18n="campaign_title">Kampaň</h2>
         </header>
-        <div class="campaign__carousel carousel" id="campaign-carousel" hidden></div>
+        <div class="campaign__carousel" id="campaign-carousel" hidden></div>
       </div>
     </section>
 
@@ -427,11 +427,11 @@
     (These are plain <script> tags so the site also works by just double-clicking
      index.html — no build step, no server required.)
   -->
-  <script src="js/content.js?v=f4b04ef9"></script>
+  <script src="js/content.js?v=e20720f2"></script>
   <script src="js/fb-posts.js?v=dc6ad5ed"></script>
   <script src="js/i18n.js?v=2afdb0dd"></script>
   <script src="js/render.js?v=cbacae0f"></script>
-  <script src="js/carousel.js?v=24481a8c"></script>
+  <script src="js/carousel.js?v=2b103144"></script>
   <script src="js/main.js?v=fbba7c37"></script>
 </body>
 </html>
