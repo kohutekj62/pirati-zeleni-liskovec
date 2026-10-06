@@ -38,7 +38,7 @@ test.describe("Starý Lískovec ON website", () => {
   });
 
   test("the menu links point at the sections", async ({ page }) => {
-    const expected = ["#about", "#program", "#campaign", "#people", "#meet", "#news", "#contact", "#partners"];
+    const expected = ["#campaign", "#about", "#program", "#people", "#meet", "#news", "#contact", "#partners"];
     const hrefs = await page.locator(".main-nav a").evaluateAll(
       (els) => els.map((a) => a.getAttribute("href"))
     );

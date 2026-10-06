@@ -121,9 +121,9 @@
 
       <!-- Desktop navigation. Labels come from content.js (ui.nav_*) -->
       <nav class="main-nav" id="main-nav" aria-label="Hlavní menu">
+        <a href="#campaign" data-i18n="nav_campaign">Kampaň</a>
         <a href="#about"    data-i18n="nav_about">O nás</a>
         <a href="#program"  data-i18n="nav_program">Program</a>
-        <a href="#campaign" data-i18n="nav_campaign">Kampaň</a>
         <a href="#people"   data-i18n="nav_people">Lidé</a>
         <a href="#meet"     data-i18n="nav_meet">Setkejme se</a>
         <a href="#news"     data-i18n="nav_news">Aktuality</a>
@@ -180,9 +180,24 @@
     </section>
 
     <!-- ======================================================================
+         2b) KAMPAŇ  (Campaign)  — a photo carousel: the campaign posters and
+             before → after photos take turns in several parallel carousels, a click opens
+             our Facebook. Built by js/carousel.js from content.js → carousels:
+             — the photos are in assets/carousel/.
+         ===================================================================== -->
+    <section class="section" id="campaign" aria-labelledby="campaign-title">
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title" id="campaign-title" data-i18n="campaign_title">Kampaň</h2>
+        </header>
+        <div class="campaign__carousel" id="campaign-carousel" hidden></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
          1) O NÁS  (About us)   — text comes from content.js  →  about:
          ===================================================================== -->
-    <section class="section" id="about" aria-labelledby="about-title">
+    <section class="section section--alt" id="about" aria-labelledby="about-title">
       <div class="container">
         <header class="section__head">
           <h2 class="section__title" id="about-title" data-i18n="about_title">O nás</h2>
@@ -203,7 +218,7 @@
          2) PROGRAM   — the 6 priorities. Cards are built by render.js from
                         content.js  →  program:  (click a card to expand it)
          ===================================================================== -->
-    <section class="section section--alt" id="program" aria-labelledby="program-title">
+    <section class="section" id="program" aria-labelledby="program-title">
       <div class="container">
         <header class="section__head">
           <h2 class="section__title" id="program-title" data-i18n="program_title">Program</h2>
@@ -211,21 +226,6 @@
         </header>
         <!-- The 6 program cards appear here -->
         <div class="program-list" id="program-list"></div>
-      </div>
-    </section>
-
-    <!-- ======================================================================
-         2b) KAMPAŇ  (Campaign)  — a photo carousel: the campaign posters and
-             before → after photos take turns in several parallel carousels, a click opens
-             our Facebook. Built by js/carousel.js from content.js → carousels:
-             — the photos are in assets/carousel/.
-         ===================================================================== -->
-    <section class="section" id="campaign" aria-labelledby="campaign-title">
-      <div class="container">
-        <header class="section__head">
-          <h2 class="section__title" id="campaign-title" data-i18n="campaign_title">Kampaň</h2>
-        </header>
-        <div class="campaign__carousel" id="campaign-carousel" hidden></div>
       </div>
     </section>
 
@@ -392,9 +392,9 @@
 
       <nav class="site-footer__nav" aria-label="Footer">
         <h2 class="visually-hidden" data-i18n="footer_nav">Rozcestník</h2>
+        <a href="#campaign" data-i18n="nav_campaign">Kampaň</a>
         <a href="#about"    data-i18n="nav_about">O nás</a>
         <a href="#program"  data-i18n="nav_program">Program</a>
-        <a href="#campaign" data-i18n="nav_campaign">Kampaň</a>
         <a href="#people"   data-i18n="nav_people">Lidé</a>
         <a href="#meet"     data-i18n="nav_meet">Setkejme se</a>
         <a href="#contact"  data-i18n="nav_contact">Spojme se</a>
